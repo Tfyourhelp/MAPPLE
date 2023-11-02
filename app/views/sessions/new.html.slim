@@ -1,0 +1,21 @@
+- provide(:title, "Log in")
+div.text-center
+  h1 Log in
+.row.justify-content-center.align-items-center
+  .col-md-4
+    = form_with(url: login_path, scope: :session, local: true) do |f|
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+      
+      = f.label :password
+      = link_to "(forgot password)", new_password_reset_path, class:"mx-2"
+      = f.password_field :password, class: 'form-control'
+
+      = f.label :remember_me, class: "checkbox inline" do
+        = f.check_box :remember_me
+        span.mx-1.5 Remember me on this computer
+      
+      = f.submit "Log in", class: "btn btn-primary d-block mt-0.5"
+    p
+      | New user? 
+      = link_to "Sign up now!", signup_path

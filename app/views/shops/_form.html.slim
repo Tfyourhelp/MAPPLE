@@ -1,0 +1,38 @@
+= form_with(model: @shop, local: true) do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: "form-control"
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: "form-control"
+
+  .form-group
+    = f.label :password_confirmation, "Confirmation"
+    = f.password_field :password_confirmation, class: "form-control"
+
+  .form-group
+    = f.label :phone
+    = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control"
+
+  .form-group
+    = f.label :address
+    = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 3
+  
+  .form-group
+    = f.label :description
+    = f.text_area :description, placeholder: "Full of your description...", class: "form-control", rows: 3 
+  
+  .form-group
+    = f.label :tax_code
+    = f.number_field :tax_code, inputmode: "numeric", pattern: "[0-9]*", placeholder: "Full of your number...", class: "form-control"
+  
+  .form-group.row.mt-3
+    .col
+      = f.submit yield(:button_text), class: "btn btn-primary",style: "width: 100%" ,data: { action: "click -> user#submit_form" }
+

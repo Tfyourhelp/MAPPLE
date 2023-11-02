@@ -1,0 +1,52 @@
+- if logged_in?("shop")
+  h1.text-center.mt-3 All product
+  div.(style= "margin: 10px 380px 100px 380px ")
+    div.d-flex.justify-content-end(style = "width:100%")
+      = button_to "New product", new_product_path, method: :get ,class:"btn btn-primary ", style: "width: 150px; height: 40px"
+    table.table.table-bordered.table-hover(style="margin-top: 20px")
+      thead.text-center
+        tr.table-warning
+          th(scope="col") Product name
+          th(scope="col") Price
+          th(scope="col") Quantity
+          th(scope="col") Category
+          th(scope="col") Image
+          th.text-center(scope="col")
+            | Product action
+      tbody
+      - index = session[:index] || 0
+      - @products.order(created_at: :desc).each_with_index do |product,index|
+        tr.text-center(style="vertical-align: middle;")
+          td(style="width: 430px")
+            = link_to "#{product.name}", product_path(product), class: 'black-link'
+          td(style="width: 100px")   
+            | #{product.price} $ 
+          td(style="width: 100px")
+            = product.quantity 
+          td(style= "") 
+            = product.categories.first.name if !product.categories.empty?
+          td(style="width: 150px; padding: 5px")
+            - if product.images.attached? 
+              img(style="height: 100px; width: 100px" src=url_for(product.images[0])) 
+            - else
+              img(style="height: 100px; width: 100px" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
+          td(style="width: 150px")
+            = link_to 'Edit', edit_product_path(product, page: @page) ,style:"text-decoration: none;"
+            = button_to 'Delete ', product_path(product), method: :delete, data: { confirm: 'Are you sure?'}, class: "remove-button" 
+    div.d-flex.justify-content-end
+      = paginate @products  
+- else
+  /= render partial: "main_slideshow" , categories: @categories
+  div(style= "margin: 10px 175px 20px 175px ")
+    h1(style="margin: 0px 0px 0px 30px") Category
+    div.mb-7(style="border-bottom: 1px solid #ccc")
+      = render partial: "categories/categories_slideshow" , categories: @categories.order(id: :asc)
+
+  .container.py-1 
+    h1.ml-6 Product
+    div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")
+      - @products.order(created_at: :desc).shuffle.each do |product|
+        = render "static_pages/product_display", product: product 
+    div.d-flex.justify-content-end.mt-3
+      = paginate @products 
+      

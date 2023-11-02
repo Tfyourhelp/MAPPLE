@@ -1,0 +1,21 @@
+.category_slideshow
+  #carouselExampleControls.carousel data-bs-ride="carousel"
+    .carousel-inner
+      - @categories.each_with_index do |category, index|
+        .carousel-item class="#{index == 0 ? 'active' : 0 }"
+          .card
+            - if category.image.attached? 
+              img[style="height: 200px; width: 100%" src="#{url_for(category.image)}" alt="..."]
+            -else
+              img[style="height: 200px; width: 100%" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png" alt="..."]
+            .card-body
+              h5.card-title.text-center(style="margin-bottom: 0px")
+                = link_to "#{category.name}", category_path(category), class: 'black-link'
+              p.card-text.text-center 
+                | ( #{pluralize(category.products.count, "product")} )
+    button.carousel-control-prev type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"
+      span.carousel-control-prev-icon aria-hidden="true"
+      span.visually-hidden Previous
+    button.carousel-control-next type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"
+      span.carousel-control-next-icon aria-hidden="true"
+      span.visually-hidden Next

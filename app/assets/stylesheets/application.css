@@ -1,0 +1,229 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+*/
+
+
+.header-div{
+  height: 20px;
+  background-color: #f5f5f5;
+}
+
+.navbar-nav {
+  margin-left: auto;
+  margin-right: 70%;
+}
+  
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+background-color: white !important; 
+}
+  
+.navbar-nav .nav-link {
+  color: #111 !important;
+  font-size: 1.1em !important;
+  font: var(--podium-cds-typography-body1-strong);
+  margin: 0px;
+  font-weight: 400;
+}
+
+.shop-name {
+  text-decoration: none;
+  color: #fe9004 !important;
+  font-weight: bold;
+}
+
+.search-button {
+  color: #000000 !important;
+  background-color: #fe9004 !important;
+  border-color: #fe9004 !important;
+} 
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    color: #050505; 
+    cursor: pointer;
+    margin: 0px 10px 0px 10px;
+  }
+  
+.logout-button:hover {
+    color: #a3a5a7; 
+}
+
+#error_explanation {
+  color: red;
+  ul {
+  color: red;
+  margin: 0 0 30px 0;
+  }
+}
+
+/* Carousel Multiple Items */
+.category_slideshow .img-wrapper{
+  max-width: 100%;
+  height: 65vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.category_slideshow img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media screen and (min-width:576px) {
+  .category_slideshow .carousel-inner{
+    display: flex;
+  }
+  .category_slideshow .carousel-item{
+    display: block !important;
+    margin-right: 0 !important;
+    flex: 0 0 calc(100%/5);
+  }
+  .category_slideshow .img-wrapper{
+    height: 23vw;
+  }
+}
+
+.category_slideshow .carousel-inner{
+  padding: 1em;
+}
+.category_slideshow .card{
+  margin: 0.5em;
+  border-radius: 0 !important;
+  box-shadow: 2px 6px 8px 0 rgba(22,22,16,.18);
+}
+
+.category_slideshow .carousel-control-prev, .category_slideshow .carousel-control-next{
+  width: 6vh !important;
+  height: 6vh;
+  background-color: #e1e1e1 !important;
+  border-radius: 50%;
+  top: 50% !important;
+  transform: translateY(-50%);
+  opacity: .5 !important;
+}
+
+.category_slideshow .carousel-control-prev:hover, .category_slideshow .carousel-control-next:hover{
+  opacity: .8;
+}
+/* ************************ */
+
+
+.black-link {
+  color: black;
+  text-decoration: none;
+}
+
+
+.category_name_link {
+  color: black; 
+  text-decoration: none;
+}
+
+.remove-button {
+  background-color: transparent;
+  border: none;
+  color: #cf4a29; 
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  color: #b30000; 
+}
+
+.checked {
+  color: orange;
+}
+
+.detail-order-quantity-text {
+  color: black;
+  font-weight: 850;
+}
+
+.detail-order-name-text {
+  color: blue;
+  font-weight: 550;
+}
+
+
+.detail-order-total-text {
+  color: black;
+  font-weight: 450;
+}
+
+.detail-order-provide-text {
+  color: gray;
+  font-weight: 450;
+}
+
+
+/* Order confirmation */
+
+/* .h1div {
+  margin: 30px 0px 0px 0px;
+  text-align: center;
+}
+
+.divlonduoi{
+  margin: 20px 420px 0px 420px;
+}
+
+.divnho{
+  height: 35px;
+  display: flex;
+}
+
+.titletext{
+  font-weight: 400
+}
+
+.contenttext{
+  font-weight: 600
+} */
+
+/* #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: black;
+  color: white;
+} */
+
+
+.productname{
+  text-decoration: none;
+  color: black
+}
+
+.productname:hover {
+  color: blue; 
+}
+
+

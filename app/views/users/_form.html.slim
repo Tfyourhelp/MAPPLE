@@ -1,0 +1,35 @@
+= form_with(model: @user, local: true, id: "UserForm" ,data: {controller: "user"}) do |f|
+  h1 xin chào
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control", data: {'user-target': "name"}
+  label[data-user-target="nameerrors" style="color: red;display: block;"]
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: "form-control", data: {'user-target': "email"}
+  div
+    label[data-user-target="emailerrors" style="color: red;display: block;"]
+    label[data-user-target="emailerrors" style="color: red;display: block;"]
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: "form-control", data: {'user-target': "password"}
+  div
+    label data-user-target="passworderrors" style="color: red;display: block;"
+    label data-user-target="passworderrors" style="color: red;display: block;"
+  .form-group
+    = f.label :password_confirmation, "Confirmation"
+    = f.password_field :password_confirmation, class: "form-control", data: {'user-target': "passwordconfirmation"}
+  label data-user-target="passwordconfirmationerrors" style="color: red;display: block;"
+  .form-group
+    = f.label :phone
+    = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", data: {'user-target': "phone"}  
+  label data-user-target="phoneerrors" style="color: red;display: block;"  
+  .form-group
+    = f.label :address
+    = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 3, data: {'user-target': "address"}   
+  label data-user-target="addresserrors" style="color: red;display: block;"
+  .form-group.row.mt-3
+    .col
+      = f.submit yield(:button_text), class: "btn btn-primary",style: "width: 100%" ,data: { action: "click -> user#submit_form" }
+

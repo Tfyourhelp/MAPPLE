@@ -1,0 +1,20 @@
+= form_with(model: model, local: true, id: "UserForm" ) do |f|
+  = render 'shared/error_messages', object: f.object
+
+  .form-group
+    = f.label :name
+    div.mt-1
+      = f.text_field :name, class: "form-control"
+
+  span.image
+    div.mt-3
+      = f.file_field :image
+  
+      /= image_tag model.image.variant(resize_to_limit: [30,30]) if model.image.attached?
+
+  - if !@subcategory.nil?
+    = hidden_field_tag :category_id, @subcategory.category_id if !@subcategory.id.nil?
+  
+  .form-group.row.mt-3
+    .col
+      = f.submit yield(:button_text), class: "btn btn-primary",style: "width: 100%"

@@ -1,0 +1,46 @@
+/aside.main-sidebar.sidebar-dark-primary.elevation-4
+  // Brand Logo
+  a.brand-link href="index3.html"
+    img.brand-image.img-circle.elevation-3[src="https://baogiaothong.mediacdn.vn/upload/2-2022/images/2022-05-25/4-1653445668-151-width740height377.jpg" alt="AdminLTE Logo" style="opacity: .8"]
+    span.brand-text.font-weight-light AdminLTE 3
+  // Sidebar
+  .sidebar
+    // Sidebar user panel (optional)
+    .user-panel.mt-3.pb-3.mb-3.d-flex
+      .image
+        img.img-circle.elevation-2[src="https://baogiaothong.mediacdn.vn/upload/2-2022/images/2022-05-25/1-1653445668-308-width740height476.jpg" alt="User Image"]
+      .info
+        a.d-block href="#" Alexander Pierce
+    // SidebarSearch Form
+    .form-inline
+      .input-group[data-widget="sidebar-search"]
+        input.form-control.form-control-sidebar[type="search" placeholder="Search" aria-label="Search"]
+        .input-group-append
+          button.btn.btn-sidebar
+            i.fas.fa-search.fa-fw
+    // Sidebar Menu
+    nav.mt-2
+      ul.nav.nav-pills.nav-sidebar.flex-column[data-widget="treeview" role="menu" data-accordion="false"]
+        // Add icons to the links using the .nav-icon class
+        // with font-awesome or any other icon font library
+        li.nav-item.menu-open
+          a.nav-link.active href="#"
+            i.nav-icon.fas.fa-tachometer-alt
+            p
+              | Starter Pages
+              i.right.fas.fa-angle-left
+          ul.nav.nav-treeview
+            li.nav-item
+              a.nav-link.active href="#"
+                i.far.fa-circle.nav-icon
+                p Active Page
+            li.nav-item
+              a.nav-link href="#"
+                i.far.fa-circle.nav-icon
+                p Inactive Page
+        li.nav-item
+          a.nav-link href="#"
+            i.nav-icon.fas.fa-th
+            p
+              | Simple Link
+              span.right.badge.badge-danger New

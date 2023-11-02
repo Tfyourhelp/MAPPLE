@@ -1,0 +1,53 @@
+div(style="margin: 30px 0px 0px 0px;text-align: center;")
+  h1 Your order confirmation
+div(style="margin: 20px 350px 0px 350px; font-size: 1.5em")    
+  div(style="height: 35px;display: flex;")
+    h5(style="font-weight: 400") Order status 
+    h2(style="color: white") 1
+    h5 -
+    h2(style="color: white") 1
+    h5(style="font-weight: 600") Ordered sucessful
+  div(style="height: 35px;display: flex;")
+    h5(style="font-weight: 400") Your name:    
+    h2(style="color: white") 1
+    h5(style="font-weight: 600") = @user.info_orders.last.name
+  div(style="height: 35px;display: flex;")
+    h5(style="font-weight: 400") Phone:    
+    h2(style="color: white") 1
+    h5(style="font-weight: 600") = @user.info_orders.last.phone
+  div.(style="height: 35px;display: flex;")
+    h5(style="font-weight: 400") Address:    
+    h2(style="color: white") 1
+    h5(style="font-weight: 600") = @user.info_orders.last.address
+  div(style="height: 35px;display: flex;")
+    h5(style="font-weight: 400") Payment method: Cash 
+  h5(style="font-weight: 600") FREE SHIP
+
+  table#customers(style="margin: 30px 0px 0px 0px;text-align: center;font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;")
+    tr(style="text-align: center;")
+      th(style="border: 1px solid #ddd;padding: 8px;  padding-top: 12px;padding-bottom: 12px;background-color: black;color: white;") Product Name
+      th(style="border: 1px solid #ddd;padding: 8px;  padding-top: 12px;padding-bottom: 12px;background-color: black;color: white;") Unit price
+      th(style="border: 1px solid #ddd;padding: 8px;  padding-top: 12px;padding-bottom: 12px;background-color: black;color: white;") Quantity
+      th(style="border: 1px solid #ddd;padding: 8px;  padding-top: 12px;padding-bottom: 12px;background-color: black;color: white;") Total
+    - total_bill = 0
+    - total_quantity = 0
+    - @user.info_orders.last.detail_orders.order(id: :desc).each_with_index do |detail_order, index|
+      tr(style="text-align: center;")
+        td(style="width: 500px;  border: 1px solid #ddd; padding: 8px;")
+          = detail_order.product_name
+        td(style="width: 250px;  border: 1px solid #ddd; padding: 8px;")
+          | #{detail_order.price} $ 
+        td(style="width: 150px;  border: 1px solid #ddd; padding: 8px;")
+          - total_quantity += detail_order.quantity
+          = detail_order.quantity
+        td(style="border: 1px solid #ddd; padding: 8px;")
+          - total_bill += detail_order.price*detail_order.quantity
+          | #{detail_order.price*detail_order.quantity} $ 
+    tr(style="text-align: center;")
+      td(style="width: 500px; border: 1px solid #ddd; padding: 8px;")
+        | Total:
+      td(style="width: 250px; border: 1px solid #ddd; padding: 8px;")
+      td(style="width: 150px; border: 1px solid #ddd; padding: 8px;")
+        = total_quantity
+      td(style="border: 1px solid #ddd; padding: 8px;")
+        | #{total_bill} $ 

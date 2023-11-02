@@ -1,0 +1,15 @@
+/= render partial: "main_slideshow" , categories: @categories
+
+div(style= "margin: 10px 175px 20px 175px ")
+  h1(style="margin: 0px 0px 0px 30px") Category
+  div.mb-7(style="border-bottom: 1px solid #ccc")
+    = render partial: "categories/categories_slideshow" , categories: @categories
+
+.container.py-1.mb-4
+  h1.ml-6 Product
+  div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")
+    - @products.shuffle.each do |product|
+      = render "product_display", product: product
+  .mt-3 
+    div.d-flex.justify-content-end
+      = paginate @products 
