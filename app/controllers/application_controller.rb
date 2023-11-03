@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_shop
-    puts "hello"
     unless logged_in?("shop") 
       if logged_in?("user")
         dfdf

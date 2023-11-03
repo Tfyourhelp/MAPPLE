@@ -29,14 +29,14 @@ default: &default
 
 development:
   <<: *default
-  database: Shopping_cart
+  database: Shopping_cart_review
 
 test:
   <<: *default
-  database: Shopping_cart
+  database: Shopping_cart_review
 
 production:
   <<: *default
-  database: Shopping_cart
+  database: Shopping_cart_review
   username: <%= ENV.fetch("POSTGRESQL_USERNAME", "postgres") %>
   password: <%= ENV.fetch("POSTGRESQL_PASSWORD", "0762846051") %> 

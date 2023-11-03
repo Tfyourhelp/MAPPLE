@@ -14,9 +14,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
         li.nav-item
           a.nav-link href="#{root_path}" 
             | Shopping
-        li.nav-item(style = "margin-left: 8px")
-            a.nav-link.text-nowrap href="#{carts_path}" 
+        li.nav-item.d-flex.align-items-center(style = "margin-left: 8px")
+          .d-flex href="#{carts_path}"
+            i class="fa-solid fa-cart-shopping" style="font-size: 18px; margin-top: 5px"
               | Cart
+            a.nav-link.text-nowrap href="#{carts_path}" 
+              
         li.nav-item(style = "margin-left: 8px")
             a.nav-link.text-nowrap href="#{order_history_list_path}" 
               | Orders    
@@ -61,8 +64,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
             = form_tag logout_path, method: :delete, class: "logout-form" do
               = hidden_field_tag :person_type, person_type
               = button_tag "Log out", type: "submit", class: "logout-button"
-            /li.
-              = button_to "Log out", logout_path, method: :delete, class: "logout-button"
       - else
         li.nav-item
           a.nav-link href="#{root_path}" 
@@ -70,4 +71,4 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
         li.nav-item(style = "margin-left: 8px")
           a.nav-link href="#{login_path}" 
             | Login
-div.header-div(style="height: 40px !important;")
+/div.header-div(style="height: 40px !important;")
