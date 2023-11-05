@@ -67,5 +67,4 @@ class UsersController < ApplicationController
       flash[:danger] = "User not found"
     end 
   end
-
 end

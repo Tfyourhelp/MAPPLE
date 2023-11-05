@@ -32,7 +32,6 @@ class ProductsController < ApplicationController
     @product = @category.products.new(product_params)
     update_images_to_product
     if @product.save   
-      #add_category_to_product(@product)
       redirect_to products_url(@product)
     else
       render 'new', status: :unprocessable_entity
@@ -82,6 +81,7 @@ class ProductsController < ApplicationController
       @product.images.delete_all unless @product.images.empty?
       @product.images.attach(params[:product][:images])
     end
+    fdf
   end
 
   def find_all_categories

@@ -62,8 +62,8 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category.image.attach(params[:category][:image])
     if @category.update(category_params)
+      update_image_to_category
       flash[:success] = "Category updated"
       redirect_to categories_url
     else
@@ -83,6 +83,12 @@ class CategoriesController < ApplicationController
   end
 
   private 
+
+  def update_image_to_category
+    unless params[:category][:image].nil? 
+      @category.image.attach(params[:category][:image])
+    end
+  end
 
   def category_params
     params.require(:category).permit(:name, :image)
