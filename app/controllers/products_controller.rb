@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :logged_in_shop, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_id, only: [:show, :edit, :update, :destroy]
-  before_action :find_shop_id, only: [:create]
+  before_action :find_category, only: [:create]
   before_action :find_all_categories, only: [:index, :new, :edit]
 
   def index
@@ -12,15 +12,27 @@ class ProductsController < ApplicationController
   def show
   end
 
+
+  def search_in_product_page
+    @page = params[:page]
+    @search_content = params[:search_content]
+    if @search_content.blank?
+      @products = Product.all.all.page(params[:page]).per(8) 
+    elsif @search_content
+      @products = Product.where("name ILIKE  '%#{@search_content}%'").page(params[:page]).per(8)
+    end
+    render 'index', status: :unprocessable_entity
+  end
+
   def new
     @product = Product.new
   end
   
   def create
-    @product = @shop.products.new(product_params)
+    @product = @category.products.new(product_params)
     update_images_to_product
     if @product.save   
-      add_category_to_product(@product)
+      #add_category_to_product(@product)
       redirect_to products_url(@product)
     else
       render 'new', status: :unprocessable_entity
@@ -35,7 +47,6 @@ class ProductsController < ApplicationController
     store_location
     if @product.update(product_params)
       update_images_to_product
-      add_category_to_product(@product)
       flash[:success] = "Product updated"
       redirect_to products_url(@product, page: params[:page])
     else
@@ -45,9 +56,14 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    flash[:success] = "Product deleted"
-    redirect_to products_url
+    unless @product.detail_orders.empty?
+      flash[:danger] = "Product is ordered, you cant delete"
+      redirect_to products_url
+    else
+      @product.destroy
+      flash[:success] = "Product deleted"
+      redirect_to products_url
+    end
   end
 
   private
@@ -61,12 +77,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def add_category_to_product(product)
-# dòng này để trong create và update đều được vì create thì product.categories.empty? --> true    
-    product.categories.delete_all if !product.categories.empty? 
-    product.categories << Category.find(params[:product][:category_id].to_i) if !params[:product][:category_id].empty?
-  end
-
   def update_images_to_product
     unless params[:product][:images].length == 1
       @product.images.delete_all unless @product.images.empty?
@@ -76,5 +86,9 @@ class ProductsController < ApplicationController
 
   def find_all_categories
     @categories = Category.all
+  end
+
+  def find_category
+    @category = Category.find(params[:product][:category_id])
   end
 end

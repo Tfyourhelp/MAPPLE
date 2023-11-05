@@ -13,7 +13,7 @@
 #  index_categories_on_shop_id  (shop_id)
 #
 class Category < ApplicationRecord
-  has_and_belongs_to_many :products
+  has_many :products
   belongs_to :shop
 
   has_one_attached :image

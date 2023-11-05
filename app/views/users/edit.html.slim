@@ -1,10 +1,11 @@
 - provide(:title, "Edit user")
 - provide(:button_text, "Save changes")
-div.text-center
-  h1 Update your profile
-.row.justify-content-center.align-items-center
-  .col-md-4.col-md-offset-3
-    = render 'form'
-    .gravatar_edit.mt-2
-      = gravatar_for @user
-      a href="https://gravatar.com/emails" target="_blank" rel="noopener" change
+.card.m-auto.mb-5 style="width: 1100px;"
+  div.text-center.mt-3
+    h1 Update your profile
+  .row.justify-content-center.align-items-center
+    .col-md-7.col-md-offset-3.mb-3
+      = render 'form'
+      /.gravatar_edit.mt-2
+        = gravatar_for @user
+        a href="https://gravatar.com/emails" target="_blank" rel="noopener" change

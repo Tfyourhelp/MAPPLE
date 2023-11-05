@@ -11,11 +11,6 @@ class UsersController < ApplicationController
   def show
     redirect_to root_url and return unless @user.activated?
   end
-
-  def hehe
-    @user = User.first
-    redirect_to root_url and return unless @user.activated?
-  end
   
   def new
     @user = User.new

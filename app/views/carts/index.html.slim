@@ -2,14 +2,14 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
   h1 Cart Detail
   
 - if @cart.cart_items.empty?
-  div(style="margin: 0px 400px 0px 400px;")
+  div(style="margin: 0px 380px 0px 380px;")
     h2.mb-3 Your cart is empty!
     div.d-flex
-      div(style="vertical-align: middle;")
+      div.vam
         p.mb-0.mt-1(style="height: 40px;") Why not add something?
       = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
 - else
-  div.(style="margin: 10px 300px 0px 300px;border-left: 1px solid #ccc;border-top: 1px solid #ccc;border-right: 1px solid #ccc")
+  div.bl-1-ccc.br-1-ccc.bt-1-ccc(style="margin: 10px 300px 0px 300px")
     table.table
       thead.table-dark
         tr.text-center
@@ -22,34 +22,34 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
       tbody
         - total_bill = 0
         - @cart_items.order(id: :asc).each do |cart_item|
-          tr.text-center(style="vertical-align: middle;")
-            td(style="width: 400px")
+          tr.text-center.vam
+            td(style="width: 440px")
               = link_to "#{cart_item.product.name}", product_path(cart_item.product), class: "productname", style: ""
             div(style="width: 386px,height: 102px")
               td(style="width: 250px")
                 - if cart_item.product.images.first
-                  img(style="height: 120px; width: 120px" src=url_for(cart_item.product.images.first))
+                  img(style="height: 100px; width: 100px" src=url_for(cart_item.product.images.first))
                 - else
-                  = image_tag("https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png", alt: "Kitten", width: "120px", height: "120px")
+                  = image_tag("https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png", alt: "Kitten", width: "100px", height: "100px")
             td(style="width: 150px")
               | #{cart_item.product.price} $ 
             td(style="width: 200px")
               div.d-flex.justify-content-center.align-items-center
-                = button_to "-", change_quantity_path(operation: "minus", product_id: cart_item.product.id), method: :post, class: "btn btn-primary",style:"background-color: white ; border-color: gray;height: 37px; margin-right: 2px ;color: black; font-weight:bold"
-                /input(value=cart_item.quantity style="width: 60px;height: 37px;text-align: center;boder-color: #ccc; border-radius: 7px")
+                = button_to "-", change_quantity_path(operation: "minus", product_id: cart_item.product.id), method: :post, class: "btn btn-light b-color-ccc fw-bolder", style:" height: 37px; margin-right: 2px;"
                 = form_with(url: input_quantity_path, local: true) do |f|
-                  = f.number_field :quantity, value: cart_item.quantity, inputmode: "numeric", pattern: "[0-9]*", style: "width: 60px;height: 37px;text-align: center;border-color: #ccc; border-radius: 5px", id: "quantity_input"
+                  = f.number_field :quantity, value: cart_item.quantity, inputmode: "numeric", pattern: "[0-9]*",class: "text-center b-color-ccc rounded" ,style: "width: 60px;height: 37px", id: "quantity_input"
                   = hidden_field_tag :product_id, cart_item.product.id
-                = button_to "+", change_quantity_path(operation: "plus", product_id: cart_item.product.id), method: :post, class: "btn btn-primary",style:"background-color: white ; border-color: gray;width:32.5px;height: 37px; margin-left: 2px;color: black; font-weight:bold "
+                = button_to "+", change_quantity_path(operation: "plus", product_id: cart_item.product.id), method: :post, class: "btn btn-light b-color-ccc fw-bolder",style:"width:32.5px;height: 37px; margin-left: 2px"
             td(style="width: 150px")
               - total_bill += cart_item.product.price*cart_item.quantity
               | #{cart_item.product.price*cart_item.quantity} $ 
             td(style="")
-              = button_to "Remove this item", cart_path(id: cart_item.id), method: :delete, class: "remove-button"
+              = button_to cart_path(id: cart_item.id), method: :delete, class: "garbage-button" do
+                i class="fa-solid fa-trash font-s-15em " 
       thead
-        tr.text-center(style="vertical-align: middle;") 
+        tr.text-center.vam 
           th(scope="col")
-            = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary", style:""
+            = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary"
           th(scope="col")
           th(scope="col") Your bill
           th(scope="col") 
@@ -57,5 +57,5 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
           th(scope="col") 
             | #{total_bill} $
           th(scope="col" style="width: 250px") 
-            = link_to "Go Order", new_info_order_path(cart_id: @cart_items.first.cart_id, total_bill: total_bill), class: "btn btn-primary", style: "width: 180px; height: 38px; background-color: green; border-color: green" unless @cart_items.empty?
+            = link_to "Go Order", new_info_order_path(cart_id: @cart_items.first.cart_id, total_bill: total_bill), class: "btn btn-success", style: "width: 180px; height: 38px" unless @cart_items.empty?
             

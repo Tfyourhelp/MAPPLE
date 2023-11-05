@@ -1,50 +1,47 @@
 - provide(:title, 'Infomation order')
 - provide(:button_text, 'Go payment')
-div.d-flex(style="margin: 80px 300px 0px 300px")
-
-  div(style="width: 100%")
-    div.text-center
-      h1(style="color: gray") Infomation order
+div.d-flex(style="margin: 80px 250px 0px 250px")
+  .card.m-auto.w-100 style="width: 830px !important;"
+    div.text-center.mt-4 
+      h1.text-secondary Infomation order
     .row.justify-content-center.align-items-center.mt-4
-      .col-md-25.col-md-offset-2
+      .col-md-9
         = form_with(model: @info_order, local: true, id: "UserForm" ) do |f|
           = render 'shared/error_messages', object: f.object
-          - puts "#{f.object}"
+
           .form-group
-            = f.label :name
+            = f.label :name ,class: "fw-bold mb-1"
             div.mt-1
-              = f.text_field :name, class: "form-control"
+              = f.text_field :name, value: @info_order.user.name , class: "form-control mb-4"
           .form-group
-            = f.label :address
+            = f.label :address, class: "fw-bold mb-1"
             div.mt-1
-              = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 3
+              = f.text_area :address, value: @info_order.user.address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
           .form-group
-            = f.label :phone
+            = f.label :phone, class: "fw-bold mb-1"
             div.mt-1
-              = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control"
+              = f.number_field :phone, value: @info_order.user.phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
           = hidden_field_tag :total_bill, @total_bill
           = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
           = hidden_field_tag :cart_id, @cart.id
-          .form-group.row.mt-3
+          .form-group.row.mt-4.mb-5
             .col
-              = f.submit yield(:button_text), class: "btn btn-primary",style: "width: 100%;border-color: green; background-color: green"
+              = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5"
 
-  div(style="margin-left: 180px")
-    h1.text-center(style="color: gray")
-      | Detail order
-
-    div(style="margin-top: 25px;width: 400px; border: 2px solid gray; border-radius: 7px")
+  div.flex-shrink-1.mt-4(style="margin-left: 30px")
+    h1.text-center.text-secondary Detail order
+    div.b-color-gray.bd-rad-7(style="margin-top: 25px;width: 450px;")
       - @cart_items.each do |cart_item|
-        div.d-flex.align-items-center(style="width: 398px; height: 80px; ;border-bottom: 2px solid gray")
-          div.text-start(style="width: 100%; margin-left: 15px")
+        div.d-flex.align-items-center.bb-2-gray(style="width: 448px; height: 80px;")
+          div.text-start.w-100(style="margin-left: 15px")
             h7.detail-order-quantity-text   #{cart_item.quantity}  x 
             h7.detail-order-name-text  #{cart_item.product.name}   
             h7.detail-order-total-text - #{cart_item.product.price*cart_item.quantity} $
-            h6.detail-order-provide-text.mb-0 Provided by #{cart_item.product.shop.name}
+            h6.detail-order-provide-text.mb-0 Provided by #{cart_item.product.category.shop.name}
       
       div.d-flex.align-items-center(style="width: 400px; height: 50px")
         div(style="margin-left: 15px;")
           h7 Total :   
-          h7(style="color: white") 1  
+          h7.text-white 1  
           h7.detail-order-quantity-text   
             |  #{@total_bill} $

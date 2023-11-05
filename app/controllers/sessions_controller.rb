@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if shop && shop.authenticate(params[:session][:password])        
         log_in(shop,"shop") 
         params[:session][:remember_me] == '1' ? remember(shop,"shop") : forget(shop, "shop") 
-        redirect_back_or root_path 
+        redirect_to root_url
       end
     else
       user = User.find_by(email: params[:session][:email].downcase) 

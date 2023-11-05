@@ -63,7 +63,7 @@ class InfoOrdersController < ApplicationController
   def create_detail_orders(cart_item_ids)
     (cart_item_ids).each do |cart_item_id|
       cart_item = CartItem.find(cart_item_id)
-      detail_order = DetailOrder.new(product_name: cart_item.product.name, price: cart_item.product.price, quantity: cart_item.quantity, info_order_id: @info_order.id)
+      detail_order = DetailOrder.new(product_name: cart_item.product.name, price: cart_item.product.price, quantity: cart_item.quantity, info_order_id: @info_order.id, product_id: cart_item.product_id)
       if cart_item.product.images.attached?
         detail_order.image.attach(cart_item.product.images.first.blob)
       end

@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :logged_in_shop, only: [:index,:edit, :update, :destroy]
   before_action :find_id, only: [:show, :edit, :update, :destroy, :filter_price]
   before_action :find_shop_id, only: [:new, :create]
+  
   def index
     @categories = Category.all.page(params[:page]).per(8) 
   end
@@ -71,9 +72,14 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    flash[:success] = "Category deleted"
-    redirect_to categories_url
+    unless @category.products.empty?
+      flash[:danger] = "This category has product, you cant delete"
+      redirect_to categories_url
+    else
+      @category.destroy
+      flash[:success] = "Category deleted"
+      redirect_to categories_url
+    end
   end
 
   private 

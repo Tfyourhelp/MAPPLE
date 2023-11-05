@@ -1,31 +1,34 @@
 /div.header-div
-nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
+nav.navbar.navbar-expand-lg.navbar-light.header-div
   .container
     = link_to root_path, id: "logo" , class: "shop-name" do
-      = image_tag "https://img.freepik.com/premium-vector/funny-mapple-company-logo-template_292879-878.jpg?w=2000", alt: "Logo", style: "width: 75px; height: 50px; margin: 0px 0px 0px 300px"
       | MAPPLE
-    form.d-flex(style = "margin-right: 250px; width: 550px")
-      input.form-control.me-2(type="search" placeholder="Search" aria-label="Search")
-      button.btn.btn-outline-success.search-button(type="submit") Search
+    -if logged_in?("user")
+      = form_with(url: search_path, local:true, method: :get, class:"d-flex pos-rela") do |f|
+        = f.text_field :search_content,value: @search_content ,class: "form-control mt-1 ",style: "margin-right: 350px; width: 400px "
+        i class="fa-solid fa-magnifying-glass pos-abs search-icon"
   div.collapse.navbar-collapse#navbarNav
     ul.navbar-nav.mr-auto
       - if logged_in?("user")
         - person_type = "user"
         li.nav-item
           a.nav-link href="#{root_path}" 
-            | Shopping
-        li.nav-item.d-flex.align-items-center(style = "margin-left: 8px")
-          .d-flex href="#{carts_path}"
-            i class="fa-solid fa-cart-shopping" style="font-size: 18px; margin-top: 5px"
-              | Cart
-            a.nav-link.text-nowrap href="#{carts_path}" 
-              
-        li.nav-item(style = "margin-left: 8px")
+            i class="fa-solid fa-shop font-s-125em icon-button"
+        li.nav-item.d-flex.align-items-center(style = "margin-left: 30px")
+          a.nav-link.text-nowrap href="#{carts_path}" 
+            div.pos-rela
+              i class="fa-solid fa-cart-shopping font-s-125em icon-button " 
+                - unless current_person("user").carts.empty?
+                  - item_in_cart_length = current_person("user").carts.last.cart_items.length
+                  - if item_in_cart_length > 0
+                    div.circle
+                      = item_in_cart_length
+        li.nav-item(style = "margin-left: 30px")
             a.nav-link.text-nowrap href="#{order_history_list_path}" 
-              | Orders    
-        li.nav-item.dropdown(style = "margin-left: 8px")
+              i class="fa-solid fa-clipboard-list font-s-125em icon-button"
+        li.nav-item.dropdown(style = "margin-left: 30px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            | Account
+            i class="fa-solid fa-bars fa-lg icon-button"
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{user_path(current_person("user"))}"
@@ -41,17 +44,19 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
       - elsif logged_in?("shop") 
         - person_type = "shop"
         li.nav-item
-            a.nav-link.text-nowrap href="#{products_path}" 
-              | Product  
-        li.nav-item(style = "margin-left: 8px")
-            a.nav-link.text-nowrap href="#{categories_path}" 
-              | Category  
-        li.nav-item(style = "margin-left: 8px")
-            a.nav-link.text-nowrap href="#{order_history_list_path}" 
-              | Customer Orders
-        li.nav-item.dropdown(style = "margin-left: 8px")
+          a.nav-link.text-nowrap href="#{products_path}" 
+            i class="fa-brands fa-product-hunt icon-button"
+            | Products 
+        li.nav-item(style = "margin-left: 20px")
+          a.nav-link.text-nowrap href="#{categories_path}" 
+            i class="fa-solid fa-wrench icon-button"  
+            | Category  
+        li.nav-item(style = "margin-left: 20px")
+          a.nav-link.text-nowrap href="#{order_history_list_path}" 
+            i class="fa-solid fa-clipboard-list fa-lg icon-button"
+        li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            | Account
+            i class="fa-solid fa-bars fa-lg icon-button"
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{shop_path(current_person("shop"))}"
@@ -67,8 +72,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light(style="")
       - else
         li.nav-item
           a.nav-link href="#{root_path}" 
-            | Shopping
-        li.nav-item(style = "margin-left: 8px")
+            i class="fa-solid fa-shop fa-lg icon-button"
+        li.nav-item(style = "margin-left: 25px")
           a.nav-link href="#{login_path}" 
-            | Login
+            i class="fa-solid fa-user-pen fa-lg icon-button"
 /div.header-div(style="height: 40px !important;")

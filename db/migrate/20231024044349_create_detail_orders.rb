@@ -6,6 +6,7 @@ class CreateDetailOrders < ActiveRecord::Migration[7.0]
       t.integer :quantity
 
       t.belongs_to :info_order
+      t.belongs_to :product
       
       t.timestamps
     end

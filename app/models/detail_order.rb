@@ -9,10 +9,12 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  info_order_id :bigint
+#  product_id    :bigint
 #
 # Indexes
 #
 #  index_detail_orders_on_info_order_id  (info_order_id)
+#  index_detail_orders_on_product_id     (product_id)
 #
 class DetailOrder < ApplicationRecord
   has_one_attached :image 

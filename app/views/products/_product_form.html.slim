@@ -18,11 +18,7 @@
 
   .form-group
     = f.label :category, "Select Category"
-    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.categories.empty? ? nil : @product.categories.first.id), { include_blank: true }, class: "form-control"
-    /- if @product.categories.empty?
-      = f.select :category_id, options_for_select(categories.map{|c| [c.name, c.id]}), { include_blank: true }, class: "form-control"
-    /- else
-      = f.select :category_id, options_for_select(categories.map{|c| [c.name, c.id]}, @product.categories.first.id), { include_blank: true }, class: "form-control"
+    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-control"
 
   .form-group
     = f.label :description
@@ -33,10 +29,7 @@
     div.mt-3
       = f.file_field :images, multiple: true ,accept: "image/jpeg, image/gif, image/png"
   
-      /- model.images.each do |image|
-        = image_tag image.variant(resize_to_limit: [300,300]) if model.images.attached?
-  
   = hidden_field_tag :page, @page
   .form-group.row.mt-3
     .col
-      = f.submit yield(:button_text), class: "btn btn-primary",style: "width: 100%"
+      = f.submit yield(:button_text), class: "btn btn-primary w-100"

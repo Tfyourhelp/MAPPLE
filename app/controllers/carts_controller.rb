@@ -2,16 +2,12 @@ class CartsController < ApplicationController
   before_action :logged_in_user, only: [:index, :create ,:edit, :update, :destroy]
   before_action :set_cart, only: [:index, :create, :change_quantity, :input_quantity]
   before_action :find_product_to_add_cart_item, only: [:create, :change_quantity, :input_quantity]
+  before_action :find_cart_item, only: [:destroy]
   
   def index
     @cart_items = @cart.cart_items
 # để xóa những trường hợp product hết hàng
-    @cart_items.each do |cart_item| 
-      if cart_item.product.nil? or cart_item.product.quantity == 0 or ((cart_item.quantity - cart_item.product.quantity) > 0)
-        cart_item.destroy
-        redirect_to carts_path
-      end
-    end
+    delete_cart_item_when_out_of_stock
   end
 
   def create
@@ -19,19 +15,9 @@ class CartsController < ApplicationController
       flash[:info] = "This product is currently out of stock."
     else
       if @cart_item.nil? #thêm mới cart_item
-        @cart_item = @cart.cart_items.new(product_id: @product.id)  
-        unless params[:cart_item].nil? # điền vào text_field trong product/show
-          @cart_item.quantity =  params[:cart_item][:quantity].to_i
-        else # nhấn add_to_cart ở ngoài trang chủ
-          @cart_item.quantity =  1
-        end
-        @cart_item.save
+        add_new_cart_item
       else # có cart_item của product đó trong cart rồi
-        unless params[:cart_item].nil? # điền vào text_field trong product/show
-          @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
-        else # nhấn add_to_cart ở ngoài trang chủ
-          @cart_item.update(quantity: (@cart_item.quantity + 1))
-        end
+        update_cart_item
       end
       redirect_to carts_path
     end
@@ -47,24 +33,53 @@ class CartsController < ApplicationController
     if params[:quantity].to_i  < @product.quantity
       @cart_item.update(quantity: params[:quantity])
       redirect_to carts_path
+    else
+      flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
   end
 
   def destroy
-    CartItem.find(params[:id]).destroy
+    @cart_item.destroy
     redirect_to carts_url
   end
 
   private
 
-# tim ra cart cua nguoi dung hien tai neu chua co thi tao moi
-  def set_cart 
-    @cart = current_person("user").carts.find_by(finished: false)
-    if @cart.nil?
-      @cart = current_person("user").carts.build
-      @cart.save
-      @cart = current_person("user").carts.find_by(finished: false)
+  def add_new_cart_item
+    @cart_item = @cart.cart_items.new(product_id: @product.id)  
+    unless params[:cart_item].nil? # điền vào text_field trong product/show
+      @cart_item.quantity =  params[:cart_item][:quantity].to_i
+    else # nhấn add_to_cart ở ngoài trang chủ
+      @cart_item.quantity =  1
     end
+    @cart_item.save
+  end
+
+  def update_cart_item
+    unless params[:cart_item].nil? # điền vào text_field trong product/show
+      @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
+    else # nhấn add_to_cart ở ngoài trang chủ
+      @cart_item.update(quantity: (@cart_item.quantity + 1))
+    end
+  end
+
+  def delete_cart_item_when_out_of_stock
+    @cart_items.each do |cart_item| 
+      if cart_item.product.nil? or cart_item.product.quantity == 0 or ((cart_item.quantity - cart_item.product.quantity) > 0)
+        cart_item.destroy
+        redirect_to carts_path
+      end
+    end
+  end
+
+  def find_cart_item
+    @cart_item = CartItem.find(params[:id])
+  end
+
+# tim ra cart cua nguoi dung hien tai neu chua co thi tao moi và save
+  def set_cart 
+    @cart = current_person("user").carts.find_or_initialize_by(finished: false)
+    @cart.save if @cart.new_record?
   end
 
   def find_product_to_add_cart_item
@@ -76,6 +91,8 @@ class CartsController < ApplicationController
   def plus_operation
     if @cart_item.quantity < @product.quantity
       @cart_item.update(quantity: @cart_item.quantity + 1)
+    else
+      flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
   end
   
@@ -84,4 +101,7 @@ class CartsController < ApplicationController
       @cart_item.update(quantity: @cart_item.quantity - 1)
     end
   end
+
+
+
 end

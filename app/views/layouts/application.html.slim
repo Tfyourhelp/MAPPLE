@@ -16,11 +16,11 @@ html
   
   body
     = render 'layouts/header'
-    .container(style="max-width: 100%; padding: 0px")
+    .container.p-0.mw-100(style="margin-top: 59px")
       - flash.each do |message_type, message|
         div class="alert alert-#{message_type}" style=""= message
-      div style="margin-top: 100px"
-        = yield
+      div style="margin-top: 80px"
+          = yield
     = render 'layouts/footer'
 
       

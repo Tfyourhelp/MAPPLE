@@ -69,24 +69,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_172724) do
     t.index ["shop_id"], name: "index_categories_on_shop_id"
   end
 
-  create_table "categories_products", id: false, force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_categories_products_on_category_id"
-    t.index ["product_id", "category_id"], name: "index_categories_products_on_product_id_and_category_id", unique: true
-    t.index ["product_id"], name: "index_categories_products_on_product_id"
-  end
-
   create_table "detail_orders", force: :cascade do |t|
     t.string "product_name"
     t.float "price"
     t.integer "quantity"
     t.bigint "info_order_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["info_order_id"], name: "index_detail_orders_on_info_order_id"
+    t.index ["product_id"], name: "index_detail_orders_on_product_id"
   end
 
   create_table "info_orders", force: :cascade do |t|
@@ -105,10 +97,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_172724) do
     t.float "price"
     t.string "description"
     t.integer "quantity"
-    t.bigint "shop_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_products_on_shop_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "shops", force: :cascade do |t|

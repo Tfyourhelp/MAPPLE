@@ -30,7 +30,8 @@ gem 'rubocop', require: false
 gem 'pg'
 gem 'stripe'
 gem 'slide-selector'
-
+gem 'fuzzy_match'
+gem 'amatch'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

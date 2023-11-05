@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'checkouts/success'
+  #get 'checkouts/success'
   resources :products
   resources :users
   resources :account_activations, only: [:edit]
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/order_history_list', to: 'info_orders#order_history_list'
   post '/filter_price', to: 'categories#filter_price'
 
-  get '/hehe', to: 'users#hehe'
-
+  post '/search_in_product_page', to: 'products#search_in_product_page'
+  
+  get '/search', to: 'searchs#search'
 end

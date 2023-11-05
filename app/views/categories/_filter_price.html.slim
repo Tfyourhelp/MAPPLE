@@ -1,10 +1,46 @@
 - provide(:button_text, 'Choose filter')
 = form_with(url: filter_price_path, local: true) do |f|
-  div(style = " margin:0px; width: 300px")
-    .row.mb-5(style="width: 300px; margin:40px 0px 0px 45px;margin-bottom: 0px!important; border: 2px solid #ccc;")
-      div.text-center(style="border-bottom: 2px solid #ccc;padding: 0px")
-        h4.mb-0(style="background-color: #ccc") Price
-      col-md-4 (style="padding: 0px;")
+  .d-flex
+    .dropdown
+      button.btn.btn-secondary.dropdown-toggle(data-bs-toggle="dropdown" aria-expanded="false" style= "width: 150px;")
+        | Interval price    
+      ul.dropdown-menu.p-1
+        li.custom-class
+          a.dropdown-item
+            = f.check_box :under_250 , {checked: @filter[0]}
+            = f.label 'Under 250$'
+        li.custom-class
+          a.dropdown-item
+            = f.check_box :between_250_and_500 , {checked: @filter[1]}
+            = f.label 'Between 250$ and 500$' 
+        li.custom-class
+          a.dropdown-item
+            = f.check_box :between_500_and_750 , {checked: @filter[2]}
+            = f.label 'Between 500$ and 750$ '
+        li.custom-class
+          a.dropdown-item
+            = f.check_box :between_750_and_1000 , {checked: @filter[3]}
+            = f.label 'Between 750$ and 1000$ '       
+        li.custom-class
+          a.dropdown-item
+            = f.check_box :over_1000 , {checked: @filter[4]}
+            = f.label 'Over 1000$ '
+    = hidden_field_tag :id, @category.id
+    div.text-center(style="margin-left: 20px")
+      = f.submit yield(:button_text), class: "btn btn-primary", style: "width: 120px;"
+  
+
+
+
+
+
+/- provide(:button_text, 'Choose filter')
+/= form_with(url: filter_price_path, local: true) do |f|
+  div(style = "margin: 0px; width: 300px")
+    .row.mb-5.border.border-2(style="width: 300px; margin:40px 0px 0px 45px;margin-bottom: 0px!important")
+      div.text-center.bb-2-ccc.p-0
+        h4.mb-0.bg-color-ccc.p-0 Price
+      col-md-4.p-0
         .checkbox-item(style="margin: 15px 0px 0px 20px;")
           = f.check_box :under_250 , {checked: @filter[0]}
           = f.label 'Under 250$'
@@ -25,9 +61,9 @@
       div.text-center
         = f.submit yield(:button_text), class: "btn btn-primary", style: "width: 200px;"
     
+
+
     
-  
-  
   
   
   /.checkbox-row.(style="")

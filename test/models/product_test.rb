@@ -9,11 +9,11 @@
 #  quantity    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  shop_id     :bigint
+#  category_id :bigint
 #
 # Indexes
 #
-#  index_products_on_shop_id  (shop_id)
+#  index_products_on_category_id  (category_id)
 #
 require "test_helper"
 

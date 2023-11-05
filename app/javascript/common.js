@@ -42,3 +42,12 @@ if(window.matchMedia("(min-width:576px)").matches){
 //     }
 //   });
 // });
+
+// javascript.
+//   $(document).ready(function() {
+//     $('.dropdown-menu .custom-class a.dropdown-item').on('click', function(e) {
+//       e.stopPropagation();
+//       var checkbox = $(this).find('input[type="checkbox"]');
+//       checkbox.prop('checked', !checkbox.prop('checked'));
+//     });
+//   });
