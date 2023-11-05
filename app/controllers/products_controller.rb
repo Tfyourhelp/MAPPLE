@@ -81,7 +81,6 @@ class ProductsController < ApplicationController
       @product.images.delete_all unless @product.images.empty?
       @product.images.attach(params[:product][:images])
     end
-    fdf
   end
 
   def find_all_categories
