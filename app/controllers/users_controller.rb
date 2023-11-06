@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def find_id
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     if @user.nil?
       redirect_to root_path unless @user
       flash[:danger] = "User not found"

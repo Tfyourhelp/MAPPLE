@@ -24,8 +24,8 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
                       = item_in_cart_length
         li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            - gravatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5::hexdigest(current_person("user").email.downcase)}?s=#{25}"
-            = image_tag(gravatar_url, alt: current_person("user").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px")
+            - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"
+            = image_tag(gravatar_url, alt: current_person("user").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px", size: "#{27}x#{25}")
             | #{current_person("user").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
@@ -56,8 +56,8 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
             
         li.nav-item.dropdown(style = "margin-left: 25px") 
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            - gravatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5::hexdigest(current_person("shop").email.downcase)}?s=#{25}"
-            = image_tag(gravatar_url, alt: current_person("shop").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px")
+            - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"
+            = image_tag(gravatar_url, alt: current_person("shop").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px", size: "#{27}x#{25}")
             | #{current_person("shop").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li

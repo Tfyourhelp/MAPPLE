@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   #get 'checkouts/success'
   resources :products
-  resources :users
+  
+  resources :users, only: [:show, :new, :edit]
+
   resources :account_activations, only: [:edit]
   resources :password_resets
   resources :shops
@@ -10,8 +12,6 @@ Rails.application.routes.draw do
   resources :info_orders
   resources :checkouts, only: [:create]
   
-  get '/profile', to: 'users#show'
-
   get '/success', to: 'checkouts#success'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

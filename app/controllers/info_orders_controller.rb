@@ -4,7 +4,8 @@ class InfoOrdersController < ApplicationController
   before_action :find_all_info_orders, only: [:create, :order_history_list_shop]
   before_action :find_info_order_id, only: [:order_history_detail]
   before_action :find_all_cart_items_of_cart, only: [:new, :create]
-
+  before_action :logged_in_shop, only: [:order_history_list_shop]
+  
   def new
     @info_order = current_person("user").info_orders.build
     @total_bill = params[:total_bill]
