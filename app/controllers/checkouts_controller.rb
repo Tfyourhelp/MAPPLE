@@ -26,4 +26,4 @@ class CheckoutsController < ApplicationController
   #     render "new"
   #   end
   # end
-end
+

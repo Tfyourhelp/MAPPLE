@@ -1,7 +1,7 @@
 class InfoOrdersController < ApplicationController
   before_action :find_shop_id, only: [:create]
   before_action :find_cart_id, only: [:new,:create ]
-  before_action :find_all_info_orders, only: [:create, :order_history_list]
+  before_action :find_all_info_orders, only: [:create, :order_history_list_shop]
   before_action :find_info_order_id, only: [:order_history_detail]
   before_action :find_all_cart_items_of_cart, only: [:new, :create]
 
@@ -28,7 +28,7 @@ class InfoOrdersController < ApplicationController
     end
   end
 
-  def order_history_list
+  def order_history_list_shop
   end
 
   def order_history_detail
@@ -38,14 +38,6 @@ class InfoOrdersController < ApplicationController
 
   def find_info_order_id
     @info_order = InfoOrder.find(params[:info_order_id])
-  end
-
-  def find_all_info_orders
-    if logged_in?("user")
-      @info_orders = current_person("user").info_orders.page(params[:page]).per(10) 
-    else 
-      @info_orders = InfoOrder.all.page(params[:page]).per(10) 
-    end
   end
 
   def find_cart_id

@@ -1,7 +1,31 @@
 = provide(:title, @user.name)
-/.row
-aside(style="margin-top: 100px")
-  section.user_info.text-center
-    h1
-      = gravatar_for(@user)
-    h1 = @user.name
+/ aside(style="margin-top: 100px")
+/   section.user_info
+.d-flex style="margin: 150px 0px 0px 0px"
+  .card.m-auto.w-100 style="width: 550px !important; margin: 50px 0px 0px 40px !important"
+    .mt-5 style="width: 450px !important; margin-left: 50px"
+      .d-flex
+        h1
+          = gravatar_for(@user)
+        h1 style="margin-left: 33px"
+          = @user.name
+      .d-flex.mt-2
+        h5.text-success Email   
+        h5 style="margin-left: 28px"
+          | :
+        p style="margin-left: 26px"
+          = @user.email
+      .d-flex
+        h5.text-success Phone     
+        h5 style="margin-left: 20px"
+          |:
+        p style="margin-left: 26px"
+          = @user.phone
+      .d-flex
+        h5.text-success Address  
+        h5 style="margin-left: 5px"
+          |  :
+        p.mb-5 style="margin-left: 23px" 
+          = @user.address
+  div
+    = render "order_history_list_user"

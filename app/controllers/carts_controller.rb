@@ -95,13 +95,10 @@ class CartsController < ApplicationController
       flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
   end
-  
+
   def minus_operation
     unless @cart_item.quantity == 1
       @cart_item.update(quantity: @cart_item.quantity - 1)
     end
   end
-
-
-
 end

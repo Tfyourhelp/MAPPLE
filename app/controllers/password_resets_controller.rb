@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: [:edit, :update]
+  before_action :find_user, only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
 
@@ -15,21 +15,21 @@ class PasswordResetsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = "Email address not found"
-      render "new" , status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 
-  def edit 
+  def edit
   end
 
   def update
-    if @user.update(user_params)  
+    if @user.update(user_params)
       log_in(@user, "user")
-      @user.update_attribute(:reset_digest, nil) 
+      @user.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
       redirect_to @user
     else
-      render 'edit' , status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end
   end
 
@@ -39,14 +39,12 @@ class PasswordResetsController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
 
-  def get_user
+  def find_user
     @user = User.find_by(email: params[:email])
   end
 
   def valid_user
-    unless (@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
-      redirect_to root_url
-    end
+    redirect_to root_url unless (@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
   end
 
   def check_expiration

@@ -5,7 +5,7 @@ class ShopsController < ApplicationController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
     end
   end
 
-  def shop_params 
+  def shop_params
     params.require(:shop).permit(:name, :email, :password, :password_confirmation, :phone, :address, :description, :tax_code)
   end
 end

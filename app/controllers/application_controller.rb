@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
   def find_shop_id
     @shop = Shop.first
   end
+
+  def find_all_info_orders
+    if logged_in?("user")
+      @info_orders = current_person("user").info_orders.page(params[:page]).per(10) 
+    else 
+      @info_orders = InfoOrder.all.page(params[:page]).per(10) 
+    end
+  end
 end

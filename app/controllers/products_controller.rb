@@ -5,19 +5,17 @@ class ProductsController < ApplicationController
   before_action :find_all_categories, only: [:index, :new, :edit]
 
   def index
-    @products = Product.all.page(params[:page]).per(8) 
+    @products = Product.all.page(params[:page]).per(8)
     @page = params[:page]
   end
 
-  def show
-  end
-
+  def show; end
 
   def search_in_product_page
     @page = params[:page]
     @search_content = params[:search_content]
     if @search_content.blank?
-      @products = Product.all.all.page(params[:page]).per(8) 
+      @products = Product.all.all.page(params[:page]).per(8)
     elsif @search_content
       @products = Product.where("name ILIKE  '%#{@search_content}%'").page(params[:page]).per(8)
     end
@@ -27,22 +25,22 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
   end
-  
+
   def create
     @product = @category.products.new(product_params)
     update_images_to_product
-    if @product.save   
+    if @product.save
       redirect_to products_url(@product)
     else
       render 'new', status: :unprocessable_entity
-    end 
+    end
   end
 
   def edit
     @page = params[:page]
   end
 
-  def update 
+  def update
     store_location
     if @product.update(product_params)
       update_images_to_product
@@ -55,21 +53,19 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    unless @product.detail_orders.empty?
-      flash[:danger] = "Product is ordered, you cant delete"
-      redirect_to products_url
-    else
+    if @product.detail_orders.empty?
       @product.destroy
       flash[:success] = "Product deleted"
-      redirect_to products_url
+    else
+      flash[:danger] = "Product is ordered, you cant delete"
     end
+    redirect_to products_url
   end
 
   private
 
-
   def product_params
-    params.require(:product).permit(:name, :price, :quantity, :description ,:images)
+    params.require(:product).permit(:name, :price, :quantity, :description, :images)
   end
 
   def find_id

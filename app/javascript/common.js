@@ -1,6 +1,8 @@
+
 const multipleItemCarousel = document.querySelector('#carouselExampleControls');
 
-console.log('a')
+console.log('vo')
+
 if(window.matchMedia("(min-width:576px)").matches){
   const carousel = new bootstrap.Carousel(multipleItemCarousel, 
   {
@@ -32,22 +34,3 @@ if(window.matchMedia("(min-width:576px)").matches){
 }else{
   $(multipleItemCarousel).addClass('slide');
 }
-
-  
-// $(document).ready(function() {
-//   $('#quantity_input').keypress(function(e) {
-//     if (e.key === 'Enter') {
-//       e.preventDefault();
-//       $(this).closest('form').submit();
-//     }
-//   });
-// });
-
-// javascript.
-//   $(document).ready(function() {
-//     $('.dropdown-menu .custom-class a.dropdown-item').on('click', function(e) {
-//       e.stopPropagation();
-//       var checkbox = $(this).find('input[type="checkbox"]');
-//       checkbox.prop('checked', !checkbox.prop('checked'));
-//     });
-//   });

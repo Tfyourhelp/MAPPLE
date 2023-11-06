@@ -1,6 +1,5 @@
-/div.header-div
 nav.navbar.navbar-expand-lg.navbar-light.header-div
-  .container
+  .container style="width: 1300px"
     = link_to root_path, id: "logo" , class: "shop-name" do
       | MAPPLE
     -if logged_in?("user")
@@ -23,51 +22,57 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
                   - if item_in_cart_length > 0
                     div.circle
                       = item_in_cart_length
-        li.nav-item(style = "margin-left: 30px")
-            a.nav-link.text-nowrap href="#{order_history_list_path}" 
-              i class="fa-solid fa-clipboard-list font-s-125em icon-button"
-        li.nav-item.dropdown(style = "margin-left: 30px")
+        li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            i class="fa-solid fa-bars fa-lg icon-button"
+            - gravatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5::hexdigest(current_person("user").email.downcase)}?s=#{25}"
+            = image_tag(gravatar_url, alt: current_person("user").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px")
+            | #{current_person("user").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{user_path(current_person("user"))}"
+                i class="fa-solid fa-user font-s-125em" style="margin-right: 20px"
                 | Profile
             li
               a.dropdown-item href="#{edit_user_path(current_person("user"))}"
+                i class="fa-solid fa-gear font-s-125em" style="margin-right: 17px"
                 | Settings
             li.divider
               hr.dropdown-divider
             = form_tag logout_path, method: :delete, class: "logout-form" do
               = hidden_field_tag :person_type, person_type
+              i class="fa-solid fa-right-from-bracket font-s-125em" style="margin-left: 18px"
               = button_tag "Log out", type: "submit", class: "logout-button"
       - elsif logged_in?("shop") 
         - person_type = "shop"
         li.nav-item
           a.nav-link.text-nowrap href="#{products_path}" 
-            i class="fa-brands fa-product-hunt icon-button"
             | Products 
-        li.nav-item(style = "margin-left: 20px")
-          a.nav-link.text-nowrap href="#{categories_path}" 
-            i class="fa-solid fa-wrench icon-button"  
-            | Category  
-        li.nav-item(style = "margin-left: 20px")
-          a.nav-link.text-nowrap href="#{order_history_list_path}" 
-            i class="fa-solid fa-clipboard-list fa-lg icon-button"
-        li.nav-item.dropdown(style = "margin-left: 20px")
+        li.nav-item(style = "margin-left: 25px")
+          a.nav-link.text-nowrap href="#{categories_path}"   
+            | Categories
+        li.nav-item(style = "margin-left: 25px")
+          a.nav-link.text-nowrap href="#{order_history_list_shop_path}" 
+            | Customer Orders
+            
+        li.nav-item.dropdown(style = "margin-left: 25px") 
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            i class="fa-solid fa-bars fa-lg icon-button"
+            - gravatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5::hexdigest(current_person("shop").email.downcase)}?s=#{25}"
+            = image_tag(gravatar_url, alt: current_person("shop").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px")
+            | #{current_person("shop").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{shop_path(current_person("shop"))}"
+                i class="fa-solid fa-user font-s-125em" style="margin-right: 20px"
                 | Profile
             li
               a.dropdown-item href="#{edit_shop_path(current_person("shop"))}"
+                i class="fa-solid fa-gear font-s-125em" style="margin-right: 17px"
                 | Settings
             li.divider
               hr.dropdown-divider
             = form_tag logout_path, method: :delete, class: "logout-form" do
               = hidden_field_tag :person_type, person_type
+              i class="fa-solid fa-right-from-bracket font-s-125em" style="margin-left: 18px"
               = button_tag "Log out", type: "submit", class: "logout-button"
       - else
         li.nav-item
@@ -76,4 +81,3 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
         li.nav-item(style = "margin-left: 25px")
           a.nav-link href="#{login_path}" 
             i class="fa-solid fa-user-pen fa-lg icon-button"
-/div.header-div(style="height: 40px !important;")
