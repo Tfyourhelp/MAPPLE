@@ -26,5 +26,5 @@ Style/GuardClause:
   Layout/EmptyMethod:
     Enabled: false
 
-Style/UnlessParentheses:
-  Enabled: false
+# Style/UnlessParentheses:
+#   Enabled: false

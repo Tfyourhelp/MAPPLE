@@ -1,9 +1,8 @@
 - if logged_in?("shop")
   h1.text-center.mt-3 All product
-  div.(style= "margin: 10px 380px 100px 380px ")
-    div.d-flex.justify-content-end.w-100
-      = render 'search_form_product_page'
-      = button_to "New product", new_product_path, method: :get ,class:"btn btn-primary ", style: "width: 140px; height: 40px"
+  div.(style= "margin: 10px 380px 100px 380px")
+    = render 'search_form_product_page'
+    = button_to "New product", new_product_path, method: :get ,class:"btn btn-primary float-end mb-4 mt-4", style: "width: 140px; height: 40px"
     table.table.table-bordered.table-hover(style="margin-top: 20px")
       thead.text-center
         tr.table-dark
@@ -37,7 +36,7 @@
               = link_to edit_product_path(product, page: @page) do 
                 i class="fa-solid fa-pen-to-square font-s-15em edit-link"
               = button_to product_path(product), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
-                i class="fa-solid fa-trash font-s-15em" 
+                i class="fa-solid fa-trash font-s-15em garbage-button" 
     div.d-flex.justify-content-end
       = paginate @products  
 - else

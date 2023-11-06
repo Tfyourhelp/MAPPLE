@@ -1,7 +1,7 @@
 .category_slideshow
   #carouselExampleControls.carousel data-bs-ride="carousel"
     .carousel-inner
-      - @categories.each_with_index do |category, index|
+      - @categories.order(created_at: :desc).each_with_index do |category, index|
         .carousel-item class="#{index == 0 ? 'active' : 0 }"
           .card
             - if category.image.attached? 

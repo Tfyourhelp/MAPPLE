@@ -5,22 +5,12 @@ class ProductsController < ApplicationController
   before_action :find_all_categories, only: [:index, :new, :edit]
 
   def index
-    @products = Product.all.page(params[:page]).per(8)
+    @products = Product
     @page = params[:page]
+    @products = Products::Search.call(params, @products, @categories)
   end
 
   def show; end
-
-  def search_in_product_page
-    @page = params[:page]
-    @search_content = params[:search_content]
-    if @search_content.blank?
-      @products = Product.all.all.page(params[:page]).per(8)
-    elsif @search_content
-      @products = Product.where("name ILIKE  '%#{@search_content}%'").page(params[:page]).per(8)
-    end
-    render 'index', status: :unprocessable_entity
-  end
 
   def new
     @product = Product.new

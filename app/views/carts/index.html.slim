@@ -45,7 +45,7 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
               | #{cart_item.product.price*cart_item.quantity} $ 
             td(style="")
               = button_to cart_path(id: cart_item.id), method: :delete, class: "garbage-button" do
-                i class="fa-solid fa-trash font-s-15em " 
+                i class="fa-solid fa-trash font-s-15em garbage-button" 
       thead
         tr.text-center.vam 
           th(scope="col")

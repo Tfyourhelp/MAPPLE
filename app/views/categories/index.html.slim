@@ -24,6 +24,6 @@ div(style= "margin: 10px 500px 100px 500px ")
             = link_to edit_category_path(category), class: "tdn" do
               i class="fa-solid fa-pen-to-square font-s-15em edit-link"
             = button_to category_path(category), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
-              i class="fa-solid fa-trash font-s-15em " 
+              i class="fa-solid fa-trash font-s-15em garbage-button" 
   div.d-flex.justify-content-end
     = paginate @categories 

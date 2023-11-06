@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
     @products = @category.products.page(params[:page]).per(8)
     @filter = [false, false, false, false, false]
   end
+  
   def filter_price
     @filter = [false, false, false, false, false]
     if (params[:under_250] == "1") and (params[:between_250_and_500] == "1") and (params[:between_500_and_750] == "1") and (params[:between_750_and_1000] == "1") and (params[:over_1000] == "1")

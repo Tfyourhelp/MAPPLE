@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :carts 
   resources :info_orders
   resources :checkouts, only: [:create]
+  
+  get '/profile', to: 'users#show'
 
   get '/success', to: 'checkouts#success'
   get '/login', to: 'sessions#new'
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
   get '/order_history_list_shop', to: 'info_orders#order_history_list_shop'
   post '/filter_price', to: 'categories#filter_price'
 
-  post '/search_in_product_page', to: 'products#search_in_product_page'
   
+
   get '/search', to: 'searchs#search'
 end

@@ -2,28 +2,28 @@
   = render 'shared/error_messages', object: f.object
 
   .form-group
-    = f.label :name
+    = f.label :name, class: "fw-bold mb-1"
     div.mt-1
-      = f.text_field :name, class: "form-control"
+      = f.text_field :name, class: "form-control mb-4"
 
   .form-group
-    = f.label :price
+    = f.label :price, class: "fw-bold mb-1"
     div.mt-1
-      = f.number_field :price, inputmode: "numeric", pattern: "[0-9]*", class: "form-control"
+      = f.number_field :price, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-4"
 
   .form-group
-    = f.label :quantity
+    = f.label :quantity, class: "fw-bold mb-1"
     div.mt-1
-      = f.number_field :quantity, inputmode: "numeric", pattern: "[0-9]*", class: "form-control"
+      = f.number_field :quantity, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-4"
 
   .form-group
-    = f.label :category, "Select Category"
-    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-control"
+    = f.label :category, "Select Category", class: "fw-bold mb-1"
+    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-control mb-4"
 
   .form-group
-    = f.label :description
+    = f.label :description, class: "fw-bold mb-1"
     div.mt-1   
-      = f.text_area :description, placeholder: "Compost new micropost...", class: "form-control", rows: 10
+      = f.text_area :description, placeholder: "Compost new micropost...", class: "form-control mb-2", rows: 10
 
   span.image
     div.mt-3
@@ -32,4 +32,4 @@
   = hidden_field_tag :page, @page
   .form-group.row.mt-3
     .col
-      = f.submit yield(:button_text), class: "btn btn-primary w-100"
+      = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-4"

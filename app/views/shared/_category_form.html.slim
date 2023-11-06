@@ -2,9 +2,9 @@
   = render 'shared/error_messages', object: f.object
 
   .form-group
-    = f.label :name
+    = f.label :name, class: "fw-bold mb-1"
     div.mt-1
-      = f.text_field :name, class: "form-control"
+      = f.text_field :name, class: "form-control mb-4"
 
   span.image
     div.mt-3
@@ -15,4 +15,4 @@
   
   .form-group.row.mt-3
     .col
-      = f.submit yield(:button_text), class: "btn btn-primary w-100"
+      = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-4"
