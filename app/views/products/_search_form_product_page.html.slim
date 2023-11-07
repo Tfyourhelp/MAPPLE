@@ -3,7 +3,7 @@
   = form_with(url: products_path , local:true, method: :get, class:"d-flex pos-rela m-3") do |f|
     div
       .form-group style="margin-left: 10px"
-        = f.label :search_content, "Seach product name", class: "fw-bold font-s-125em"
+        = f.label :search_content, "Product name", class: "fw-bold font-s-125em"
         = f.text_field :search_content, placeholder: "Seach product name...", value: params[:search_content] ,class: "form-control mt-1 ",style: " width: 450px; height: 45px "
       
       .d-flex.mt-3
@@ -17,7 +17,7 @@
     
     div
       .form-group style="margin-left: 80px"
-        = f.label :category, "Select Category", class: "fw-bold mb-1 font-s-125em"
+        = f.label :category, "Category", class: "fw-bold mb-1 font-s-125em"
         = f.select :category_id, options_for_select(@categories.map { |c| [c.name, c.id] },selected: params[:category_id].nil? ? nil : params[:category_id]), { include_blank: true }, class: "form-control", style: "width: 400px; height: 45px"
       
       .d-flex.mt-3
@@ -33,5 +33,5 @@
         p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 5px") 
           | $ 
 
-    = f.submit yield(:button_text), class: "btn btn-primary", style: "width: 150px; height: 43px;margin:35px 0px 0px 50px"
+    = f.submit yield(:button_text), class: "btn btn-primary", style: "width: 150px; height: 43px;margin: 97px 0px 0px 47px"
   

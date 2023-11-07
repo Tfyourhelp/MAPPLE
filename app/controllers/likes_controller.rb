@@ -2,7 +2,8 @@ class LikesController < ApplicationController
   before_action :logged_in_user
 
   def create
-    @like = Like.new(user_id: current_person("user").id, product_id: params[:product_id])
+    dfdf
+    @like = Like.new(user_id: current_person("user").id, product_id: params[:id])
     @like.save
     dfdf
     respond_to do |format|

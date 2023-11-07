@@ -1,17 +1,15 @@
-/ - if current_person("user").likes.find_by(product_id: product_id).nil?
-/   = render 'like', product_id: product_id
-/ - else
-/   = render 'unlike'
-  /div.text-center  
-    |( #{Product.find_by(product_id: product_id).likes.length, "like"} )
+.d-flex.jtf-space-even
+  div.text-center.like-word#likecount  
+    |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
+  div
+    = form_with(model: Like.new, local: false, id: "LikeForm", data: { product_id: product_id }, controller: "like") do |f|
+      = hidden_field_tag :product_id, product_id
+      = f.submit data: {action: "click -> like#fetchData"}
+        i class="fa-regular fa-heart"
+    /div#LikeForm
+      = button_to "Like" , likes_path(id: product_id), remote: true, method: :post, class: "btn btn-primary" ,data: { product_id: product_id , controller: "like", action: "click -> like#fetchData"}
+    div#UnlikeButton
+      = button_to like_path(id: product_id), class: "garbage-button", remote: true, method: :delete, data: { product_id: product_id , controller: "like", action: "click -> like#fetchData"} do
+        i class="fa-solid fa-heart font-s-15em"
 
-
-= form_with(model: current_person("user").likes.build, local: false, id: "LikeForm", data: { product_id: product_id }, controller: "like") do |f|
-  = hidden_field_tag :product_id, product_id
-  = f.submit "Like", class: "btn btn-primary", data: {action: "click -> like#fetchData"}
-
-div#UnlikeButton
-  = button_to "Unlike" , like_path(id: product_id), remote: true, method: :delete, data: { product_id: product_id , controller: "like", action: "click -> like#fetchData"}
-
-div.text-center#likecount  
-  |( #{pluralize(Like.where(product_id: product_id).count, "like")} )
+  

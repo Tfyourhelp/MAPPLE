@@ -203,6 +203,59 @@
   top: -12px;
 }
 
+/* footer */
+
+footer {
+  margin: 30px 300px 25px 300px;
+  padding-top: 5px;
+  border-top: 1px solid rgb(201, 197, 197);
+  color: rgb(179, 176, 176);
+
+  a {
+    color: gray;
+    &:hover {
+      color: rgb(78, 77, 77);
+    }
+  }
+  small {
+    float: left;
+  }
+
+  ul {
+    float:right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+@media (max-width: 800px) {
+  footer {
+    small {
+      display: block;
+      float:  none;
+      margin-bottom: 1em;
+    }
+    ul  {
+      float:none;
+      padding: 0;
+      li {
+        float: none;
+        margin-left: 0;
+      }
+    }
+  }
+}
+// ********************
+.like-word{
+  color: #452c63;
+  font-size: 1.1rem;
+}
+
+
+
+//********
 .vam {
   vertical-align: middle;
 }
