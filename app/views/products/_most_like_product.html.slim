@@ -1,0 +1,25 @@
+.most_like_product_slide_show
+  #carouselExampleControls.carousel.carousel-dark.slide.d-none.d-sm-block data-bs-ride="carousel"
+    .carousel-inner
+      - for index in (0..top_products.length-1).step(5)
+        - five_products = top_products[index, 5]
+        .carousel-item class="#{index == 0 ? 'active' : 0 }"
+            .cards-wrapper
+              - five_products.each do |product|
+                .card
+                  .image-wrapper
+                    img[src="#{url_for(product.images.first)}" alt="..." style="height: 250px; width: 250px; padding: 10px"]
+                  .card-body.p-2
+                    h5.card-title.text-center.m-0(style = "height: 47px") 
+                      = link_to "#{product.name}", product_path(product), class: 'color-blue tdn' 
+                    h5.text-center.m-0
+                      | #{product.price} $
+                    div.text-center.like-word#likecount  
+                      |( #{pluralize(Like.where(product_id: product.id).count, "like")} )
+    button.carousel-control-prev type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"
+      span.carousel-control-prev-icon aria-hidden="true" style="margin-right: 180px"
+      span.visually-hidden Previous
+
+    button.carousel-control-next type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"
+      span.carousel-control-next-icon aria-hidden="true" style="margin-left: 180px"
+      span.visually-hidden Next

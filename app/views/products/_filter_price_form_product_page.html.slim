@@ -1,6 +1,0 @@
-= form_with(url: filter_price_in_product_page_path, local:true, method: :post, class:"d-flex pos-rela") do |f|
-  = f.label :from
-  = f.number_field :from_value, value: @from_value, inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control mt-1 ",style: "width: 70px"
-  = f.label :to
-  = f.number_field :to_value, value: @to_value, inputmode: "numeric", pattern: "[0-9]*" , class: "form-control mt-1 ",style: "width: 70px"
-  

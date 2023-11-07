@@ -41,10 +41,14 @@
       = paginate @products  
 - else
   .container
+    h1 Highly recommend
+    - top_products = Product.left_joins(:likes).select('products.*, COUNT(likes.id) AS likes_count').group('products.id').order('likes_count DESC').limit(15)
+    = render "most_like_product" , top_products: top_products
     .categories
       h1  Category
-    div.mb-7.bb-1-ccc
-      = render partial: "categories/categories_slideshow" , categories: @categories.order(id: :asc)
+    div.row.row-cols-1.row-cols-md-5.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")
+      - @categories.order(created_at: :desc).each do |category|
+        = render "categories/categories_slideshow", category: category
     .products.mt-5 
       h1.ml-6 Products
       div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")

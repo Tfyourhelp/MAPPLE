@@ -2,13 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets =["name", "nameerrors", "email","emailerrors" ,"password","passworderrors","passwordconfirmation","passwordconfirmationerrors", "phone", "phoneerrors", "address", "addresserrors"]
-  connect() {
-    alert("Connect index")
-    Swal.fire({
-      icon: 'success',
-      title: 'Button has been clicked',
-    })
-  }
+  // connect() {
+  //   alert("Connect index")
+  //   Swal.fire({
+  //     icon: 'success',
+  //     title: 'Button has been clicked',
+  //   })
+  // }
 
   
 

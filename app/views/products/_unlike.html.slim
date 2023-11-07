@@ -1,5 +1,0 @@
-/ = form_with(model: current_user.active_relationships.find_by(followed_id: @user.id),
-/             html: {method: :delete}, local: true, remote:true) do |f|
-/   = f.submit "Unfollow", class: "btn"
-
-= button_to "Unlike" , like_path(product_id: @product.id),remote: true, method: :delete, class: "garbage-button unlike-button"  

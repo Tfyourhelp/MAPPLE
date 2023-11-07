@@ -351,9 +351,8 @@ image_paths.each do |path|
 end
 
 
-
 #21
-dell_u2422h = Product.create!(name: "Screen Dell Ultrasharp U2422H", price: 236, description: "Dell Ultrasharp U2422H ",
+dell_u2422h = Product.create!(name: "Screen Dell Ultrasharp U2422H", price: 236, description: "Dell Ultrasharp là một trong những series màn hình máy tính ăn khách nhất nhà Dell. Sở hữu thiết kế hiện đại, khả năng tái tạo hình ảnh sắc nét, đầy đủ cổng kết nối thông dụng để nâng cao trải nghiệm sử dụng, màn hình Dell Ultrasharp còn có giá thành tương đối dễ tiếp cận. Một trong những model xuất sắc bạn có thể tham khảo phải kể đến màn hình Dell UltraSharp U2422H. ",
 quantity: 34, category_id: 5)
 
 image_paths = [
@@ -405,6 +404,15 @@ Like.create(user_id: 5, product_id: 21)
 Like.create(user_id: 5, product_id: 19)
 Like.create(user_id: 5, product_id: 17)
 Like.create(user_id: 5, product_id: 15)
+Like.create(user_id: 5, product_id: 13)
+Like.create(user_id: 5, product_id: 11)
+Like.create(user_id: 5, product_id: 10)
+Like.create(user_id: 5, product_id: 9)
+Like.create(user_id: 5, product_id: 7)
+Like.create(user_id: 5, product_id: 5)
+Like.create(user_id: 5, product_id: 3)
+Like.create(user_id: 5, product_id: 1)
+
 
 Like.create(user_id: 4, product_id: 25)
 Like.create(user_id: 4, product_id: 23)
@@ -412,6 +420,12 @@ Like.create(user_id: 4, product_id: 21)
 Like.create(user_id: 4, product_id: 19)
 Like.create(user_id: 4, product_id: 17)
 Like.create(user_id: 4, product_id: 15)
+Like.create(user_id: 4, product_id: 13)
+Like.create(user_id: 4, product_id: 11)
+Like.create(user_id: 4, product_id: 9)
+Like.create(user_id: 4, product_id: 7)
+Like.create(user_id: 4, product_id: 5)
+
 
 Like.create(user_id: 3, product_id: 25)
 Like.create(user_id: 3, product_id: 23)
@@ -419,3 +433,22 @@ Like.create(user_id: 3, product_id: 21)
 Like.create(user_id: 3, product_id: 19)
 Like.create(user_id: 3, product_id: 17)
 Like.create(user_id: 3, product_id: 15)
+Like.create(user_id: 3, product_id: 13)
+Like.create(user_id: 3, product_id: 11)
+Like.create(user_id: 3, product_id: 9)
+
+
+Like.create(user_id: 2, product_id: 25)
+Like.create(user_id: 2, product_id: 23)
+Like.create(user_id: 2, product_id: 21)
+Like.create(user_id: 2, product_id: 19)
+Like.create(user_id: 2, product_id: 17)
+Like.create(user_id: 2, product_id: 15)
+Like.create(user_id: 2, product_id: 13)
+
+
+Like.create(user_id: 1, product_id: 25)
+Like.create(user_id: 1, product_id: 23)
+Like.create(user_id: 1, product_id: 21)
+Like.create(user_id: 1, product_id: 19)
+Like.create(user_id: 1, product_id: 17)

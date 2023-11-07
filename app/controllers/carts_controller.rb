@@ -6,7 +6,7 @@ class CartsController < ApplicationController
 
   def index
     @cart_items = @cart.cart_items
-# để xóa những trường hợp product hết hàng
+    # để xóa những trường hợp product hết hàng
     delete_cart_item_when_out_of_stock
   end
 
@@ -80,7 +80,7 @@ class CartsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
   end
 
-# tim ra cart cua nguoi dung hien tai neu chua co thi tao moi và save
+  # tim ra cart cua nguoi dung hien tai neu chua co thi tao moi và save
   def set_cart
     @cart = current_person("user").carts.find_or_initialize_by(finished: false)
     @cart.save if @cart.new_record?

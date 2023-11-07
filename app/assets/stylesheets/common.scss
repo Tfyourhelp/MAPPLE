@@ -255,7 +255,37 @@ footer {
 
 
 
-//********
+//******** most like product slide show
+@media screen and (min-width: 568px) {
+  .most_like_product_slide_show .cards-wrapper{
+    display: flex;
+  }
+  
+  .most_like_product_slide_show .card{
+    margin: 1em auto;
+    width: calc(100%/2);
+  }
+  .most_like_product_slide_show .image-wrapper{
+    //height: 22vw;
+    margin: 0 auto;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }
+  }
+  
+  @media screen and (max-width: 567px) {
+    .most_like_product_slide_show .card:not(:first-child){
+      display: none;
+    }
+  }
+  
+  .most_like_product_slide_show .image-wrapper img{
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+//***********
 .vam {
   vertical-align: middle;
 }
@@ -326,6 +356,14 @@ footer {
 
 .color-blackblue{
   color: rgb(11, 28, 180)
+}
+
+.color-blue{
+  color: rgb(11, 28, 180)
+}
+
+.color-blue:hover{
+  color: black
 }
 
 .jtf-space-even{

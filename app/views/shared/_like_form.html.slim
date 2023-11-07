@@ -1,7 +1,7 @@
 .d-flex.jtf-space-even
   div.text-center.like-word#likecount  
     |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
-  div
+  /div
     - if Like.find_by(product_id: product_id, user_id: current_person("user").id).nil?
       - status = "unlike"
     - else

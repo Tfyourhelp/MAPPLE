@@ -1,9 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
-  // connect() {
-  //   this.fetchData()
-  //   console.log('sdfdf')
-  // }
+  connect() {
+    // this.fetchData()
+    // console.log('sdfdf')
+    // Swal.fire({
+    //   title: "Good job!",
+    //   text: "You clicked the button!",
+    //   icon: "success"
+    // });
+  }
   
   fetchData(){
     $("#LikeForm").submit(function(event){

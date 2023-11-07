@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @like.save
     dfdf
     respond_to do |format|
-      #format.js
+      # format.js
       format.html { redirect_to products_path }
       format.json { render json: { message: "Unlike thành công" } }
     end
