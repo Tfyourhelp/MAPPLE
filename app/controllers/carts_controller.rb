@@ -13,13 +13,13 @@ class CartsController < ApplicationController
   def create
     if @product.quantity == 0
       flash[:info] = "This product is currently out of stock."
+      redirect_to carts_path
     else
-      if @cart_item.nil? #thêm mới cart_item
+      if @cart_item.nil? # thêm mới cart_item
         add_new_cart_item
       else # có cart_item của product đó trong cart rồi
         update_cart_item
       end
-      redirect_to carts_path
     end
   end
 
@@ -30,12 +30,12 @@ class CartsController < ApplicationController
   end
 
   def input_quantity
-    if params[:quantity].to_i < @product.quantity
+    if params[:quantity].to_i <= @product.quantity
       @cart_item.update(quantity: params[:quantity])
-      redirect_to carts_path
     else
       flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
+    redirect_to carts_path
   end
 
   def destroy
@@ -49,13 +49,21 @@ class CartsController < ApplicationController
     @cart_item = @cart.cart_items.new(product_id: @product.id)  
     @cart_item.quantity = params[:cart_item] ? params[:cart_item][:quantity].to_i : 1
     @cart_item.save
+    redirect_to carts_path
   end
 
   def update_cart_item
     if params[:cart_item].nil? # nhấn add_to_cart ở ngoài trang chủ
       @cart_item.update(quantity: (@cart_item.quantity + 1))
+      redirect_to carts_path
     else # điền vào text_field trong product/show
-      @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
+      if (@cart_item.quantity + params[:cart_item][:quantity].to_i) <= @product.quantity
+        @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
+        redirect_to carts_path
+      elsif @cart_item.quantity + params[:cart_item][:quantity].to_i > @product.quantity
+        flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
+        redirect_to product_path(@product)
+      end
     end
   end
 
@@ -81,7 +89,7 @@ class CartsController < ApplicationController
   def find_product_to_add_cart_item
     @product = Product.find_by(id: params[:product_id])
     redirect_to products_path unless @product
-    @cart_item = @cart.cart_items.find_by(product_id: @product.id) #tim ra san pham da nhan Add to cart
+    @cart_item = @cart.cart_items.find_by(product_id: @product.id) # tim ra san pham da nhan Add to cart
   end
 
   def plus_operation

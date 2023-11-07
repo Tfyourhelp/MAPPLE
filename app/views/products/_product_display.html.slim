@@ -11,7 +11,7 @@ div.col
         h5.text-center.text-dark.mb-0
           | #{product.price} $
         .text-center
-          = render "like_form" , product_id: product.id
+          = render "shared/like_form" , product_id: product.id
         - if product.quantity == 0 
           div.text-center.text-danger 
             |( Out of stock recently )

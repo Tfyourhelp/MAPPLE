@@ -395,6 +395,27 @@ image_paths = [
   'app/assets/images/man_hinh/studio_display/4.jpeg',
 ]
 
-image_paths.each do |path|  
+image_paths.each do |path| 
   studio_display.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
-end 
+end
+
+Like.create(user_id: 5, product_id: 25)
+Like.create(user_id: 5, product_id: 23)
+Like.create(user_id: 5, product_id: 21)
+Like.create(user_id: 5, product_id: 19)
+Like.create(user_id: 5, product_id: 17)
+Like.create(user_id: 5, product_id: 15)
+
+Like.create(user_id: 4, product_id: 25)
+Like.create(user_id: 4, product_id: 23)
+Like.create(user_id: 4, product_id: 21)
+Like.create(user_id: 4, product_id: 19)
+Like.create(user_id: 4, product_id: 17)
+Like.create(user_id: 4, product_id: 15)
+
+Like.create(user_id: 3, product_id: 25)
+Like.create(user_id: 3, product_id: 23)
+Like.create(user_id: 3, product_id: 21)
+Like.create(user_id: 3, product_id: 19)
+Like.create(user_id: 3, product_id: 17)
+Like.create(user_id: 3, product_id: 15)
