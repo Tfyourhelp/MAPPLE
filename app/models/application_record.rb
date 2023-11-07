@@ -1,15 +1,13 @@
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
-
-
-  class << self 
-    def digest(string) 
+  class << self
+    def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
 
-    def new_token 
+    def new_token
       SecureRandom.urlsafe_base64
     end
   end
@@ -17,6 +15,7 @@ class ApplicationRecord < ActiveRecord::Base
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest") 
     return false if digest.nil?
+
     BCrypt::Password.new(digest).is_password?(token)
   end
 

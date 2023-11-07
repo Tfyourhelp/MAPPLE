@@ -24,6 +24,6 @@ class Shop < ApplicationRecord
   has_secure_password
 
   def send_new_order_from_customer_email(user)
-    ShopMailer.order_from_customer(self,user).deliver_now
+    ShopMailer.order_from_customer(self, user).deliver_now
   end
 end

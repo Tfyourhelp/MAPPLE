@@ -6,6 +6,8 @@ export default class extends Controller {
   //   alert("Connect index")
   // }
 
+  
+
   submit_form(event){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     console.log("Xin chào");

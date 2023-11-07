@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to root_url and return unless @user.activated?
+
     redirect_to root_url unless current_person?(@user, "user")
   end
 
@@ -29,8 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -46,8 +46,6 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted"
     redirect_to users_url
   end
-
-
 
   private
 

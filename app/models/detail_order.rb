@@ -17,11 +17,11 @@
 #  index_detail_orders_on_product_id     (product_id)
 #
 class DetailOrder < ApplicationRecord
-  has_one_attached :image 
+  has_one_attached :image
 
   validates :product_name, presence: true
   validates :quantity, presence: true
   validates :price, presence: true
-  
+
   belongs_to :info_order
 end

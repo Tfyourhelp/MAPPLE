@@ -10,9 +10,11 @@ div.col
           | #{product.name.upcase} 
         h5.text-center.text-dark.mb-0
           | #{product.price} $
-        div.text-center
+        /.text-center
           = render "shared/star"
-        div.text-center  
+        .text-center
+          = render "like_form" , product_id: product.id
+        /div.text-center  
           |( #{pluralize(Random.rand(1..100), "rate")} )
         - if product.quantity == 0 
           div.text-center.text-danger 

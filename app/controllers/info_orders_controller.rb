@@ -1,11 +1,11 @@
 class InfoOrdersController < ApplicationController
   before_action :find_shop_id, only: [:create]
-  before_action :find_cart_id, only: [:new,:create ]
+  before_action :find_cart_id, only: [:new, :create]
   before_action :find_all_info_orders, only: [:create, :order_history_list_shop]
   before_action :find_info_order_id, only: [:order_history_detail]
   before_action :find_all_cart_items_of_cart, only: [:new, :create]
   before_action :logged_in_shop, only: [:order_history_list_shop]
-  
+
   def new
     @info_order = current_person("user").info_orders.build
     @total_bill = params[:total_bill]
@@ -29,11 +29,9 @@ class InfoOrdersController < ApplicationController
     end
   end
 
-  def order_history_list_shop
-  end
+  def order_history_list_shop; end
 
-  def order_history_detail
-  end
+  def order_history_detail; end
 
   private
 
@@ -54,7 +52,7 @@ class InfoOrdersController < ApplicationController
   end
 
   def create_detail_orders(cart_item_ids)
-    (cart_item_ids).each do |cart_item_id|
+    cart_item_ids.each do |cart_item_id|
       cart_item = CartItem.find(cart_item_id)
       detail_order = DetailOrder.new(product_name: cart_item.product.name, price: cart_item.product.price, quantity: cart_item.quantity, info_order_id: @info_order.id, product_id: cart_item.product_id)
       if cart_item.product.images.attached?
@@ -67,7 +65,7 @@ class InfoOrdersController < ApplicationController
   def update_product_quantity
     @info_order.detail_orders.each do |detail_order|
       product = Product.find_by(name: detail_order.product_name, price: detail_order.price)
-      product.update_attribute(:quantity,product.quantity - detail_order.quantity)
+      product.update_attribute(:quantity, product.quantity - detail_order.quantity)
     end
   end
 end

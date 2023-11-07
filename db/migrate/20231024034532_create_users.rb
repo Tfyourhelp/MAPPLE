@@ -15,11 +15,11 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :activation_token
       t.string :activation_digest
       t.boolean :activated, default: false
-      t.datetime :activated_at 
-dfadsfasdfasdfasdfasdfasdfasdfasđ
+      t.datetime :activated_at
+
       t.string :reset_digest
       t.datetime :reset_sent_at
-      áldfkjlsakdjflaksdf
+ 
       t.timestamps
     end
   end

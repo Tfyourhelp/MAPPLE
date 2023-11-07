@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
     @products = @category.products.page(params[:page]).per(8)
     @filter = [false, false, false, false, false]
   end
-  
+
   def filter_price
     @filter = [false, false, false, false, false]
     if (params[:under_250] == "1") and (params[:between_250_and_500] == "1") and (params[:between_500_and_750] == "1") and (params[:between_750_and_1000] == "1") and (params[:over_1000] == "1")
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
     render 'show', status: :unprocessable_entity
   end
 
-  def new  
+  def new
     @category = @shop.categories.new
   end
 
@@ -35,8 +35,7 @@ class CategoriesController < ApplicationController
     end
   end
   
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
@@ -47,24 +46,21 @@ class CategoriesController < ApplicationController
       render 'edit', status: :unprocessable_entity
     end
   end
-  
+
   def destroy
-    unless @category.products.empty?
-      flash[:danger] = "This category has product, you cant delete"
-      redirect_to categories_url
-    else
+    if @category.products.empty?
       @category.destroy
       flash[:success] = "Category deleted"
-      redirect_to categories_url
+    else
+      flash[:danger] = "This category has product, you cant delete"
     end
+    redirect_to categories_url
   end
 
-  private 
+  private
 
   def update_image_to_category
-    unless params[:category][:image].nil? 
-      @category.image.attach(params[:category][:image])
-    end
+    @category.image.attach(params[:category][:image]) unless params[:category][:image].nil?
   end
 
   def category_params
@@ -74,7 +70,7 @@ class CategoriesController < ApplicationController
   def find_id
     @category = Category.find(params[:id])
   end
-   
+
   def filter_products_by_price_ranges
     price_ranges = {
       under_250: "price < 250",
@@ -86,6 +82,7 @@ class CategoriesController < ApplicationController
     filters = []
     price_ranges.each do |param, filter|
       next unless params[param.to_sym] == "1"
+
       index = price_ranges.keys.index(param) # index của param trong price_range
       filters << filter
       @filter[index] = true

@@ -17,6 +17,6 @@
 class CartItem < ApplicationRecord
   belongs_to :cart
   belongs_to :product
-  
+
   has_one :detail_order
 end

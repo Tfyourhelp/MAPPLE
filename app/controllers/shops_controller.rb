@@ -2,11 +2,9 @@ class ShopsController < ApplicationController
   before_action :logged_in_shop, only: [:edit, :update]
   before_action :find_shop_id, only: [:show, :edit, :update]
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @shop.update(shop_params)

@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
-  
+
   def logged_in_user
     require_logged_in("user")
   end
-  
+
   def logged_in_shop
     if logged_in?("user")
       flash[:danger] = "You can't be here"
@@ -19,17 +19,14 @@ class ApplicationController < ActionController::Base
     else
       require_logged_in("shop")
     end
-  end 
+  end
 
   def find_shop_id
     @shop = Shop.first
   end
 
   def find_all_info_orders
-    if logged_in?("user")
-      @info_orders = current_person("user").info_orders.page(params[:page]).per(10) 
-    else 
-      @info_orders = InfoOrder.all.page(params[:page]).per(10) 
-    end
+    @info_orders = logged_in?("user") ? current_person("user").info_orders : InfoOrder.all
+    @info_orders = @info_orders.page(params[:page]).per(10)
   end
 end

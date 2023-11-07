@@ -23,8 +23,11 @@ Style/StringLiterals:
 Style/GuardClause:
   Enabled: false
 
-  Layout/EmptyMethod:
-    Enabled: false
+Style/NumericPredicate:
+  Enabled: false
 
-# Style/UnlessParentheses:
+# Style/SymbolName:
 #   Enabled: false
+
+Layout/LineLength: 
+  Enabled: false

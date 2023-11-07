@@ -34,3 +34,11 @@ if(window.matchMedia("(min-width:576px)").matches){
 }else{
   $(multipleItemCarousel).addClass('slide');
 }
+
+
+$.ajax({
+  url: "/likes",
+  type: "POST",
+  data: {},
+  dataType: "script"
+});
