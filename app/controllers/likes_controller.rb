@@ -16,6 +16,6 @@ class LikesController < ApplicationController
 
   def find_product
     @product = Product.find_by(id: params[:product_id])
-    render json: false, status: :bad_request if @product.blank? #return
+    render json: false, status: :bad_request if @product.blank?
   end
 end

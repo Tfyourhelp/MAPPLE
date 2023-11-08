@@ -54,15 +54,4 @@
           = render "products/product_display", product: product
 
 
-/- else
-  h1.text-center.mt-4
-    = @category.name.upcase
-  div.d-flex
-    div.(style = "margin: 100px 50px 0px 50px")
-      = render "filter_price"
-    .container.py-1(style = "margin: 80px 50px 0px 50px")
-      div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-2);")
-        - @products.order(created_at: :desc).each do |product|
-          = render "products/product_display", product: product
-
 

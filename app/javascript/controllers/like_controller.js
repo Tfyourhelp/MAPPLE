@@ -9,6 +9,7 @@ export default class extends Controller {
     $(document).on('click', '.un-like-product', function(e) {
       const url = $(this).data('url')
       const productId = $(this).data('product-id')
+      console.log('unlike')
       $.ajax({
         url: url,
         type: 'POST',
@@ -29,7 +30,7 @@ export default class extends Controller {
     $(document).on('click', '.like-product', function(e) {
       const productId = $(this).data('product-id')
       const url = $(this).data('url') + `/${productId}`
-      
+      console.log('like')
       $.ajax({
         url: url,
         type: 'DELETE',

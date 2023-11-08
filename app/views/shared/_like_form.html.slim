@@ -1,18 +1,16 @@
-.d-flex.jtf-space-even
-  div.text-center.mt-1.like-word#likecount  
-    |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
+.d-flex
   - if current_person("user").nil?
     = link_to login_path do
       i class="fa-regular fa-heart font-s-2em garbage-button"
-  - else
-    div 
-      - if product_like(current_person("user"), product_id)
-          button type="button" class="garbage-button like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
-            i class="fa-solid fa-heart font-s-2em "
-      - else
-          button type="button" class="garbage-button un-like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
-            i class="fa-regular fa-heart font-s-2em "
-
-        
+  - else 
+    - if if_like_product?(current_person("user"), product_id)
+        button type="button" class="garbage-button like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
+          i class="fa-solid fa-heart font-s-2em "
+    - else
+        button type="button" class="garbage-button un-like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
+          i class="fa-regular fa-heart font-s-2em "
+  div.text-center.mt-1.like-word#likecount 
+    |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
+      
 
   

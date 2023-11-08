@@ -10,8 +10,8 @@ div.col
           | #{product.name.upcase} 
         h5.text-center.text-dark.mb-0
           | #{product.price} $
-        .text-center id="likeForm#{product.id}"
-          = render "shared/like_form" , product_id: product.id, product: product
+        . style = "margin-left: 72px" id="likeForm#{product.id}"
+            = render "shared/like_form", product: product, product_id: product.id, page: "index"
         - if product.quantity == 0 
           div.text-center.text-danger 
             |( Out of stock recently )

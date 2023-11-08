@@ -4,7 +4,7 @@ class SearchsController < ApplicationController
     if @search_content.blank?
       redirect_to root_path
     elsif @search_content
-      @products = Product.where("name ILIKE  '%#{@search_content}%'")
+      @products = Product.where("name ILIKE  '%#{@search_content}%'").params[:page].per(8)
     end
   end
 end
