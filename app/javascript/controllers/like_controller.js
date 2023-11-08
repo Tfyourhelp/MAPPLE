@@ -1,60 +1,48 @@
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
-    // this.fetchData()
-    // console.log('sdfdf')
-    // Swal.fire({
-    //   title: "Good job!",
-    //   text: "You clicked the button!",
-    //   icon: "success"
-    // });
+    this.likeProduct()
+    this.unlikeProduct()
   }
-  
-  fetchData(){
-    $("#LikeForm").submit(function(event){
-      event.preventDefault();
+
+  unlikeProduct () {
+    $(document).on('click', '.un-like-product', function(e) {
+      const url = $(this).data('url')
+      const productId = $(this).data('product-id')
+      $.ajax({
+        url: url,
+        type: 'POST',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+          product_id: productId
+        },
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    })
+  }
+
+  likeProduct () {
+    $(document).on('click', '.like-product', function(e) {
+      const productId = $(this).data('product-id')
+      const url = $(this).data('url') + `/${productId}`
       
       $.ajax({
-        url: `/likes`,
-        type: 'POST',
-        dataType: 'json',
-        success: function(data) {
-          alert(data.message);
-
-          var likeCountElement = $("#likecount");
-          likeCountElement.text(parseInt(likeCountElement.text()) + 1);
-          
-          $("#LikeForm").hide();
-          $("#UnlikeButton").show();
-        },
-        error: function(error) {
-          alert("Cannot Like");
-        }
-      });
-    });
-
-    $("#UnlikeButton").click(function(event){
-      event.preventDefault();
-
-      var productId = $("#UnlikeButton").data("product_id");
-      $.ajax({
-        url: `/likes?product_id=` + productId,
+        url: url,
         type: 'DELETE',
-        dataType: 'json',
-        success: function(data) {
-          alert(data.message);
-          
-          var likeCountElement = $("#likecount");
-          likeCountElement.text(parseInt(likeCountElement.text()) -1);
-          
-          $("#UnlikeButton").hide();
-          $("#LikeForm").show();
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         },
-        error: function(error) {
-          alert("Cannot Unlike");
+        data: {
+          product_id: productId
+        },
+        success: function(res) {
+          console.log(res)
         }
-      });
-    });
+      })
+    })
   }
 }
-

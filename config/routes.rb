@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :info_orders
   resources :checkouts, only: [:create]
-  resources :likes, only: [:create, :destroy]
+  resources :likes
 
   get '/success', to: 'checkouts#success'
   get '/login', to: 'sessions#new'

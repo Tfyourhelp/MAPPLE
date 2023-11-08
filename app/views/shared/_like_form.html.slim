@@ -1,21 +1,18 @@
 .d-flex.jtf-space-even
-  div.text-center.like-word#likecount  
+  div.text-center.mt-1.like-word#likecount  
     |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
-  /div
-    - if Like.find_by(product_id: product_id, user_id: current_person("user").id).nil?
-      - status = "unlike"
-    - else
-      -status = "like"
+  - if current_person("user").nil?
+    = link_to login_path do
+      i class="fa-regular fa-heart font-s-2em garbage-button"
+  - else
+    div 
+      - if product_like(current_person("user"), product_id)
+          button type="button" class="garbage-button like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
+            i class="fa-solid fa-heart font-s-2em "
+      - else
+          button type="button" class="garbage-button un-like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
+            i class="fa-regular fa-heart font-s-2em "
 
-    /= form_with(model: Like.new, local: false, id: "LikeForm", data: { product_id: product_id }, controller: "like") do |f|
-      = hidden_field_tag :product_id, product_id
-      = f.submit data: {action: "click -> like#fetchData"}
         
-    div#LikeForm
-      = button_to likes_path(id: product_id), remote: true, method: :post, class: "garbage-button" ,data: { product_id: product_id, controller: "like", action: "click -> like#fetchData"} do
-        i class="fa-regular fa-heart font-s-2em "
-    div#UnlikeButton
-      = button_to like_path(id: product_id), class: "garbage-button", remote: true, method: :delete, data: { product_id: product_id ,controller: "like", action: "click -> like#fetchData"} do
-        i class="fa-solid fa-heart font-s-2em "
 
   

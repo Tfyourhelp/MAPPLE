@@ -1,6 +1,7 @@
-javascript:
-  console.log('Like đã được tạo');
-  $("#follow_form").html("#{escape_javascript(render('unlike'))}");
-    
-  - else
-    console.log('Có lỗi xảy ra khi tạo like');
+- if current_person("user").nil?
+  window.location.href = "#{login_path}"
+  - DFLK
+- else
+  | $("#likeForm#{@product&.id}").html(`
+  = j render "shared/like_form" , product_id: @product&.id
+  | `);

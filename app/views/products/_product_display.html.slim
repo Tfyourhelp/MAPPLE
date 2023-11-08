@@ -1,4 +1,4 @@
-div.col
+div.col 
   div.card
     - if product.images[0] 
       img.card-img-top.p-3 [src="#{url_for(product.images[0])}" alt="..." width="100px" height="300px"]
@@ -10,8 +10,8 @@ div.col
           | #{product.name.upcase} 
         h5.text-center.text-dark.mb-0
           | #{product.price} $
-        .text-center
-          = render "shared/like_form" , product_id: product.id
+        .text-center id="likeForm#{product.id}"
+          = render "shared/like_form" , product_id: product.id, product: product
         - if product.quantity == 0 
           div.text-center.text-danger 
             |( Out of stock recently )
