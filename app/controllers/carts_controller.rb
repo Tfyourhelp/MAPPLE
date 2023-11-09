@@ -9,12 +9,12 @@ class CartsController < ApplicationController
     # để xóa những trường hợp product hết hàng
     delete_cart_item_when_out_of_stock
   end
+# if @product.quantity == 0
+  # flash[:info] = "This product is currently out of stock."
+  # redirect_to carts_path
+# else
 
   def create
-    # if @product.quantity == 0
-      # flash[:info] = "This product is currently out of stock."
-      # redirect_to carts_path
-    # else
     if @cart_item.nil? # thêm mới cart_item
       add_new_cart_item
     else # có cart_item của product đó trong cart rồi
@@ -51,10 +51,8 @@ class CartsController < ApplicationController
   end
 
   def update_cart_item
-    byebug
     if params[:cart_item].nil? # nhấn add_to_cart ở ngoài trang chủ
       @cart_item.update(quantity: (@cart_item.quantity + 1))
-      redirect_to carts_path
     else # điền vào text_field trong product/show
       if (@cart_item.quantity + params[:cart_item][:quantity].to_i) <= @product.quantity
         @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
@@ -94,8 +92,6 @@ class CartsController < ApplicationController
   def plus_operation
     if @cart_item.quantity < @product.quantity
       @cart_item.update(quantity: @cart_item.quantity + 1)
-    else
-      flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
   end
 

@@ -20,14 +20,9 @@ div.col
             |( #{product.quantity} available products )
     div.d-flex.mb-2.jtf-space-even 
       = button_to 'Detail', product_path(product), method: :get, class: "btn btn-primary", style: "width: 110px"
-      /= form_with(model: CartItem.new, url: carts_path, method: :post) do |f|
-        - if product.quantity == 0
-          = f.submit "Add To Cart", disabled: true, class: "btn btn-secondary", style: "width: 110px;"
-        - else
-          = hidden_field_tag :product_id, product.id
-          = f.submit "Add To Cart", class: "btn btn-primary", style: "width: 110px"
       - if logged_in?("user")
-        button type="button" class="add-to-cart" data-url="#{carts_path}" data-product-id="#{product.id}" 
+        button type="button" class="add-to-cart btn btn-primary" style="width: 120px" data-url="#{carts_path}" data-product-id="#{product.id}" data-product-quantity="#{product.quantity}" 
+          | Add To Cart
       - else
         = button_to "Add To Cart", login_path, class:"btn btn-primary" 
-        
+      

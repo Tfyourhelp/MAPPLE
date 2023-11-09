@@ -1,5 +1,0 @@
-- unless current_person("user").carts.empty?
-  - item_in_cart_length = current_person("user").carts.last.cart_items.length
-  - if item_in_cart_length > 0
-    div.circle
-      = item_in_cart_length

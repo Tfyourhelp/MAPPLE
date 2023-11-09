@@ -10,11 +10,11 @@ td(style="width: 150px")
   | #{cart_item.product.price} $ 
 td(style="width: 200px")
   div.d-flex.justify-content-center.align-items-center
-    button type="button" class="minus-cart-item" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="minus"
+    button type="button" class="minus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="minus"
       i class="fa-solid fa-minus"
     div.text-center 
-      |( #{cart_item.quantity})
-    button type="button" class="plus-cart-item" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
+      | #{cart_item.quantity}
+    button type="button" class="plus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
       i class="fa-solid fa-plus"
 td(style="width: 150px")
   | #{cart_item.product.price*cart_item.quantity} $ 

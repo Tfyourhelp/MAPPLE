@@ -4,13 +4,15 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     this.changeQuantityIconCart()
+    console.log('a')
   }
   changeQuantityIconCart () {
     $(document).on('click', '.add-to-cart', function(e) {
       const url = $(this).data('url')
       const productId = $(this).data('product-id')
+
       console.log('bbbb')
-      
+
       $.ajax({
         url: url,
         type: 'POST',
@@ -21,7 +23,7 @@ export default class extends Controller {
           product_id: productId,
         },
         success: function(res) {
-          console.log(res)
+          // console.log(res)
         }
       })
     })

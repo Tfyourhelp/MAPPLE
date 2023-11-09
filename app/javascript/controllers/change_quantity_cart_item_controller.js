@@ -39,7 +39,7 @@ export default class extends Controller {
           operation: operation,
         },
         success: function(res) {
-          console.log(res)
+          // console.log(res)
         }
       })
     })
@@ -63,7 +63,7 @@ export default class extends Controller {
           operation: operation,
         },
         success: function(res) {
-          console.log(res)
+          // console.log(res)
         }
       })
     })

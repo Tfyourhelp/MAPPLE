@@ -39,9 +39,9 @@
                 i class="fa-solid fa-trash font-s-15em garbage-button" 
     div.d-flex.justify-content-end
       = paginate @products  
-- else
-  .container
-    h1 Highly recommend
+- else 
+  .container 
+    h1 Highly recommend 
     - top_products = Product.left_joins(:likes).select('products.*, COUNT(likes.id) AS likes_count').group('products.id').order('likes_count DESC').limit(15)
     = render "highly_recommend_product" , top_products: top_products
     .categories
@@ -51,9 +51,9 @@
         = render "categories/categories_slideshow", category: category
     .products.mt-5 data-controller="like change-quantity-icon-cart"
       h1.ml-6 Products
-      div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")
+      div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);" )
         - @products.order(created_at: :desc).each do |product|
           = render "product_display", product: product 
-      div.d-flex.justify-content-end.mt-3
+      /div.d-flex.justify-content-end.mt-3
         = paginate @products 
       
