@@ -18,7 +18,7 @@
 class InfoOrder < ApplicationRecord
   has_many :detail_orders
   belongs_to :user
-  
+
   validates :name, presence: true
   validates :phone, presence: true, format: { with: /\A\d{9,11}\z/, message: "must be between 9 and 11 digits" }
   validates :address, presence: true

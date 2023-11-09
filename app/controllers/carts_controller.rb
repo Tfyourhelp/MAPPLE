@@ -11,22 +11,20 @@ class CartsController < ApplicationController
   end
 
   def create
-    if @product.quantity == 0
-      flash[:info] = "This product is currently out of stock."
-      redirect_to carts_path
-    else
-      if @cart_item.nil? # thêm mới cart_item
-        add_new_cart_item
-      else # có cart_item của product đó trong cart rồi
-        update_cart_item
-      end
+    # if @product.quantity == 0
+      # flash[:info] = "This product is currently out of stock."
+      # redirect_to carts_path
+    # else
+    if @cart_item.nil? # thêm mới cart_item
+      add_new_cart_item
+    else # có cart_item của product đó trong cart rồi
+      update_cart_item
     end
   end
 
   # +1 hoặc -1
   def change_quantity
     params[:operation] == "plus" ? plus_operation : minus_operation
-    redirect_to carts_path
   end
 
   def input_quantity
@@ -49,10 +47,11 @@ class CartsController < ApplicationController
     @cart_item = @cart.cart_items.new(product_id: @product.id)  
     @cart_item.quantity = params[:cart_item] ? params[:cart_item][:quantity].to_i : 1
     @cart_item.save
-    redirect_to carts_path
+    # redirect_to carts_path
   end
 
   def update_cart_item
+    byebug
     if params[:cart_item].nil? # nhấn add_to_cart ở ngoài trang chủ
       @cart_item.update(quantity: (@cart_item.quantity + 1))
       redirect_to carts_path
