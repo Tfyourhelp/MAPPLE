@@ -1,34 +1,34 @@
 - provide(:title, 'Infomation order')
 - provide(:button_text, 'Go payment')
 div.d-flex(style="margin: 80px 250px 0px 250px")
-  .card.m-auto.w-100 style="width: 830px !important;"
-    div.text-center.mt-4 
-      h1.text-secondary Infomation order
-    .row.justify-content-center.align-items-center.mt-4
-      .col-md-9
-        = form_with(model: @info_order, local: true, id: "InfoForm",data: {controller: "payment"} ) do |f|
-          = render 'shared/error_messages', object: f.object
+  div.mt-4 
+    h1.text-secondary.text-center.mb-4.mt-1 Infomation order
+    .card.m-auto.w-100 style="width: 800px !important;"
+      .row.justify-content-center.align-items-center.mt-4
+        .col-md-9
+          = form_with(model: @info_order, local: true, id: "InfoForm",data: {controller: "payment"} ) do |f|
+            = render 'shared/error_messages', object: f.object
 
-          .form-group
-            = f.label :name ,class: "fw-bold mb-1"
-            div.mt-1
-              = f.text_field :name, value: @info_order.user.name , class: "form-control mb-4"
-          .form-group
-            = f.label :address, class: "fw-bold mb-1"
-            div.mt-1
-              = f.text_area :address, value: @info_order.user.address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
-          .form-group
-            = f.label :phone, class: "fw-bold mb-1"
-            div.mt-1
-              = f.number_field :phone, value: @info_order.user.phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
-          = hidden_field_tag :total_bill, @total_bill
-          = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
-          = hidden_field_tag :cart_id, @cart.id
-          .form-group.row.mt-4.mb-5
-            .col
-              = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5" ,data: { action: "click -> payment#payment_success" }
+            .form-group
+              = f.label :name ,class: "fw-bold mb-1"
+              div.mt-1
+                = f.text_field :name, value: @info_order.user.name , class: "form-control mb-4"
+            .form-group
+              = f.label :address, class: "fw-bold mb-1"
+              div.mt-1
+                = f.text_area :address, value: @info_order.user.address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
+            .form-group
+              = f.label :phone, class: "fw-bold mb-1 mt-3"
+              div.mt-1
+                = f.number_field :phone, value: @info_order.user.phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
+            = hidden_field_tag :total_bill, @total_bill
+            = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
+            = hidden_field_tag :cart_id, @cart.id
+            .form-group.row.mt-4.mb-5
+              .col
+                = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5" ,data: { action: "click -> payment#payment_success" }
 
-  div.flex-shrink-1.mt-4(style="margin-left: 30px")
+  div.flex-shrink-1.mt-4(style="margin-left: 120px")
     h1.text-center.text-secondary Detail order
     div.b-color-gray.bd-rad-7(style="margin-top: 25px;width: 450px;")
       - @cart_items.each do |cart_item|

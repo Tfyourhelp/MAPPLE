@@ -8,8 +8,8 @@ export default class extends Controller {
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
+        confirmButton: "btn btn-success m-3 ",
+        cancelButton: "btn btn-danger m-3 "
       },
       buttonsStyling: false
     });

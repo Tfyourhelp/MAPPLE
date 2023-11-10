@@ -47,11 +47,40 @@ $(document).on('click', '.like-product', function(e) {
 })
 
 
+$(document).on('keypress', '.input-add-to-cart', function(e) {
+  if (e.keyCode === 13){
+    const url = $(this).data('url')
+    const productId = $(this).data('product-id')
+    const quantity = $(this).val()
+    console.log('bbbb')
+    console.log(productId)
+    console.log(quantity)
+    
+    $.ajax({
+      url: url,
+      type: 'POST',
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        product_id: productId,
+        quantity: quantity
+      },
+      success: function(res) {
+        console.log(res)
+      }
+    })
+  }
+  
+})
+
+
+
 $(document).on('click', '.add-to-cart', function(e) {
   const url = $(this).data('url')
   const productId = $(this).data('product-id')
-
   console.log('bbbb')
+  console.log(productId)
 
   $.ajax({
     url: url,
@@ -144,6 +173,8 @@ $(document).on('click', '.minus-cart-item', function(e) {
   const operation = $(this).data('operation')
   console.log('like')
   
+
+
   $.ajax({
     url: url,
     type: 'POST',

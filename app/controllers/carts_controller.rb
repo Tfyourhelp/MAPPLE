@@ -43,22 +43,22 @@ class CartsController < ApplicationController
   end
 
   private
-
+# nếu chưa có cart
   def add_new_cart_item
     @cart_item = @cart.cart_items.new(product_id: @product.id)  
-    @cart_item.quantity = params[:cart_item] ? params[:cart_item][:quantity].to_i : 1
+    @cart_item.quantity = params[:quantity] ? params[:quantity].to_i : 1
     @cart_item.save
     # redirect_to carts_path
   end
 
   def update_cart_item
-    if params[:cart_item].nil? # nhấn add_to_cart ở ngoài trang chủ
+    if params[:quantity].nil? # nhấn add_to_cart ở ngoài trang chủ
       @cart_item.update(quantity: (@cart_item.quantity + 1))
     else # điền vào text_field trong product/show
-      if (@cart_item.quantity + params[:cart_item][:quantity].to_i) <= @product.quantity
-        @cart_item.update(quantity: @cart_item.quantity + params[:cart_item][:quantity].to_i)
+      if (@cart_item.quantity + params[:quantity].to_i) <= @product.quantity
+        @cart_item.update(quantity: @cart_item.quantity + params[:quantity].to_i)
         redirect_to carts_path
-      elsif @cart_item.quantity + params[:cart_item][:quantity].to_i > @product.quantity
+      elsif @cart_item.quantity + params[:quantity].to_i > @product.quantity
         flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
         redirect_to product_path(@product)
       end
@@ -85,6 +85,7 @@ class CartsController < ApplicationController
   end
 
   def find_product_to_add_cart_item
+    # xinnn
     @product = Product.find_by(id: params[:product_id])
     redirect_to products_path unless @product
     @cart_item = @cart.cart_items.find_by(product_id: @product.id) # tim ra san pham da nhan Add to cart

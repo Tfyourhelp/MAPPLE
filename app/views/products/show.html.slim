@@ -18,19 +18,25 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     h5.font-weight-bold.m-0 Delivery
     p.font-s-1em(style="margin-right: 100px")  VIETNAM, USA, CANADA, UK, EUROPE
     - unless logged_in?("shop")
-      = form_with(model: CartItem.new, url: carts_path, method: :post) do |f|
-        div.d-flex.bb-1-ccc(style="margin: 20px 0px 20px 0px;height: 60px;")
-          h5.font-weight-bold.mb-3(style="margin: 5px 0px 0px 0px") Quantity
-          = f.number_field :quantity, value: "1", inputmode: "numeric", pattern: "[0-9]*",class: "text-center b-color-ccc bd-rad-5" ,style: "width: 60px;height: 37px; margin-left: 18px", id: "quantity_inputttt"
-          - if @product.quantity == 0
-            h6.text-danger(style="margin: 8px 0px 0px 15px;")
-              | ( Out of stock recently )
-          - else
-            div.text-muted(style="margin: 4px 0px 0px 15px;") 
-              |( #{@product.quantity} available products )
-        div(style="margin: 20px 0px 20px 0px;")
-            - if @product.quantity == 0
-              = f.submit "Add To Cart", disabled: true , class: "btn btn-secondary mt-2 w-100 rounded-3" ,style:"height: 45px"
-            -else
-              = f.submit "Add To Cart" , class: "btn btn-primary mt-2 w-100 rounded-3" ,style:"height: 45px;"
-              = hidden_field_tag :product_id, @product.id 
+      /= form_with(model: CartItem.new, url: carts_path, method: :post) do |f|
+      div.d-flex.bb-1-ccc(style="margin: 20px 0px 20px 0px;height: 60px;")
+        h5.font-weight-bold.mb-3(style="margin: 5px 0px 0px 0px") Quantity
+        /= f.number_field :quantity, value: "1", inputmode: "numeric", pattern: "[0-9]*",class: "text-center b-color-ccc bd-rad-5" ,style: "width: 60px;height: 37px; margin-left: 18px", id: "quantity_inputttt"
+        input value="1" type="number" min="0" readonly="readonly" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc bd-rad-5"
+        - if @product.quantity == 0
+          h6.text-danger(style="margin: 8px 0px 0px 15px;")
+            | ( Out of stock recently )
+        - else
+          div.text-muted(style="margin: 4px 0px 0px 15px;") 
+            |( #{@product.quantity} available products )
+      div(style="margin: 20px 0px 20px 0px;")
+          - unless logged_in?("shop")
+            - if logged_in?("user")
+              - if @product.quantity == 0
+                button.btn.btn-secondary.mt-2.w-100.rounded-3#outofstock type="button" style="height: 45px" 
+                  | Add To Cart
+              -else
+                button type="button" class="add-to-cart btn btn-primary mt-2 w-100 rounded-3" style="height: 45px" data-url="#{carts_path}" data-product-id="#{@product.id}" 
+                  | Add To Cart
+            - else
+              = button_to "Add To Cart", login_path, class:"btn btn-primary mt-2 w-100 rounded-3"

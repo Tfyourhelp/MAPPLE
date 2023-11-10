@@ -10,7 +10,7 @@
         button type="button" class="garbage-button un-like-product" data-url="#{likes_path}" data-product-id="#{product_id}"
           i class="fa-regular fa-heart font-s-2em "
   div.text-center.mt-1.like-word#likecount 
-    |( #{pluralize(Like.where(product_id: product_id).count, "rate")} )
+    |( #{pluralize(Like.where(product_id: product_id).count, "like")} )
       
 
   
