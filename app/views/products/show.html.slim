@@ -4,7 +4,6 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
   div.col(style="margin: 50px 0px 30px 40px")
     = render "product_slide_show",  images: @product.images
   div.col.p-0(style="margin: 70px 20px 100px 40px; height: 360px" ) 
-    /data-controller="like"
     h1.font-s-2em = @product.name.upcase
     .d-flex
       h4.mt-1 style="margin-right: 20px" Rating: 

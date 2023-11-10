@@ -1,0 +1,15 @@
+/-if @cart.cart_items.length == 0
+  window.location.replace("#{carts_path}");
+/carts_path
+- byebug
+| $("#changequantityForm#{@cart_item&.id}").html(`
+= render "change_quantity_cart_item", cart_item: nil,  cart_items_length: @cart.cart_items.length 
+| `);
+
+| $("#yourbillForm").html(`
+= render "your_bill", cart_items: @cart.cart_items
+| `);
+- byebug
+| $("#QuantityIconCartForm").html(`
+= render "shared/quantity_icon"
+| `);

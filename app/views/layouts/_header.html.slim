@@ -15,13 +15,9 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
             i class="fa-solid fa-shop font-s-125em icon-button"
         li.nav-item.d-flex.align-items-center(style = "margin-left: 30px")
           a.nav-link.text-nowrap href="#{carts_path}" 
-            div.pos-relaid id = "QuantityIconCartForm"
-              i class="fa-solid fa-cart-shopping font-s-125em icon-button "     
-                - unless current_person("user").carts.empty?
-                  - item_in_cart_length = current_person("user").carts.last.cart_items.length
-                  - if item_in_cart_length > 0
-                    div.circle
-                      = item_in_cart_length
+            i class="fa-solid fa-cart-shopping font-s-125em icon-button pos-rela"
+              . id = "QuantityIconCartForm"
+                = render "shared/quantity_icon"
         li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
             - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"

@@ -8,6 +8,7 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
       div.vam
         p.mb-0.mt-1(style="height: 40px;") Why not add something?
       = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
+  /= render 'empty_cart'
 - else
   div.bl-1-ccc.br-1-ccc.bt-1-ccc(style="margin: 10px 300px 0px 300px")
     table.table 
@@ -22,7 +23,7 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
       tbody 
         - @cart_items.order(id: :asc).each do |cart_item|
           tr.text-center.vam id="changequantityForm#{cart_item.id}"
-            = render "change_quantity_cart_item", cart_item: cart_item
+            = render "change_quantity_cart_item", cart_item: cart_item, cart_items_length: @cart.cart_items.length 
       thead
         tr.text-center.vam id="yourbillForm"
           = render "your_bill",cart_items: @cart_items

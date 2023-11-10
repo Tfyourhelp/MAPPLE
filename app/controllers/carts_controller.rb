@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :logged_in_user, only: [:index, :create, :edit, :update, :destroy]
-  before_action :set_cart, only: [:index, :create, :change_quantity, :input_quantity]
+  before_action :set_cart, only: [:index, :create, :change_quantity, :input_quantity, :destroy]
   before_action :find_product_to_add_cart_item, only: [:create, :change_quantity, :input_quantity]
   before_action :find_cart_item, only: [:destroy]
 
@@ -30,15 +30,16 @@ class CartsController < ApplicationController
   def input_quantity
     if params[:quantity].to_i <= @product.quantity
       @cart_item.update(quantity: params[:quantity])
-    else
-      flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
     end
-    redirect_to carts_path
   end
 
   def destroy
     @cart_item.destroy
-    redirect_to carts_url
+    # respond_to do |format|
+    #   if @cart.cart_items.length == 0
+    #     format.js { render js: "window.location.href = '#{carts_url}'" }
+    #   end
+    # end
   end
 
   private
@@ -73,14 +74,14 @@ class CartsController < ApplicationController
     end
   end
 
-  def find_cart_item
-    @cart_item = CartItem.find(params[:id])
-  end
-
   # tim ra cart cua nguoi dung hien tai neu chua co thi tao moi và save
   def set_cart
     @cart = current_person("user").carts.find_or_initialize_by(finished: false)
     @cart.save if @cart.new_record?
+  end
+
+  def find_cart_item
+    @cart_item = CartItem.find(params[:id])
   end
 
   def find_product_to_add_cart_item

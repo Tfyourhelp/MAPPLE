@@ -3,6 +3,9 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "./common.js"
 
+$('#outofstock').prop('disabled', true);
+
+
 $(document).on('click', '.un-like-product', function(e) {
   const url = $(this).data('url')
   const productId = $(this).data('product-id')
@@ -27,6 +30,7 @@ $(document).on('click', '.like-product', function(e) {
   const productId = $(this).data('product-id')
   const url = $(this).data('url') + `/${productId}`
   console.log('like')
+  console.log(url)
   $.ajax({
     url: url,
     type: 'DELETE',
@@ -59,11 +63,42 @@ $(document).on('click', '.add-to-cart', function(e) {
       product_id: productId,
     },
     success: function(res) {
-      // console.log(res)
+      console.log(res)
     }
   })
 })
 
+
+$(document).on('click', '.delete-cart-item', function(e) {
+  
+  const cartitemId = $(this).data('cart-item-id')
+  const url = $(this).data('url')
+  const cart_items_length = $(this).data('cart-items-length')
+  console.log('xin chào')
+  console.log(url)
+
+  $.ajax({
+    url: url,
+    type: 'DELETE',
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      id: cartitemId
+    },
+    success: function(res) {
+      // console.log(res);
+      console.log(' hello ')
+      if (( cart_items_length -1 ) == 0 ){
+        window.location.href = '/carts';
+      }
+      console.log(cart_items_length)
+    }
+  })
+
+  
+}
+)
 
 
 $(document).on('click', '.plus-cart-item', function(e) {
@@ -97,7 +132,7 @@ $(document).on('click', '.plus-cart-item', function(e) {
       operation: operation,
     },
     success: function(res) {
-      // console.log(res)
+      console.log(res)
     }
   })
 })
@@ -125,4 +160,27 @@ $(document).on('click', '.minus-cart-item', function(e) {
   })
 })
 
+$(document).on('keypress', '.delete-cart-item', function(e) {
+  if (e.keyCode === 13) {
+    const url = $(this).data('url')
+    const productId = $(this).data('product-id')  
 
+    console.log('xin chào')
+    console.log(cartitemquantity)
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        product_id: productId,
+        quantity: cartitemquantity
+      },
+      success: function(res) {
+        console.log(res)
+      }
+    })
+  }
+})

@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :password_resets
   resources :shops
   resources :categories
-  resources :carts
+  resources :carts 
+    
+  resources :cart_items, only: [:destroy]
+
+ 
   resources :info_orders
   resources :checkouts, only: [:create]
   resources :likes
