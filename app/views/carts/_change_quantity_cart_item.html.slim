@@ -1,25 +1,25 @@
-- unless cart_item.nil?
-  td(style="width: 440px")
-    = link_to "#{cart_item.product.name}", product_path(cart_item.product), class: "productname", style: ""
-  div(style="width: 386px,height: 102px")
-    td(style="width: 250px")
-      - if cart_item.product.images.first
-        img(style="height: 100px; width: 100px" src=url_for(cart_item.product.images.first))
-      - else
-        = image_tag("https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png", alt: "Kitten", width: "100px", height: "100px")
-  td(style="width: 150px")
-    | #{cart_item.product.price} $ 
-  td(style="width: 200px")
-    div.d-flex.justify-content-center.align-items-center
-      button type="button" class="minus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="minus"
-        i class="fa-solid fa-minus"
-      input value="#{cart_item.quantity}" type="number" min="0" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc rounded input-cart-item" data-url="#{input_quantity_path}" data-product-id="#{cart_item.product.id}" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
-      button type="button" class="plus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
-        i class="fa-solid fa-plus"
-  td(style="width: 150px")
-    | #{cart_item.product.price*cart_item.quantity} $ 
-  td(style="")
-    -byebug
-    /= button_to cart_path(id: cart_item.id), method: :delete, class: "garbage-button" do
-    button type="button" class="delete-cart-item garbage-button" data-url="#{cart_path(cart_item)}" data-cart-item-id="#{cart_item.id}" data-cart-items-length="#{cart_items_length}"
-      i class="fa-solid fa-trash font-s-15em " 
+/ - unless cart_item.nil?
+/   td(style="width: 440px")
+/     = link_to "#{cart_item.product.name}", product_path(cart_item.product), class: "productname", style: ""
+/   div(style="width: 386px,height: 102px")
+/     td(style="width: 250px")
+/       - if cart_item.product.images.first
+/         img(style="height: 100px; width: 100px" src=url_for(cart_item.product.images.first))
+/       - else
+/         = image_tag("https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png", alt: "Kitten", width: "100px", height: "100px")
+/   td(style="width: 150px")
+/     | #{cart_item.product.price} $ 
+/   td(style="width: 200px")
+/     div.d-flex.justify-content-center.align-items-center
+/       button type="button" class="minus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="minus"
+/         i class="fa-solid fa-minus"
+/       input value="#{cart_item.quantity}" type="number" min="0" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc rounded input-cart-item" data-url="#{input_quantity_path}" data-product-id="#{cart_item.product.id}" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
+/       button type="button" class="plus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
+/         i class="fa-solid fa-plus"
+/   td(style="width: 150px")
+/     | #{cart_item.product.price*cart_item.quantity} $ 
+/   td(style="")
+/     /= button_to cart_path(id: cart_item.id), method: :delete, class: "garbage-button" do
+/     button type="button" class="delete-cart-item garbage-button" data-url="#{cart_path(cart_item)}" data-cart-item-id="#{cart_item.id}" data-cart-items-length="#{cart_items_length}"
+/       i class="fa-solid fa-trash font-s-15em "
+

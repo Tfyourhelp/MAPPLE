@@ -1,7 +1,11 @@
-| $("#changequantityForm#{@cart_item&.id}").html(`
-= render "change_quantity_cart_item", cart_item: @cart_item, cart_items_length: @cart.cart_items.length 
-| `);
+/ | $("#changequantityForm#{@cart_item&.id}").html(`
+/ = render "change_quantity_cart_item", cart_item: @cart_item, cart_items_length: @cart.cart_items.length , action: "not delete"
+/ | `);
 
-| $("#yourbillForm").html(`
-= render "your_bill", cart_items: @cart.cart_items
+/ | $("#yourbillForm").html(`
+/ = render "your_bill", cart_items: @cart.cart_items
+/ | `);
+
+| $("#deleteForm#{current_person("user").id}").html(`
+= render "cart_table", cart_items: @cart.cart_items
 | `);

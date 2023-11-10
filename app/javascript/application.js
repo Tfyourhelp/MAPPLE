@@ -70,12 +70,14 @@ $(document).on('click', '.add-to-cart', function(e) {
 
 
 $(document).on('click', '.delete-cart-item', function(e) {
-  
   const cartitemId = $(this).data('cart-item-id')
   const url = $(this).data('url')
   const cart_items_length = $(this).data('cart-items-length')
   console.log('xin chào')
   console.log(url)
+  console.log(cart_items_length)
+  console.log(cartitemId)
+
 
   $.ajax({
     url: url,
@@ -87,7 +89,7 @@ $(document).on('click', '.delete-cart-item', function(e) {
       id: cartitemId
     },
     success: function(res) {
-      // console.log(res);
+      console.log(res);
       console.log(' hello ')
       if (( cart_items_length -1 ) == 0 ){
         window.location.href = '/carts';
@@ -95,8 +97,6 @@ $(document).on('click', '.delete-cart-item', function(e) {
       console.log(cart_items_length)
     }
   })
-
-  
 }
 )
 
@@ -160,27 +160,40 @@ $(document).on('click', '.minus-cart-item', function(e) {
   })
 })
 
-$(document).on('keypress', '.delete-cart-item', function(e) {
+$(document).on('keypress', '.input-cart-item', function(e) {
   if (e.keyCode === 13) {
     const url = $(this).data('url')
     const productId = $(this).data('product-id')  
+    const cartitemquantity = $(this).val();
+    const productquantity = $(this).data('product-quantity') 
 
     console.log('xin chào')
     console.log(cartitemquantity)
 
-    $.ajax({
-      url: url,
-      type: 'POST',
-      headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-      },
-      data: {
-        product_id: productId,
-        quantity: cartitemquantity
-      },
-      success: function(res) {
-        console.log(res)
-      }
-    })
+    if ((cartitemquantity > productquantity) || ( cartitemquantity < 0 ) ) {
+      console.log('unlike')
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Available quantity of this product is ${productquantity}`,
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+    }
+    else {
+      $.ajax({
+        url: url,
+        type: 'POST',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+          product_id: productId,
+          quantity: cartitemquantity
+        },
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    }
   }
 })
