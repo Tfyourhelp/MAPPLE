@@ -20,10 +20,9 @@
 
   .form-group.mt-3
     = f.label :category, "Select Category", class: "fw-bold mb-1"
-    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-control", :required=>true
+    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-select", :required=>true
     div.invalid-feedback Please fill product's category.
-
-
+  
   .form-group.mt-3
     = f.label :description, class: "fw-bold mb-1"
     = f.text_area :description, placeholder: "Compost new micropost...", class: "form-control", rows: 10, :required=>true

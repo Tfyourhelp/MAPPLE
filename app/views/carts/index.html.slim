@@ -11,6 +11,6 @@ div.text-center(style="margin: 20px 0px 20px 0px;")
         p.mb-0.mt-2(style="height: 40px;") Why not add something?
       = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
 - else
-  div.bl-1-ccc.br-1-ccc.bt-1-ccc(style="margin: 10px 300px 0px 300px" )
+  div.bl-1-ccc.br-1-ccc.bt-1-ccc(style="margin: 10px 300px 0px 300px" data-controller="change-quantity-in-cart")
     . id="deleteForm#{current_person("user").id}" 
       = render "cart_table", cart_items: @cart.cart_items

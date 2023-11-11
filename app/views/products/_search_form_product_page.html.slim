@@ -18,7 +18,7 @@
     div
       .form-group style="margin-left: 80px"
         = f.label :category, "Category", class: "fw-bold mb-1 font-s-125em"
-        = f.select :category_id, options_for_select(@categories.map { |c| [c.name, c.id] },selected: params[:category_id].nil? ? nil : params[:category_id]), { include_blank: true }, class: "form-control", style: "width: 400px; height: 45px"
+        = f.select :category_id, options_for_select(@categories.order(created_at: :asc).map { |c| [c.name, c.id] },selected: params[:category_id].nil? ? nil : params[:category_id]), { include_blank: true }, class: "form-select", style: "width: 400px; height: 45px"
       
       .d-flex.mt-3
         p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 80px") 

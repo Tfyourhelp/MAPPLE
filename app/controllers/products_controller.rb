@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
   before_action :logged_in_shop, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :find_category, only: [:create]
   before_action :find_all_categories, only: [:index, :new, :edit]
 
   def index
-    @products = Product
+    @products = Product.all
     @page = params[:page]
     @products = Products::Search.call(params, @products, @categories)
   end
@@ -17,7 +17,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = @category.products.new(product_params)
+    @product = Product.new(product_params)
+    @product.category = @category
     update_images_to_product
     if @product.save
       redirect_to products_url(@product), notice: "Product created success", flash: { class: "success" }
@@ -31,18 +32,19 @@ class ProductsController < ApplicationController
   end
 
   def update
+    byebug
     store_location
     if @product.update(product_params)
       update_images_to_product
       redirect_to products_url(@product, page: params[:page]), notice: "Product updated", flash: { class: "success" }
     else
-      @categories = Category.all
+      @categories = Category.all.order(created_at: :desc)
       render 'edit', status: :unprocessable_entity
     end
   end
 
   def destroy
-    if @product.detail_orders.empty?
+    if DetailOrder.find_by(product_id: @product.id).nil?
       @product.destroy
       redirect_to products_url, notice: "Product deleted", flash: { class: "success" }
     else
@@ -53,22 +55,22 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :quantity, :description, :images)
+    params.require(:product).permit(:name, :price, :quantity, :category_id, :description, :images)
   end
 
-  def find_id
+  def find_product
     @product = Product.find(params[:id])
   end
 
   def update_images_to_product
-    unless params[:product][:images].length == 1
-      @product.images.delete_all unless @product.images.empty?
-      @product.images.attach(params[:product][:images])
-    end
+    return if params[:product][:images].length == 1
+
+    @product.images.delete_all unless @product.images.empty?
+    @product.images.attach(params[:product][:images])
   end
 
   def find_all_categories
-    @categories = Category.all
+    @categories = Category.all.order(created_at: :desc)
   end
 
   def find_category

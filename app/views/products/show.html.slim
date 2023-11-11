@@ -20,21 +20,21 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     - unless logged_in?("shop")
       div.d-flex.bb-1-ccc(style="margin: 20px 0px 20px 0px;height: 60px;")
         h5.font-weight-bold.mb-3(style="margin: 5px 0px 0px 0px") Quantity
-        input value="1" type="number" min="0" readonly="readonly" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc bd-rad-5"
+        input id="quantityInput" value="1" type="number" min="0" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc bd-rad-5"
         - if @product.quantity == 0
           h6.text-danger(style="margin: 8px 0px 0px 15px;")
             | ( Out of stock recently )
         - else
           div.text-muted(style="margin: 4px 0px 0px 15px;") 
             |( #{@product.quantity} available products )
-      div(style="margin: 20px 0px 20px 0px;")
+      div(style="margin: 20px 0px 20px 0px;" data-controller="add-to-cart")
           - unless logged_in?("shop")
             - if logged_in?("user")
               - if @product.quantity == 0
                 button.btn.btn-secondary.mt-2.w-100.rounded-3#outofstock type="button" style="height: 45px" 
                   | Add To Cart
               -else
-                button type="button" class="add-to-cart btn btn-primary mt-2 w-100 rounded-3" style="height: 45px" data-url="#{carts_path}" data-product-id="#{@product.id}" 
+                button type="button" class="add-to-cart-in-product-show btn btn-primary mt-2 w-100 rounded-3" style="height: 45px" data-url="#{carts_path}" data-product-id="#{@product.id}" data-product-quantity="#{@product.quantity}" 
                   | Add To Cart
             - else
               = button_to "Add To Cart", login_path, class:"btn btn-primary mt-2 w-100 rounded-3"

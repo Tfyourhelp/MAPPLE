@@ -18,3 +18,5 @@
       }, false)
     })
 })()
+
+$('#outofstock').prop('disabled', true);

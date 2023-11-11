@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :logged_in_shop, only: [:index, :edit, :update, :destroy]
-  before_action :find_id, only: [:show, :edit, :update, :destroy, :filter_price]
+  before_action :find_category, only: [:show, :edit, :update, :destroy, :filter_price]
   before_action :find_shop_id, only: [:new, :create]
 
   def index
@@ -8,14 +8,14 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @products = @category.products.page(params[:page]).per(8)
+    @products = Product.where(category_id: @category.id).page(params[:page]).per(8)
     @filter = [false, false, false, false, false]
   end
 
   def filter_price
     @filter = [false, false, false, false, false]
     if (params[:under250] == "1") && (params[:between250and500] == "1") && (params[:between500and750] == "1") && (params[:between750and1000] == "1") && (params[:over1000] == "1")
-      @products = @category.products.page(params[:page]).per(8)
+      @products = Product.where(category_id: @category.id).page(params[:page]).per(8)
     else
       filter_products_by_price_ranges
     end
@@ -23,11 +23,12 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = @shop.categories.new
+    @category = Category.new
   end
 
   def create
-    @category = @shop.categories.new(category_params)
+    @category = Category.new(category_params)
+    @category.shop = @shop
     if @category.save
       redirect_to categories_url
     else
@@ -40,21 +41,19 @@ class CategoriesController < ApplicationController
   def update
     if @category.update(category_params)
       update_image_to_category
-      flash[:success] = "Category updated"
-      redirect_to categories_url
+      redirect_to categories_url, notice: "Category updated", flash: { class: "success" }
     else
       render 'edit', status: :unprocessable_entity
     end
   end
 
   def destroy
-    if @category.products.empty?
+    if Product.find_by(category_id: @category.id).nil?
       @category.destroy
-      flash[:success] = "Category deleted"
+      redirect_to categories_url, notice: "Category deleted", flash: { class: "success" }
     else
-      flash[:danger] = "This category has product, you cant delete"
+      redirect_to categories_url, notice: "This category has product, you cant delete", flash: { class: "danger" }
     end
-    redirect_to categories_url
   end
 
   private
@@ -67,12 +66,11 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name, :image)
   end
 
-  def find_id
-    @category = Category.find_by(params[:id])
+  def find_category
+    @category = Category.find_by(id: params[:id])
     return unless @category.nil?
 
-    flash[:danger] = "Cant find category"
-    redirect_to carts_path
+    redirect_to carts_path, notice: "Cant find category", flash: { class: "danger" }
   end
 
   def filter_products_by_price_ranges
@@ -92,6 +90,6 @@ class CategoriesController < ApplicationController
       @filter[index] = true
     end
     filters = filters.join(" or ")
-    @products = @category.products.where(filters)
+    @products = Product.where(category_id: @category.id).where(filters)
   end
 end

@@ -7,7 +7,8 @@ class InfoOrdersController < ApplicationController
   before_action :logged_in_shop, only: [:order_history_list_shop]
 
   def new
-    @info_order = current_person("user").info_orders.build
+    @info_order = InfoOrder.new
+    @info_order.user = current_person("user")
     @total_bill = params[:total_bill]
   end
 
@@ -21,7 +22,8 @@ class InfoOrdersController < ApplicationController
       @shop.send_new_order_from_customer_email(current_person("user"))
       @cart.finish
       update_product_quantity
-      redirect_to root_path, notice: "Email order confirmation was sent", flash: { class: "info" }
+      byebug
+      redirect_to carts_path, notice: "Email order confirmation was sent", flash: { class: "info" }
     else
       @total_bill = params[:total_bill]
       render 'new', status: :unprocessable_entity
@@ -50,7 +52,7 @@ class InfoOrdersController < ApplicationController
   end
 
   def find_all_cart_items_of_cart
-    @cart_items = @cart.cart_items
+    @cart_items = CartItem.where(cart_id: @cart.id)
   end
 
   def info_order_params
