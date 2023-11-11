@@ -11,7 +11,7 @@ div.col
         h5.text-center.text-dark.mb-0
           | #{product.price} $
         . style = "margin-left: 72px" id="likeForm#{product.id}"
-            = render "shared/like_form", product: product, product_id: product.id, page: "index"
+            = render "shared/like_form", product: product
         - if product.quantity == 0 
           div.text-center.text-danger 
             |( Out of stock recently )
@@ -28,5 +28,5 @@ div.col
           button type="button" class="add-to-cart btn btn-primary" style="width: 120px" data-url="#{carts_path}" data-product-id="#{product.id}" 
             | Add To Cart
       - else
-        = button_to "Add To Cart", login_path, class:"btn btn-primary" 
+        = button_to "Add To Cart", login_path, method: :get ,class:"btn btn-primary" 
       

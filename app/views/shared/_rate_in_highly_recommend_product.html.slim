@@ -1,2 +1,2 @@
 div.text-center.like-word#likecount  
-  |( #{pluralize(Like.where(product_id: product.id).count, "like")} ) 
+  |( #{like_count(product)} ) 

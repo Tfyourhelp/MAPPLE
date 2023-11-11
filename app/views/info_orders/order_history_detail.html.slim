@@ -33,7 +33,6 @@ div(style="margin: 30px 330px 30px 330px; font-size: 1.5em")
           th(scope="col") Quantity
           th(scope="col") Total
       tbody
-        - total_bill = 0
         - @info_order.detail_orders.order(id: :desc).each do |detail_order|
           tr.text-center.vam
             td(style="width: 400px")
@@ -49,7 +48,6 @@ div(style="margin: 30px 330px 30px 330px; font-size: 1.5em")
             td(style="width: 150px")
               input(value=detail_order.quantity class="text-center b-color-ccc bd-rad-7" style="width: 60px;height: 37px; ")
             td(style="width: 170px")
-              - total_bill += detail_order.price*detail_order.quantity
               | #{detail_order.price*detail_order.quantity} $ 
       thead
         tr.text-center.vam
@@ -59,4 +57,5 @@ div(style="margin: 30px 330px 30px 330px; font-size: 1.5em")
           th(scope="col") 
             = @info_order.detail_orders.sum('quantity') 
           th(scope="col") 
+            - total_bill = calculate_total_bill_in_order_detail()
             | #{total_bill} $

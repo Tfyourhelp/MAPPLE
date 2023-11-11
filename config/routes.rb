@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/signup', to: 'users#new'
   delete '/logout', to: 'sessions#destroy'
-  root "products#index"  #  static_pages#home
+  root "products#index"
   post '/change_quantity', to: 'carts#change_quantity'
   post '/input_quantity', to: 'carts#input_quantity'
   get '/order_history_detail', to: 'info_orders#order_history_detail'

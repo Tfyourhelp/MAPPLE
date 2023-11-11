@@ -24,7 +24,7 @@
               = info_order.name            
             td(style="width: 400px; padding: 5px")
               - unless info_order.detail_orders.length == 1
-                | #{info_order.detail_orders.first.product_name} ... and  #{pluralize((info_order.detail_orders.length-1) , "product")}
+                | #{info_order.detail_orders.first.product_name} ... and  #{info_order_products_count(info_order)}
               - else
                 | #{info_order.detail_orders.first.product_name} 
             td(style="width: 180px")

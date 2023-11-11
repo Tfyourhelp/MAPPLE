@@ -1,4 +1,3 @@
-
 div.col
   div.card
     - if category.image.attached?
@@ -9,5 +8,5 @@ div.col
       h5.card-title.text-center.mb-0
         = link_to "#{category.name}", category_path(category), class: 'black-link'
       p.card-text.text-center 
-        | ( #{pluralize(category.products.count, "product")} )
+        |( #{products_in_category_count(category) } )
         

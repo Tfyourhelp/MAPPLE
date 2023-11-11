@@ -8,10 +8,10 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     .d-flex
       h4.mt-1 style="margin-right: 20px" Rating: 
       div id="likeForm#{@product.id}"    
-        = render "shared/like_form" , product_id: @product.id, page: "show"
-    
+        = render "shared/like_form" , product: @product
+        
     h4.mt-2.font-s-2em.price-color #{@product.price.to_s + "    $"}
-    
+
     h5.font-weight-bold.mb-0 Description
     p.font-s-1em(style="margin-right: 50px")  #{@product.description}
     

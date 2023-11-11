@@ -14,7 +14,7 @@
             th(scope="col") Description
             th(scope="col") Image 
         tbody
-        - @products.each_with_index do |product,index|
+        - @products.each do |product|
           tr.text-center.vam
             td
               = link_to "#{product.name}", product_path(product), class: 'black-link'
@@ -23,9 +23,7 @@
             td
               = product.quantity
             td(style="width: 400px;")
-              - description = product.description.split[0..17].join(' ')
-              - description += '...' if product.description.length > 50
-              = description
+              = product_description(product)
             td.p-1(style="width: 155px")
               - if product.images.attached? 
                 img(style="height: 100px; width: 100px" src=url_for(product.images.first)) 

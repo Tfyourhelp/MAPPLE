@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   def require_logged_in(type)
-    unless logged_in?(type)
-      store_location
-      flash[:danger] = "Please log in"
-      redirect_to login_url
-    end
+    return if logged_in?(type)
+    
+    store_location
+    flash[:danger] = "Please log in"
+    redirect_to login_url
   end
 
   def logged_in_user

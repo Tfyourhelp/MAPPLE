@@ -23,11 +23,11 @@ Style/StringLiterals:
 Style/GuardClause:
   Enabled: false
 
-Style/NumericPredicate:
-  Enabled: false
-
-# Style/SymbolName:
+# Style/NumericPredicate:
 #   Enabled: false
 
-Layout/LineLength: 
-  Enabled: false
+# # Style/SymbolName:
+# #   Enabled: false
+
+# Layout/LineLength: 
+#   Enabled: false

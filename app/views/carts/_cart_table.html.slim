@@ -42,9 +42,7 @@ table.table
         th(scope="col") 
           = @cart.cart_items.sum('quantity') 
         th(scope="col") 
-          - total_bill = 0
-          - @cart.cart_items.each do |cart_item|
-            - total_bill += cart_item.product.price * cart_item.quantity
+          - total_bill = calculate_total_bill()
           | #{total_bill} $  
         th(scope="col" style="width: 250px") 
           = link_to "Go Order", new_info_order_path(cart_id: @cart.cart_items.first.cart_id, total_bill: total_bill), class: "btn btn-success", style: "width: 180px; height: 38px" unless @cart.cart_items.empty?

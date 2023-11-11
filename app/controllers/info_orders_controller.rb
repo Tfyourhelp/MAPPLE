@@ -35,12 +35,23 @@ class InfoOrdersController < ApplicationController
 
   private
 
-  def find_info_order_id
-    @info_order = InfoOrder.find(params[:info_order_id])
-  end
-
   def find_cart_id
     @cart = Cart.find(params[:cart_id])
+  end  
+
+  def find_info_order_id
+    @info_order = InfoOrder.find_by(id: params[:info_order_id])
+    # kiểm tra xem có info_order kh để chống / trên browser
+    if @info_order
+      # nếu info order kh phải của người dùng đó hoặc k phải là shop
+      unless @info_order.user == current_person("user") or logged_in?("shop")
+        flash[:danger] = "This is not your info order"
+        redirect_to root_path
+      end
+    else
+      flash[:danger] = "Info order not found"
+      redirect_to root_path
+    end
   end
 
   def find_all_cart_items_of_cart
