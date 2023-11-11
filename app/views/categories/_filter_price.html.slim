@@ -7,23 +7,23 @@
       ul.dropdown-menu.p-1
         li.custom-class
           a.dropdown-item
-            = f.check_box :under_250 , {checked: @filter[0]}
+            = f.check_box :under250 , {checked: @filter[0]}
             = f.label 'Under 250$'
         li.custom-class
           a.dropdown-item
-            = f.check_box :between_250_and_500 , {checked: @filter[1]}
+            = f.check_box :between250and500 , {checked: @filter[1]}
             = f.label 'Between 250$ and 500$' 
         li.custom-class
           a.dropdown-item
-            = f.check_box :between_500_and_750 , {checked: @filter[2]}
+            = f.check_box :between500and750 , {checked: @filter[2]}
             = f.label 'Between 500$ and 750$ '
         li.custom-class
           a.dropdown-item
-            = f.check_box :between_750_and_1000 , {checked: @filter[3]}
+            = f.check_box :between750and1000 , {checked: @filter[3]}
             = f.label 'Between 750$ and 1000$ '       
         li.custom-class
           a.dropdown-item
-            = f.check_box :over_1000 , {checked: @filter[4]}
+            = f.check_box :over1000 , {checked: @filter[4]}
             = f.label 'Over 1000$ '
     = hidden_field_tag :id, @category.id
     div.text-center(style="margin-left: 20px")

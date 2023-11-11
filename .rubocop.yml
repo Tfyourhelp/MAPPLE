@@ -20,8 +20,8 @@ Style/SymbolArray:
 Style/StringLiterals:
   Enabled: false
 
-Style/GuardClause:
-  Enabled: false
+# Style/GuardClause:
+#   Enabled: false
 
 # Style/NumericPredicate:
 #   Enabled: false
@@ -29,5 +29,5 @@ Style/GuardClause:
 # # Style/SymbolName:
 # #   Enabled: false
 
-# Layout/LineLength: 
-#   Enabled: false
+Layout/LineLength:
+  Max: 300

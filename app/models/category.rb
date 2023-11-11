@@ -6,7 +6,7 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  shop_id    :bigint
+#  shop_id    :integer
 #
 # Indexes
 #

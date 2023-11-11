@@ -5,8 +5,8 @@ class CreateDetailOrders < ActiveRecord::Migration[7.0]
       t.float :price
       t.integer :quantity
 
-      t.belongs_to :info_order
-      t.belongs_to :product
+      t.belongs_to :info_order, type: :integer
+      t.belongs_to :product, type: :integer
 
       t.timestamps
     end

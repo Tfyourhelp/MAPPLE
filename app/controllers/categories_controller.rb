@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :find_shop_id, only: [:new, :create]
 
   def index
-    @categories = Category.all.page(params[:page]).per(8) 
+    @categories = Category.all.page(params[:page]).per(8)
   end
 
   def show
@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
 
   def filter_price
     @filter = [false, false, false, false, false]
-    if (params[:under_250] == "1") and (params[:between_250_and_500] == "1") and (params[:between_500_and_750] == "1") and (params[:between_750_and_1000] == "1") and (params[:over_1000] == "1")
+    if (params[:under250] == "1") && (params[:between250and500] == "1") && (params[:between500and750] == "1") && (params[:between750and1000] == "1") && (params[:over1000] == "1")
       @products = @category.products.page(params[:page]).per(8)
     else
       filter_products_by_price_ranges
@@ -68,16 +68,20 @@ class CategoriesController < ApplicationController
   end
 
   def find_id
-    @category = Category.find(params[:id])
+    @category = Category.find_by(params[:id])
+    return unless @category.nil?
+
+    flash[:danger] = "Cant find category"
+    redirect_to carts_path
   end
 
   def filter_products_by_price_ranges
     price_ranges = {
-      under_250: "price < 250",
-      between_250_and_500: "price BETWEEN 250 AND 500",
-      between_500_and_750: "price BETWEEN 500 AND 750",
-      between_750_and_1000: "price BETWEEN 750 AND 1000",
-      over_1000: "price > 1000"
+      under250: "price < 250",
+      between250and500: "price BETWEEN 250 AND 500",
+      between500and750: "price BETWEEN 500 AND 750",
+      between750and1000: "price BETWEEN 750 AND 1000",
+      over1000: "price > 1000"
     }
     filters = []
     price_ranges.each do |param, filter|
@@ -87,7 +91,7 @@ class CategoriesController < ApplicationController
       filters << filter
       @filter[index] = true
     end
-    filters = filters.join(" or ") 
+    filters = filters.join(" or ")
     @products = @category.products.where(filters)
   end
 end

@@ -17,11 +17,9 @@ html
   body
     = render 'layouts/header'
     .container.p-0.mw-100(style="margin-top: 59px")
-      - flash.each do |message_type, message|
-        div class="alert alert-#{message_type}" style=""= message
+      div class="alert alert-#{flash[:class]}" style=""= flash[:notice]
       div style="margin-top: 80px"
         = yield
     = render 'layouts/footer'
 
-      
-
+  

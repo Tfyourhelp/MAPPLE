@@ -6,8 +6,8 @@
 #  quantity   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  cart_id    :bigint
-#  product_id :bigint
+#  cart_id    :integer
+#  product_id :integer
 #
 # Indexes
 #

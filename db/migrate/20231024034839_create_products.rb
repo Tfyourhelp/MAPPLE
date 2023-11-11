@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :description
       t.integer :quantity
 
-      t.belongs_to :category
+      t.belongs_to :category, type: :integer
       t.timestamps
     end
   end

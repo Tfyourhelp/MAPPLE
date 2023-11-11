@@ -9,10 +9,6 @@ class CartsController < ApplicationController
     # để xóa những trường hợp product hết hàng
     delete_cart_item_when_out_of_stock
   end
-# if @product.quantity == 0
-  # flash[:info] = "This product is currently out of stock."
-  # redirect_to carts_path
-# else
 
   def create
     if @cart_item.nil? # thêm mới cart_item
@@ -28,27 +24,20 @@ class CartsController < ApplicationController
   end
 
   def input_quantity
-    if params[:quantity].to_i <= @product.quantity
-      @cart_item.update(quantity: params[:quantity])
-    end
+    @cart_item.update(quantity: params[:quantity]) if params[:quantity].to_i <= @product.quantity
   end
 
   def destroy
     @cart_item.destroy
-    # respond_to do |format|
-    #   if @cart.cart_items.length == 0
-    #     format.js { render js: "window.location.href = '#{carts_url}'" }
-    #   end
-    # end
   end
 
   private
-# nếu chưa có cart
+
+  # nếu chưa có cart
   def add_new_cart_item
-    @cart_item = @cart.cart_items.new(product_id: @product.id)  
+    @cart_item = @cart.cart_items.new(product_id: @product.id)
     @cart_item.quantity = params[:quantity] ? params[:quantity].to_i : 1
     @cart_item.save
-    # redirect_to carts_path
   end
 
   def update_cart_item
@@ -58,7 +47,7 @@ class CartsController < ApplicationController
       if (@cart_item.quantity + params[:quantity].to_i) <= @product.quantity
         @cart_item.update(quantity: @cart_item.quantity + params[:quantity].to_i)
         redirect_to carts_path
-      elsif @cart_item.quantity + params[:quantity].to_i > @product.quantity
+      elsif @cart_item.quantity + params[:quantity].to_i > @product.quantity 
         flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
         redirect_to product_path(@product)
       end
@@ -67,7 +56,7 @@ class CartsController < ApplicationController
 
   def delete_cart_item_when_out_of_stock
     @cart_items.each do |cart_item|
-      if cart_item.product.nil? || cart_item.product.quantity == 0 or ((cart_item.quantity - cart_item.product.quantity) > 0)
+      if cart_item.product.nil? || cart_item.product.quantity.zero? || (cart_item.quantity - cart_item.product.quantity).positive?
         cart_item.destroy
         redirect_to carts_path
       end
@@ -81,20 +70,22 @@ class CartsController < ApplicationController
   end
 
   def find_cart_item
-    @cart_item = CartItem.find(params[:id])
+    @cart_item = CartItem.find_by(id: params[:id])
+    return unless @cart_item.nil?
+
+    flash[:danger] = "Cant find cart item"
+    redirect_to carts_path
   end
 
   def find_product_to_add_cart_item
-    # xinnn
     @product = Product.find_by(id: params[:product_id])
     redirect_to products_path unless @product
     @cart_item = @cart.cart_items.find_by(product_id: @product.id) # tim ra san pham da nhan Add to cart
+    redirect_to root_path unless @cart_item
   end
 
   def plus_operation
-    if @cart_item.quantity < @product.quantity
-      @cart_item.update(quantity: @cart_item.quantity + 1)
-    end
+    @cart_item.update(quantity: @cart_item.quantity + 1) if @cart_item.quantity < @product.quantity
   end
 
   def minus_operation

@@ -6,7 +6,7 @@ class CreateInfoOrders < ActiveRecord::Migration[7.0]
       t.float :total_bill
       t.string :phone
 
-      t.belongs_to :user
+      t.belongs_to :user, type: :integer
 
       t.timestamps
     end

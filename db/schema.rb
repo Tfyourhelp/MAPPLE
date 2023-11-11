@@ -44,8 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
-    t.bigint "cart_id"
-    t.bigint "product_id"
+    t.integer "cart_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
   create_table "carts", force: :cascade do |t|
     t.boolean "finished", default: false
     t.datetime "finished_at"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.bigint "shop_id"
+    t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shop_id"], name: "index_categories_on_shop_id"
@@ -73,8 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.string "product_name"
     t.float "price"
     t.integer "quantity"
-    t.bigint "info_order_id"
-    t.bigint "product_id"
+    t.integer "info_order_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["info_order_id"], name: "index_detail_orders_on_info_order_id"
@@ -86,15 +86,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.string "address"
     t.float "total_bill"
     t.string "phone"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_info_orders_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "product_id"
+    t.integer "user_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_likes_on_product_id"
@@ -107,13 +107,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.float "price"
     t.string "description"
     t.integer "quantity"
-    t.bigint "category_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "shops", force: :cascade do |t|
+  create_table "shops", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["email"], name: "index_shops_on_email", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"

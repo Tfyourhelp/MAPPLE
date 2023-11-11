@@ -11,7 +11,7 @@ class CreateShops < ActiveRecord::Migration[7.0]
       t.string :address
       t.string :description
       t.bigint :tax_code
-      t.string :remember_digest 
+      t.string :remember_digest
       t.timestamps
     end
   end

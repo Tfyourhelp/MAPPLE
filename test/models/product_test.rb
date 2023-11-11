@@ -9,7 +9,7 @@
 #  quantity    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint
+#  category_id :integer
 #
 # Indexes
 #
