@@ -1,0 +1,32 @@
+div.col 
+  div.card
+    - if product.images[0] 
+      img.card-img-top.p-3 [src="#{url_for(product.images[0])}" alt="..." width="100px" height="300px"]
+    - else 
+      img.card-img-top.p-3 [src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png" alt="..." width="100px" height="300px"]
+    div.card-body(style="padding: 5px 10px 0px 20px !important; height: 145px")
+      p.card-title.text-center.font-s-1em.fw-bold.color-blackblue.mb-0(style="height: 44px")
+        span
+          | #{product.name.upcase} 
+        h5.text-center.text-dark.mb-0
+          | #{product.price} $
+        . style = "margin-left: 72px" id="likeForm#{product.id}"
+            = render "users/shared/like_form", product: product
+        - if product.quantity == 0 
+          div.text-center.text-danger 
+            |( Out of stock recently )
+        - else
+          div.text-center.text-muted
+            |( #{product.quantity} available products )
+    div.d-flex.mb-2.jtf-space-even 
+      = button_to 'Detail', users_product_path(product), method: :get, class: "btn btn-primary", style: "width: 110px"
+      - if logged_in?("user")
+        - if product.quantity == 0
+          button.btn.btn-secondary#outofstock type="button" style="width: 120px" 
+            | Add To Cart
+        - else
+          button type="button" class="add-to-cart btn btn-primary" style="width: 120px" data-url="#{users_carts_path}" data-product-id="#{product.id}" 
+            | Add To Cart
+      - else
+        = button_to "Add To Cart", users_login_path, method: :get ,class:"btn btn-primary" 
+      

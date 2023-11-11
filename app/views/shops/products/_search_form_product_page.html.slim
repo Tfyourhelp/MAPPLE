@@ -1,0 +1,37 @@
+- provide(:button_text, 'Filter')
+.card.m-auto.w-100 style=" height: 170px"
+  = form_with(url: shops_products_path , local:true, method: :get, class:"d-flex pos-rela m-3") do |f|
+    div
+      .form-group style="margin-left: 10px"
+        = f.label :search_content, "Product name", class: "fw-bold font-s-125em"
+        = f.text_field :search_content, placeholder: "Seach product name...", value: params[:search_content] ,class: "form-control mt-1 ",style: " width: 450px; height: 45px "
+      
+      .d-flex.mt-3
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 10px") 
+          | Quantity from 
+        = f.number_field :from_quantity, value: params[:from_quantity], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control",style: "width: 100px;height: 45px; margin: 0px 0px 0px 30px"
+      
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 30px") 
+          | to
+        = f.number_field :to_quantity, value: params[:to_quantity], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control",style: "width: 100px;height: 45px ;margin-left:30px"
+    
+    div
+      .form-group style="margin-left: 80px"
+        = f.label :category, "Category", class: "fw-bold mb-1 font-s-125em"
+        = f.select :category_id, options_for_select(@categories.order(created_at: :asc).map { |c| [c.name, c.id] },selected: params[:category_id].nil? ? nil : params[:category_id]), { include_blank: true }, class: "form-select", style: "width: 400px; height: 45px"
+      
+      .d-flex.mt-3
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 80px") 
+          | Price from 
+        = f.number_field :from_price, value: params[:from_price], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control",style: "width: 95px;height: 45px; margin: 0px 0px 0px 20px"
+      
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 5px") 
+          | $  
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 13px") 
+          | to
+        = f.number_field :to_price, value: params[:to_price], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control",style: "width: 95px;height: 45px ;margin-left:20px"
+        p.fw-bold.font-s-125em(style= "margin: 8px 0px 0px 5px") 
+          | $ 
+
+    = f.submit yield(:button_text), class: "btn btn-primary", style: "width: 150px; height: 43px;margin: 97px 0px 0px 47px"
+  

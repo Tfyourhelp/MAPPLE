@@ -1,0 +1,16 @@
+#carouselExampleFade.carousel.slide.carousel-fade data-bs-ride="carousel"
+  .carousel-inner
+    - if images[0]
+      - images.each_with_index do |image, index|
+        .carousel-item class="#{index == 0 ? 'active' : 0 }"
+          img.d-block.w-100(src="#{url_for(image)}" alt="..." style="height: 550px; width: 618px !important")
+    - else
+        .carousel-item.active
+          img.d-block.w-100(src="#{url_for('https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png')}" alt="..." style="height: 550px; width: 618px !important;" )
+  button.carousel-control-prev(type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev")
+    span.carousel-control-prev-icon(aria-hidden="true")
+  button.carousel-control-next(type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next")
+    span.carousel-control-next-icon(aria-hidden="true")
+
+
+

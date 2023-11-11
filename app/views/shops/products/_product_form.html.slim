@@ -1,0 +1,39 @@
+= form_with(model: [:shops, @product],html: { class: "needs-validation", novalidate: true }, local: true ) do |f|
+  = render 'shared/error_messages', object: f.object
+
+  .form-group.mt-3
+    = f.label :name, class: "fw-bold mb-1"
+    = f.text_field :name, class: "form-control", :required=>true
+    div.invalid-feedback. Please fill product's quantity.
+
+  .form-group.mt-3
+    = f.label :price, class: "fw-bold mb-1"
+    = f.number_field :price, inputmode: "numeric", pattern: "[0-9]*", class: "form-control ", :required=>true
+    div.invalid-feedback Please fill product's quantity.
+
+
+  .form-group.mt-3
+    = f.label :quantity, class: "fw-bold mb-1"
+    = f.number_field :quantity, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", :required=>true
+    div.invalid-feedback Please fill product's quantity.
+
+
+  .form-group.mt-3
+    = f.label :category, "Select Category", class: "fw-bold mb-1"
+    = f.select :category_id, options_for_select(categories.map { |c| [c.name, c.id] },selected: @product.category.nil? ? nil : @product.category.id), { include_blank: true }, class: "form-select", :required=>true
+    div.invalid-feedback Please fill product's category.
+  
+  .form-group.mt-3
+    = f.label :description, class: "fw-bold mb-1"
+    = f.text_area :description, placeholder: "Compost new micropost...", class: "form-control", rows: 10, :required=>true
+    div.invalid-feedback Please fill product's description.
+
+
+  span.image
+    div.mt-3
+      = f.file_field :images, multiple: true ,accept: "image/jpeg, image/gif, image/png", class: "form-control"
+  
+  = hidden_field_tag :page, @page
+  .form-group.row.mt-3
+    .col
+      = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-4"

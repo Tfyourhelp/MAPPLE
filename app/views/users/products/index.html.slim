@@ -1,0 +1,17 @@
+.container(style="max-width: 1420px; margin-top: 30px") 
+  .highly_recommend_product_slide_show
+    h1.mt-4.text-white Highly recommend 
+    = render "highly_recommend_product", top_products: top_products()
+  .categories
+    h1  Category
+    div.row.row-cols-1.row-cols-md-6.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);  ")
+      - @categories.order(created_at: :desc).each do |category|
+        = render "users/products/categories_slideshow", category: category
+  .products 
+    h1.ml-6 Products 
+    div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);" data-controller="like add-to-cart" )
+      - @products.order(created_at: :desc).each do |product|
+        = render "product_display", product: product 
+    div.d-flex.justify-content-end.mt-3
+      = paginate @products 
+      

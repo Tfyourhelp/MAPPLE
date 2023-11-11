@@ -1,0 +1,42 @@
+- require 'date'
+- if @info_orders.length != 0
+  h1.text-center.mt-3(style="margin: 0px 0px 0px 80px;") Your Ordered List
+  div(style= "margin: 10px 40px 100px 60px ")
+    table.table.table-bordered.table-hover(style="margin-top: 20px")
+      thead.text-center
+        tr.table-info
+          th(scope="col") Order code
+          th(scope="col") Order date
+          th(scope="col") Products
+          th(scope="col") Total bill
+          th(scope="col") Ordered status
+          th(scope="col")
+      tbody
+      - @info_orders.order(created_at: :desc).each do |info_order|
+        tr.text-center.vam
+          td(style="width: 120px")
+            = info_order.id
+          td(style="width: 270px")
+            = info_order.updated_at.strftime("%H:%M:%S %A %d/%m/%Y")
+          td(style="width: 400px; padding: 5px")
+            - unless info_order.detail_orders.length == 1
+              | #{info_order.detail_orders.first.product_name} ... and  #{pluralize((info_order.detail_orders.length-1) , "product")}
+            - else
+              | #{info_order.detail_orders.first.product_name} 
+          td(style="width: 180px")
+            | #{info_order.total_bill} $
+          td(style="width: 200px")
+            | Ordered successfully
+          td(style="width: 100px")
+            = link_to users_order_history_detail_path(info_order_id: info_order.id), class: "", style: "text-decoration: none" do
+              i class="fa-solid fa-circle-info fa-lg"
+    div.d-flex.justify-content-end
+      = paginate @info_orders
+- else
+  h1.text-center.mt-3(style="margin: 0px 0px 0px 500px;") Your Ordered List
+  div(style="margin: 0px 0px 0px 100px;")
+    h2.mb-3 Your order list is empty!
+    div.d-flex
+      div.vam
+        p.mb-0.mt-1(style="height: 40px;") Why not add something?
+      = button_to "Continue Shopping", root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"

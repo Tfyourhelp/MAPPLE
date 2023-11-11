@@ -1,9 +1,9 @@
 nav.navbar.navbar-expand-lg.navbar-light.header-div
   .container style="width: 1300px"
-    = link_to root_path, id: "logo" , class: "shop-name" do
+    = link_to users_root_path, id: "logo" , class: "shop-name" do
       | MAPPLE
     -if logged_in?("user")
-      = form_with(url: search_path, local:true, method: :get, class:"d-flex pos-rela") do |f|
+      = form_with(url: users_search_path, local:true, method: :get, class:"d-flex pos-rela") do |f|
         = f.text_field :search_content,value: @search_content ,class: "form-control mt-1 ",style: "margin-right: 350px; width: 400px "
         i class="fa-solid fa-magnifying-glass pos-abs search-icon"
   div.collapse.navbar-collapse#navbarNav
@@ -11,13 +11,13 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
       - if logged_in?("user")
         - person_type = "user"
         li.nav-item
-          a.nav-link href="#{root_path}" 
+          a.nav-link href="#{users_root_path}" 
             i class="fa-solid fa-shop font-s-125em icon-button"
         li.nav-item.d-flex.align-items-center(style = "margin-left: 30px")
-          a.nav-link.text-nowrap href="#{carts_path}" 
+          a.nav-link.text-nowrap href="#{users_carts_path}" 
             i class="fa-solid fa-cart-shopping font-s-125em icon-button pos-rela"
               . id = "QuantityIconCartForm"
-                = render "shared/quantity_icon"
+                = render "users/shared/quantity_icon"
         li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
             - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"
@@ -25,29 +25,29 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
             | #{current_person("user").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
-              a.dropdown-item href="#{user_path(current_person("user"))}"
+              a.dropdown-item href="#{users_user_path(current_person("user"))}"
                 i class="fa-solid fa-user font-s-125em" style="margin-right: 20px"
                 | Profile
             li
-              a.dropdown-item href="#{edit_user_path(current_person("user"))}"
+              a.dropdown-item href="#{edit_users_user_path(current_person("user"))}"
                 i class="fa-solid fa-gear font-s-125em" style="margin-right: 17px"
                 | Settings
             li.divider
               hr.dropdown-divider
-            = form_tag logout_path, method: :delete, class: "logout-form" do
+            = form_tag users_logout_path, method: :delete, class: "logout-form" do
               = hidden_field_tag :person_type, person_type
               i class="fa-solid fa-right-from-bracket font-s-125em" style="margin-left: 18px"
               = button_tag "Log out", type: "submit", class: "logout-button"
       - elsif logged_in?("shop") 
         - person_type = "shop"
         li.nav-item
-          a.nav-link.text-nowrap href="#{products_path}" 
+          a.nav-link.text-nowrap href="#{shops_products_path}" 
             | Products 
         li.nav-item(style = "margin-left: 25px")
-          a.nav-link.text-nowrap href="#{categories_path}"   
+          a.nav-link.text-nowrap href="#{shops_categories_path}"   
             | Categories
         li.nav-item(style = "margin-left: 25px")
-          a.nav-link.text-nowrap href="#{order_history_list_shop_path}" 
+          a.nav-link.text-nowrap href="#{shops_order_history_list_shop_path}" 
             | Customer Orders
             
         li.nav-item.dropdown(style = "margin-left: 25px") 
@@ -57,23 +57,23 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
             | #{current_person("shop").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
-              a.dropdown-item href="#{shop_path(current_person("shop"))}"
+              a.dropdown-item href="#{shops_shop_path(current_person("shop"))}"
                 i class="fa-solid fa-user font-s-125em" style="margin-right: 20px"
                 | Profile
             li
-              a.dropdown-item href="#{edit_shop_path(current_person("shop"))}"
+              a.dropdown-item href="#{edit_shops_shop_path(current_person("shop"))}"
                 i class="fa-solid fa-gear font-s-125em" style="margin-right: 17px"
                 | Settings
             li.divider
               hr.dropdown-divider
-            = form_tag logout_path, method: :delete, class: "logout-form" do
+            = form_tag shops_logout_path, method: :delete, class: "logout-form" do
               = hidden_field_tag :person_type, person_type
               i class="fa-solid fa-right-from-bracket font-s-125em" style="margin-left: 18px"
               = button_tag "Log out", type: "submit", class: "logout-button"
       - else
         li.nav-item
-          a.nav-link href="#{root_path}" 
+          a.nav-link href="#{users_root_path}" 
             i class="fa-solid fa-shop fa-lg icon-button"
         li.nav-item(style = "margin-left: 25px")
-          a.nav-link href="#{login_path}" 
+          a.nav-link href="#{users_login_path}" 
             i class="fa-solid fa-user-pen fa-lg icon-button"

@@ -1,0 +1,41 @@
+h1.text-center.mt-3
+  = @category.name
+- if !@products.empty?
+  div(style= "margin: 10px 350px 100px 350px ")
+    div.d-flex.justify-content-end.w-100
+      = button_to "Back category", shops_categories_path, method: :get ,class:"btn btn-primary ", style: "width: 155px; height: 40px"  
+    table.table.table-bordered.table-hover.mt-3
+      thead.text-center.vam
+        tr.table-dark
+          th(scope="col") Product name
+          th(scope="col") Price
+          th(scope="col") Quantity
+          th(scope="col") Description
+          th(scope="col") Image 
+      tbody
+      - @products.each do |product|
+        tr.text-center.vam
+          td
+            = link_to "#{product.name}", shops_product_path(product), class: 'black-link'
+          td
+            = product.price
+          td
+            = product.quantity
+          td(style="width: 400px;")
+            = product_description(product)
+          td.p-1(style="width: 155px")
+            - if product.images.attached? 
+              img(style="height: 100px; width: 100px" src=url_for(product.images.first)) 
+            - else
+              img(style="height: 100px; width: 100px" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
+    div.d-flex.justify-content-end
+      = paginate @products
+
+- else
+  div.mt-3(style="margin: 0px 380px 0px 380px;")
+    h2.mb-3 This category doesn't have any products !
+    div.d-flex
+      div.vam
+        p.mb-0.mt-1(style="height: 40px;") Add some product here!
+      = button_to "Regist product", new_product_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
+    

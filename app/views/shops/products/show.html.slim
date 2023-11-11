@@ -1,0 +1,26 @@
+div.text-center(style="margin: 30px 0px 0px 0px;")
+  h1 Product detail
+div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;height: 650px")
+  div.col(style="margin: 50px 0px 30px 40px")
+    = render "product_slide_show",  images: @product.images
+  div.col.p-0(style="margin: 70px 20px 100px 40px; height: 360px" ) 
+    h1.font-s-2em = @product.name.upcase
+    .d-flex
+      h4.mt-1 style="margin-right: 20px" Rating: 
+      div.text-center.mt-1.like-word#likecount 
+        |( #{like_count(@product)} )
+        
+    h4.mt-2.font-s-2em.price-color #{@product.price.to_s + "    $"}
+
+    h5.font-weight-bold.mb-0 Description
+    p.font-s-1em(style="margin-right: 50px")  #{@product.description}
+    
+    h5.font-weight-bold.m-0 Delivery
+    p.font-s-1em(style="margin-right: 100px")  VIETNAM, USA, CANADA, UK, EUROPE
+    
+    - if @product.quantity == 0
+      h6.text-danger(style="margin: 8px 0px 0px 15px;")
+        | ( Out of stock recently )
+    - else
+      div.text-muted(style="margin: 4px 0px 0px 15px;") 
+        |( #{@product.quantity} available products )
