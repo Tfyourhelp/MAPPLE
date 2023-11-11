@@ -2,7 +2,7 @@
 #
 # Table name: info_orders
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  address    :string
 #  name       :string
 #  phone      :string

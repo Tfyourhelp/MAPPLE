@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users do |t|
+    create_table :users, id: false do |t|
+      t.integer :id, primary_key: true
       t.string :name
 
       t.string :email
@@ -19,7 +20,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
 
       t.string :reset_digest
       t.datetime :reset_sent_at
- 
+
       t.timestamps
     end
   end

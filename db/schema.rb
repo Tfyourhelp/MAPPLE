@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "cart_items", force: :cascade do |t|
+  create_table "cart_items", id: :serial, force: :cascade do |t|
     t.integer "quantity"
     t.integer "cart_id"
     t.integer "product_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "carts", id: :serial, force: :cascade do |t|
     t.boolean "finished", default: false
     t.datetime "finished_at"
     t.integer "user_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "shop_id"
     t.datetime "created_at", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["shop_id"], name: "index_categories_on_shop_id"
   end
 
-  create_table "detail_orders", force: :cascade do |t|
+  create_table "detail_orders", id: :serial, force: :cascade do |t|
     t.string "product_name"
     t.float "price"
     t.integer "quantity"
@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["product_id"], name: "index_detail_orders_on_product_id"
   end
 
-  create_table "info_orders", force: :cascade do |t|
+  create_table "info_orders", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.float "total_bill"
@@ -92,7 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["user_id"], name: "index_info_orders_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
+  create_table "likes", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_104916) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", id: :serial, force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.string "description"

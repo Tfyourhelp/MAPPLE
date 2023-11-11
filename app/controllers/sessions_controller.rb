@@ -18,11 +18,11 @@ class SessionsController < ApplicationController
 
   def shop_login
     shop = Shop.first
-    if shop && shop.authenticate(params[:session][:password])
-      log_in(shop, "shop")
-      params[:session][:remember_me] == '1' ? remember(shop, "shop") : forget(shop, "shop")
-      redirect_to root_url
-    end
+    return unless shop && shop.authenticate(params[:session][:password])
+
+    log_in(shop, "shop")
+    params[:session][:remember_me] == '1' ? remember(shop, "shop") : forget(shop, "shop")
+    redirect_to root_url
   end
 
   def user_login
@@ -44,7 +44,6 @@ class SessionsController < ApplicationController
   def unactivated_user
     message = "Account not activated. "
     message += "Check your email for the activation link. "
-    flash[:warning] = message
-    redirect_to root_url
+    redirect_to root_url, notice: " #{message} ", flash: { class: "warning" }
   end
 end

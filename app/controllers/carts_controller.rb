@@ -46,10 +46,8 @@ class CartsController < ApplicationController
     else # điền vào text_field trong product/show
       if (@cart_item.quantity + params[:quantity].to_i) <= @product.quantity
         @cart_item.update(quantity: @cart_item.quantity + params[:quantity].to_i)
-        redirect_to carts_path
-      elsif @cart_item.quantity + params[:quantity].to_i > @product.quantity 
-        flash[:danger] = "Maximum quantity of this product is #{@product.quantity}"
-        redirect_to product_path(@product)
+      elsif @cart_item.quantity + params[:quantity].to_i > @product.quantity
+        redirect_to product_path(@product), notice: "Maximum quantity of this product is #{@product.quantity}", flash: { class: "danger" }
       end
     end
   end
@@ -71,17 +69,14 @@ class CartsController < ApplicationController
 
   def find_cart_item
     @cart_item = CartItem.find_by(id: params[:id])
-    return unless @cart_item.nil?
-
-    flash[:danger] = "Cant find cart item"
-    redirect_to carts_path
+    redirect_to carts_path, notice: "Cant find cart item", flash: { class: "danger" } if @cart_item.nil?
   end
 
   def find_product_to_add_cart_item
     @product = Product.find_by(id: params[:product_id])
-    redirect_to products_path unless @product
+    redirect_to products_path, notice: "Cant find product", flash: { class: "danger" } unless @product
     @cart_item = @cart.cart_items.find_by(product_id: @product.id) # tim ra san pham da nhan Add to cart
-    redirect_to root_path unless @cart_item
+    redirect_to root_path, notice: "Cant find cart item", flash: { class: "danger" } unless @cart_item
   end
 
   def plus_operation

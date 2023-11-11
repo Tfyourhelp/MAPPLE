@@ -22,9 +22,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email 
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      @user.send_activation_email
+      redirect_to root_url, notice: "Please check your email to activate your account.", flash: { class: "info" }
     else
       render 'new', status: :unprocessable_entity
     end
@@ -34,8 +33,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to @user, notice: "Profile updated", flash: { class: "success" }
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -43,8 +41,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to users_url, notice: "User deleted", flash: { class: "success" }
   end
 
   private
@@ -64,9 +61,8 @@ class UsersController < ApplicationController
 
   def find_id
     @user = User.find_by(id: params[:id])
-    if @user.nil?
-      redirect_to root_path unless @user
-      flash[:danger] = "User not found"
-    end
+    return unless @user.nil?
+
+    redirect_to root_path, notice: "User not found", flash: { class: "danger" } unless @user
   end
 end

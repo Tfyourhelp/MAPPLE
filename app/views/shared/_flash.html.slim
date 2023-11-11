@@ -1,0 +1,4 @@
+- if flash[:danger]
+  div class="alert alert-#{flash.keys[0]}" style=""= flash[:danger]
+-else
+  div class="alert alert-#{flash[:class]}" style=""= flash[:notice]

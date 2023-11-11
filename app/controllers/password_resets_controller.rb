@@ -10,8 +10,7 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
-      redirect_to root_url
+      redirect_to root_url, notice: "Email sent with password reset instructions", flash: { class: "info" }
     else
       flash.now[:danger] = "Email address not found"
       render "new", status: :unprocessable_entity
@@ -24,8 +23,7 @@ class PasswordResetsController < ApplicationController
     if @user.update(user_params)
       log_in(@user, "user")
       @user.update_attribute(:reset_digest, nil)
-      flash[:success] = "Password has been reset."
-      redirect_to @user
+      redirect_to @user, notice: "Password has been reset.", flash: { class: "success" }
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -46,9 +44,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired"
-      redirect_to new_password_reset_url
-    end
+    redirect_to new_password_reset_url, notice: "Password reset has expired", flash: { class: "danger" } if @user.password_reset_expired?
   end
 end

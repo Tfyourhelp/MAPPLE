@@ -8,8 +8,7 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      flash[:success] = "Shop profile updated"
-      redirect_to @shop
+      redirect_to @shop, notice: "Shop profile updated", flash: { class: "success" }
     else
       render 'edit', status: :unprocessable_entity
     end

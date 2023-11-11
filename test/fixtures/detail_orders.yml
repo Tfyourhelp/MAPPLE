@@ -2,7 +2,7 @@
 #
 # Table name: detail_orders
 #
-#  id            :bigint           not null, primary key
+#  id            :integer          not null, primary key
 #  price         :float
 #  product_name  :string
 #  quantity      :integer

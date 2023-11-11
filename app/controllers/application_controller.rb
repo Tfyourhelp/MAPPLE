@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
     return if logged_in?(type)
 
     store_location
-    flash[:danger] = "Please log in"
-    redirect_to login_url
+    redirect_to login_url, notice: "Please log in", flash: { class: "danger" }
   end
 
   def logged_in_user
@@ -14,8 +13,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in_shop
     if logged_in?("user")
-      flash[:danger] = "You can't be here"
-      redirect_to root_url
+      redirect_to root_url, notice: "You can't be here", flash: { class: "danger" }
     else
       require_logged_in("shop")
     end

@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     @product = @category.products.new(product_params)
     update_images_to_product
     if @product.save
-      redirect_to products_url(@product)
+      redirect_to products_url(@product), notice: "Product created success", flash: { class: "success" }
     else
       render 'new', status: :unprocessable_entity
     end
@@ -34,8 +34,7 @@ class ProductsController < ApplicationController
     store_location
     if @product.update(product_params)
       update_images_to_product
-      flash[:success] = "Product updated"
-      redirect_to products_url(@product, page: params[:page])
+      redirect_to products_url(@product, page: params[:page]), notice: "Product updated", flash: { class: "success" }
     else
       @categories = Category.all
       render 'edit', status: :unprocessable_entity
@@ -45,11 +44,10 @@ class ProductsController < ApplicationController
   def destroy
     if @product.detail_orders.empty?
       @product.destroy
-      flash[:success] = "Product deleted"
+      redirect_to products_url, notice: "Product deleted", flash: { class: "success" }
     else
-      flash[:danger] = "Product is ordered, you cant delete"
+      redirect_to products_url, notice: "Product is ordered, you cant delete", flash: { class: "danger" }
     end
-    redirect_to products_url
   end
 
   private

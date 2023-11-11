@@ -2,7 +2,7 @@
 #
 # Table name: products
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  description :string
 #  name        :string
 #  price       :float

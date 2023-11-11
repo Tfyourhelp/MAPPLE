@@ -21,8 +21,7 @@ class InfoOrdersController < ApplicationController
       @shop.send_new_order_from_customer_email(current_person("user"))
       @cart.finish
       update_product_quantity
-      flash[:info] = "Email order confirmation was sent"
-      redirect_to root_path
+      redirect_to root_path, notice: "Email order confirmation was sent", flash: { class: "info" }
     else
       @total_bill = params[:total_bill]
       render 'new', status: :unprocessable_entity
@@ -37,20 +36,16 @@ class InfoOrdersController < ApplicationController
 
   def find_cart_id
     @cart = Cart.find(params[:cart_id])
-  end  
+  end
 
   def find_info_order_id
     @info_order = InfoOrder.find_by(id: params[:info_order_id])
     # kiểm tra xem có info_order kh để chống / trên browser
     if @info_order
       # nếu info order kh phải của người dùng đó hoặc k phải là shop
-      unless @info_order.user == current_person("user") or logged_in?("shop")
-        flash[:danger] = "This is not your info order"
-        redirect_to root_path
-      end
+      redirect_to root_path, notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user") || logged_in?("shop")
     else
-      flash[:danger] = "Info order not found"
-      redirect_to root_path
+      redirect_to root_path, notice: "Info order not found", flash: { class: "danger" }
     end
   end
 

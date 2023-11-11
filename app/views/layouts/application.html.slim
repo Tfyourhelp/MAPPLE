@@ -17,7 +17,7 @@ html
   body
     = render 'layouts/header'
     .container.p-0.mw-100(style="margin-top: 59px")
-      div class="alert alert-#{flash[:class]}" style=""= flash[:notice]
+      = render "shared/flash", flash: flash
       div style="margin-top: 80px"
         = yield
     = render 'layouts/footer'
