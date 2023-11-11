@@ -6,6 +6,7 @@
   background-color: #c4c3d0  !important;
 }
 
+
 .navbar-nav .nav-link {
   color: #111 !important;
   font-size: 1.1em !important;
@@ -203,6 +204,12 @@
   top: -12px;
 }
 
+.dau-x{
+  font-size: 4em;
+  position: absolute;
+  top: 94px;
+  right: 540px;
+}
 /* footer */
 
 footer {
@@ -254,6 +261,25 @@ footer {
 }
 
 //  ********************
+.highly_recommend_product_slide_show{
+  margin-top: 95px;
+  background-color: #DC143C;
+  height: 510px;
+  padding: 3px 50px 0px 50px;
+}
+
+.categories{
+  margin-top: 30px;
+  background-color: #FAEBD7;
+  height: 300px;
+  padding: 22px 50px 0px 50px;
+}
+
+.products{
+  margin: 34px 0px 30px 0px;
+  background-color: #F5F5F5;
+  padding: 22px 50px 0px 50px;
+}
 
 
 //******** most like product slide show
@@ -335,10 +361,6 @@ footer {
   background-color: #F0F0F0
 }
 
-.bg-color-lightpink{
-  background-color: #FFB6C1
-}
-
 .b-color-gray{
   border: 2px solid gray;
 }
@@ -375,6 +397,11 @@ footer {
   color: black
 }
 
+.color-red{
+  color: black
+}
+
+
 .jtf-space-even{
   justify-content: space-evenly;
 }
@@ -397,6 +424,14 @@ footer {
 
 .font-s-2em{
   font-size: 2em
+}
+
+.font-s-35em{
+  font-size: 35em
+}
+
+.font-s-10em{
+  font-size: 10em
 }
 
 .price-color{
@@ -432,3 +467,7 @@ footer {
   transform: scale(1.3);
 }
 
+//*************
+
+
+//*************

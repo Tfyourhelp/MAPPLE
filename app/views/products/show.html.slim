@@ -7,7 +7,7 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     h1.font-s-2em = @product.name.upcase
     .d-flex
       h4.mt-1 style="margin-right: 20px" Rating: 
-      div id="likeForm#{@product.id}"      
+      div id="likeForm#{@product.id}"    
         = render "shared/like_form" , product_id: @product.id, page: "show"
     
     h4.mt-2.font-s-2em.price-color #{@product.price.to_s + "    $"}
@@ -18,10 +18,8 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     h5.font-weight-bold.m-0 Delivery
     p.font-s-1em(style="margin-right: 100px")  VIETNAM, USA, CANADA, UK, EUROPE
     - unless logged_in?("shop")
-      /= form_with(model: CartItem.new, url: carts_path, method: :post) do |f|
       div.d-flex.bb-1-ccc(style="margin: 20px 0px 20px 0px;height: 60px;")
         h5.font-weight-bold.mb-3(style="margin: 5px 0px 0px 0px") Quantity
-        /= f.number_field :quantity, value: "1", inputmode: "numeric", pattern: "[0-9]*",class: "text-center b-color-ccc bd-rad-5" ,style: "width: 60px;height: 37px; margin-left: 18px", id: "quantity_inputttt"
         input value="1" type="number" min="0" readonly="readonly" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc bd-rad-5"
         - if @product.quantity == 0
           h6.text-danger(style="margin: 8px 0px 0px 15px;")

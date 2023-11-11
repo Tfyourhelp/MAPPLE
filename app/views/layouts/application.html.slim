@@ -19,7 +19,7 @@ html
     .container.p-0.mw-100(style="margin-top: 59px")
       - flash.each do |message_type, message|
         div class="alert alert-#{message_type}" style=""= message
-      div.bg-color-whitesmoke style="margin-top: 59px"
+      div style="margin-top: 80px"
         = yield
     = render 'layouts/footer'
 

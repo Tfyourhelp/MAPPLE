@@ -1,14 +1,14 @@
-= form_with(model: model, local: true, id: "UserForm" ) do |f|
+= form_with(model: model, local: true, html: { class: "needs-validation", novalidate: true } ,id: "UserForm" ) do |f|
   = render 'shared/error_messages', object: f.object
 
   .form-group
     = f.label :name, class: "fw-bold mb-1"
-    div.mt-1
-      = f.text_field :name, class: "form-control mb-4"
+    = f.text_field :name, class: "form-control ", :required=>true
+    div.invalid-feedback Please fill category name.
 
   span.image
     div.mt-3
-      = f.file_field :image
+      = f.file_field :image, class: "form-control"
   
   - if !@subcategory.nil?
     = hidden_field_tag :category_id, @subcategory.category_id if !@subcategory.id.nil?
