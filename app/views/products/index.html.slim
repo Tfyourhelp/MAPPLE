@@ -14,29 +14,32 @@
           th.text-center(scope="col")
             | Product action
       tbody
-      - index = session[:index] || 0
-      - @products.order(created_at: :desc).each_with_index do |product,index|
-        tr.text-center.vam
-          td(style="width: 430px")
-            = link_to "#{product.name}", product_path(product), class: 'black-link'
-          td(style="width: 100px")   
-            | #{product.price} $ 
-          td(style="width: 100px")
-            = product.quantity 
-          td(style= "") 
-            /= product.category.name if !product.category.empty?
-            = product.category.name 
-          td(style="width: 150px; padding: 5px")
-            - if product.images.attached? 
-              img(style="height: 100px; width: 100px" src=url_for(product.images[0])) 
-            - else
-              img(style="height: 100px; width: 100px" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
-          td(style="width: 140px")
-            .d-flex.jtf-space-even
-              = link_to edit_product_path(product, page: @page) do 
-                i class="fa-solid fa-pen-to-square font-s-15em edit-link"
-              = button_to product_path(product), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
-                i class="fa-solid fa-trash font-s-15em garbage-button" 
+        - @products.order(created_at: :desc).each do |product|
+            tr.text-center.vam
+              td(style="width: 430px")
+                = link_to "#{product.name}", product_path(product), class: 'black-link'
+              td(style="width: 100px")   
+                | #{product.price} $ 
+              td(style="width: 100px")
+                = product.quantity 
+              td(style= "") 
+                /= product.category.name if !product.category.empty?
+                = product.category.name 
+              td(style="width: 150px; padding: 5px")
+                - if product.images.attached? 
+                  img(style="height: 100px; width: 100px" src=url_for(product.images[0])) 
+                - else
+                  img(style="height: 100px; width: 100px" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
+              td(style="width: 140px")
+                .d-flex.jtf-space-even
+                  = link_to edit_product_path(product, page: @page) do 
+                    i class="fa-solid fa-pen-to-square font-s-15em edit-link"
+                  = button_to product_path(product), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
+                    i class="fa-solid fa-trash font-s-15em garbage-button" 
+    - if @products.empty?
+      div.text-center
+        i class="fa-regular fa-circle-xmark text-center text-secondary font-s-5em mt-3"
+      h2.text-center.text-secondary.mt-3 No products found matching your filters.
     div.d-flex.justify-content-end
       = paginate @products  
 - else 
