@@ -1,5 +1,5 @@
 - provide(:button_text, 'Choose filter')
-= form_with(url: users_filter_price_path, local: true) do |f|
+= form_with(url: users_category_path(@category), method: :get, local: true) do |f|
   .d-flex
     .dropdown
       button.btn.btn-secondary.dropdown-toggle(data-bs-toggle="dropdown" aria-expanded="false" style= "width: 150px;")
@@ -7,23 +7,23 @@
       ul.dropdown-menu.p-1
         li.custom-class
           a.dropdown-item
-            = f.check_box :under250 , {checked: @filter[0]}
+            = f.check_box :under250 , {checked: @filters[0]}
             = f.label 'Under 250$'
         li.custom-class
           a.dropdown-item
-            = f.check_box :between250and500 , {checked: @filter[1]}
+            = f.check_box :between250and500 , {checked: @filters[1]}
             = f.label 'Between 250$ and 500$' 
         li.custom-class
           a.dropdown-item
-            = f.check_box :between500and750 , {checked: @filter[2]}
+            = f.check_box :between500and750 , {checked: @filters[2]}
             = f.label 'Between 500$ and 750$ '
         li.custom-class
           a.dropdown-item
-            = f.check_box :between750and1000 , {checked: @filter[3]}
+            = f.check_box :between750and1000 , {checked: @filters[3]}
             = f.label 'Between 750$ and 1000$ '       
         li.custom-class
           a.dropdown-item
-            = f.check_box :over1000 , {checked: @filter[4]}
+            = f.check_box :over1000 , {checked: @filters[4]}
             = f.label 'Over 1000$ '
     = hidden_field_tag :id, @category.id
     div.text-center(style="margin-left: 20px")
