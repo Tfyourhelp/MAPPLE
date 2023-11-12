@@ -1,11 +1,12 @@
 module Users
-  class InfoOrdersController < ApplicationController
-    before_action :find_shop_id, only: [:create]
+  class InfoOrdersController < Users::BaseController
+    before_action :shop_not_allow_here
+    before_action :logged_in_user, only: [:new, :create, :order_history_detail]
+    before_action :find_shop, only: [:create]
     before_action :find_cart_id, only: [:new, :create]
     before_action :find_all_info_orders, only: [:create]
     before_action :find_all_cart_items_of_cart, only: [:new, :create]
     before_action :find_info_order_id, only: [:order_history_detail]
-    #before_action :logged_in_shop, only: [:order_history_list_shop]
 
     def new
       @info_order = InfoOrder.new
@@ -39,9 +40,9 @@ module Users
       # kiểm tra xem có info_order kh để chống / trên browser
       if @info_order
         # nếu info order kh phải của người dùng đó hoặc k phải là shop
-        redirect_to root_path, notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user") || logged_in?("shop")
+        redirect_to users_user_path(current_person("user")), notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user") 
       else
-        redirect_to root_path, notice: "Info order not found", flash: { class: "danger" }
+        redirect_to users_user_path(current_person("user")), notice: "Info order not found", flash: { class: "danger" }
       end
     end
 

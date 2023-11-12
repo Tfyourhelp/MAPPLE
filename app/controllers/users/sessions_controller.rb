@@ -1,5 +1,7 @@
 module Users
   class SessionsController < Users::BaseController
+    before_action :request_login_page_while_logged_in, only: [:new]
+
     def new; end
 
     def create

@@ -1,6 +1,6 @@
 module Users
   class ProductsController < Users::BaseController
-    before_action :logged_in_user 
+    before_action :shop_not_allow_here
     before_action :find_product, only: [:show]
     before_action :find_all_categories, only: [:index]
 

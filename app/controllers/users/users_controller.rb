@@ -1,6 +1,7 @@
 module Users
   class UsersController < Users::BaseController
-    before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+    before_action :shop_not_allow_here
+    before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update]
     before_action :admin_user, only: [:destroy]
     before_action :find_user, only: [:show, :edit, :update, :destroy]
@@ -13,7 +14,7 @@ module Users
     def show
       redirect_to users_root_url and return unless @user.activated?
 
-      redirect_to users_root_url unless current_person?(@user, "user")
+      redirect_to users_root_url, notice: "This is not your profile account", flash: { class: "info" } unless current_person?(@user, "user")
     end
 
     def new
@@ -33,7 +34,7 @@ module Users
     def edit; end
 
     def update
-      if @user.update(user_params)#users_user(@user)
+      if @user.update(user_params)
         redirect_to users_user_url, notice: "Profile updated", flash: { class: "success" }
       else
         render 'edit', status: :unprocessable_entity

@@ -20,7 +20,7 @@ export default class extends Controller {
       console.log(cartitemquantity)
       
       if (cartitemquantity  > productQuantity) {
-        console.log('unlike')
+        console.log('erro')
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -28,21 +28,22 @@ export default class extends Controller {
           footer: '<a href="#">Why do I have this issue?</a>'
         });
       }
-
-      $.ajax({
-        url: url,
-        type: 'POST',
-        headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-          product_id: productId,
-          quantity: cartitemquantity
-        },
-        success: function(res) {
-          // console.log(res)
-        }
-      })
+      else {
+        $.ajax({
+          url: url,
+          type: 'POST',
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {
+            product_id: productId,
+            quantity: cartitemquantity
+          },
+          success: function(res) {
+            // console.log(res)
+          }
+        })
+      }
     }
   )
 }

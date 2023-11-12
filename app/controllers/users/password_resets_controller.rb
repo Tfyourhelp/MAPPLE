@@ -24,7 +24,7 @@ module Users
       if @user.update(user_params)
         log_in(@user, "user")
         @user.update_attribute(:reset_digest, nil)
-        redirect_to users_user(@user), notice: "Password has been reset.", flash: { class: "success" }
+        redirect_to users_user_url(@user), notice: "Password has been reset.", flash: { class: "success" }
       else
         render 'edit', status: :unprocessable_entity
       end

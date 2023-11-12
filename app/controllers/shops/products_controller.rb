@@ -1,5 +1,7 @@
 module Shops
   class ProductsController < Shops::BaseController
+    before_action :logged_in_shop
+    before_action :user_not_allow_here
     before_action :find_product, only: [:show, :edit, :update, :destroy]
     before_action :find_category, only: [:create]
     before_action :find_all_categories, only: [:index, :new, :edit]
@@ -32,10 +34,9 @@ module Shops
     end
 
     def update
-      store_location
       if @product.update(product_params)
         update_images_to_product
-        redirect_to shops_products_url(@product, page: params[:page]), notice: "Product updated", flash: { class: "success" }
+        redirect_to shops_products_url(page: params[:page]), notice: "Product updated", flash: { class: "success" }
       else
         @categories = Category.all.order(created_at: :desc)
         render 'edit', status: :unprocessable_entity
@@ -45,9 +46,9 @@ module Shops
     def destroy
       if DetailOrder.find_by(product_id: @product.id).nil?
         @product.destroy
-        redirect_to shops_products_url, notice: "Product deleted", flash: { class: "success" }
+        redirect_to shops_products_url(page: params[:page]), notice: "Product deleted", flash: { class: "success" }
       else
-        redirect_to shops_products_url, notice: "Product is ordered, you cant delete", flash: { class: "danger" }
+        redirect_to shops_products_url(page: params[:page]), notice: "Product is ordered, you cant delete", flash: { class: "danger" }
       end
     end
 

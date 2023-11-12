@@ -1,6 +1,7 @@
 module Users
   class CartsController < Users::BaseController
-    #before_action :logged_in_user, only: [:index, :create, :edit, :update, :destroy]
+    before_action :shop_not_allow_here
+    before_action :logged_in_user, only: [:index, :create, :change_quantity, :input_quantity, :destroy]
     before_action :set_cart, only: [:index, :create, :change_quantity, :input_quantity, :destroy]
     before_action :find_product_to_add_cart_item, only: [:create, :change_quantity, :input_quantity]
     before_action :find_cart_item, only: [:destroy]
@@ -54,7 +55,7 @@ module Users
       @cart_items.each do |cart_item|
         if cart_item.product.nil? || cart_item.product.quantity.zero? || (cart_item.quantity - cart_item.product.quantity).positive?
           cart_item.destroy
-          redirect_to carts_path
+          redirect_to users_carts_path
         end
       end
     end
@@ -67,13 +68,14 @@ module Users
 
     def find_cart_item
       @cart_item = CartItem.find_by(id: params[:id])
-      redirect_to carts_path, notice: "Cant find cart item", flash: { class: "danger" } if @cart_item.nil?
+      redirect_to users_carts_path, notice: "Cant find cart item", flash: { class: "danger" } if @cart_item.nil?
     end
 
     def find_product_to_add_cart_item
       @product = Product.find_by(id: params[:product_id])
-      redirect_to root_path, notice: "Cant find product", flash: { class: "danger" } unless @product
+      redirect_to users_root_path, notice: "Cant find product", flash: { class: "danger" } unless @product
       @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id) # tim ra san pham da nhan Add to cart
+      redirect_to users_root_path, notice: "Cant find cartitem in cart", flash: { class: "danger" } unless @product
     end
 
     def plus_operation

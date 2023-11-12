@@ -31,3 +31,7 @@ Style/StringLiterals:
 
 Layout/LineLength:
   Max: 300
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"

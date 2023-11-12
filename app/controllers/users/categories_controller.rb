@@ -1,6 +1,6 @@
 module Users
   class CategoriesController < Users::BaseController
-    # before_action :logged_in_shop, only: [:index, :edit, :update, :destroy]
+    before_action :shop_not_allow_here
     before_action :find_category, only: [:show, :filter_price]
 
     def show
@@ -24,7 +24,7 @@ module Users
       @category = Category.find_by(id: params[:id])
       return unless @category.nil?
 
-      redirect_to carts_path, notice: "Cant find category", flash: { class: "danger" }
+      redirect_to users_root_path, notice: "Cant find category", flash: { class: "danger" }
     end
 
     def filter_products_by_price_ranges

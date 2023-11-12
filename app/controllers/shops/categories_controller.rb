@@ -1,8 +1,9 @@
 module Shops
   class CategoriesController < Shops::BaseController
-    # before_action :logged_in_shop, only: [:index, :edit, :update, :destroy]
+    before_action :logged_in_shop
+    before_action :user_not_allow_here
     before_action :find_category, only: [:show, :edit, :update, :destroy]
-    before_action :find_shop_id, only: [:new, :create]
+    before_action :find_shop, only: [:new, :create]
 
     def index
       @categories = Category.all.page(params[:page]).per(8)
@@ -60,7 +61,7 @@ module Shops
       @category = Category.find_by(id: params[:id])
       return unless @category.nil?
 
-      redirect_to carts_path, notice: "Cant find category", flash: { class: "danger" }
+      redirect_to shop_categories_path, notice: "Cant find category", flash: { class: "danger" }
     end
   end
 end

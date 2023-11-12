@@ -1,14 +1,19 @@
 module Shops
   class SessionsController < Shops::BaseController
+    before_action :request_login_page_while_logged_in, only: [:new]
+
     def new; end
 
     def create
       shop = Shop.first
-      return unless shop && shop.authenticate(params[:session][:password])
-
-      log_in(shop, "shop")
-      params[:session][:remember_me] == '1' ? remember(shop, "shop") : forget(shop, "shop")
-      redirect_to shops_root_url
+      if shop && shop.authenticate(params[:session][:password])
+        log_in(shop, "shop")
+        params[:session][:remember_me] == '1' ? remember(shop, "shop") : forget(shop, "shop")
+        redirect_to shops_root_url
+      else
+        flash.now[:danger] = 'Invalid email/password shop combination'
+        render 'new', status: :unprocessable_entity
+      end
     end
 
     def destroy

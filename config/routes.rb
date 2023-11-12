@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :users do
     resources :users
     resources :products, only: [:show, :index]
@@ -33,7 +32,6 @@ Rails.application.routes.draw do
     get '/order_history_detail', to: 'info_orders#order_history_detail'
     root "products#index"
   end
-  
-  root "users/products#index"
 
+  root "users/products#index"
 end

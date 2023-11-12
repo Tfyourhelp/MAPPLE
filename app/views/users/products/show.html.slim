@@ -5,7 +5,7 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
     = render "product_slide_show",  images: @product.images
   div.col.p-0(style="margin: 70px 20px 100px 40px; height: 360px" ) 
     h1.font-s-2em = @product.name.upcase
-    .d-flex
+    .d-flex data-controller="like"
       h4.mt-1 style="margin-right: 20px" Rating: 
       div id="likeForm#{@product.id}"    
         = render "users/shared/like_form" , product: @product

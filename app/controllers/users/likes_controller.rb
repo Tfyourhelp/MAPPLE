@@ -1,6 +1,5 @@
 module Users
-  class LikesController < ApplicationController
-    #before_action :logged_in_user
+  class LikesController < Users::BaseController
     before_action :find_product
 
     def create

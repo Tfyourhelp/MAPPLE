@@ -1,8 +1,11 @@
 nav.navbar.navbar-expand-lg.navbar-light.header-div
   .container style="width: 1300px"
-    = link_to users_root_path, id: "logo" , class: "shop-name" do
-      | MAPPLE
-    -if logged_in?("user")
+    -if logged_in?("shop")
+      = link_to shops_root_path, id: "logo" , class: "shop-name" do
+        | MAPPLE
+    -else 
+      = link_to users_root_path, id: "logo" , class: "shop-name" do
+        | MAPPLE
       = form_with(url: users_search_path, local:true, method: :get, class:"d-flex pos-rela") do |f|
         = f.text_field :search_content,value: @search_content ,class: "form-control mt-1 ",style: "margin-right: 350px; width: 400px "
         i class="fa-solid fa-magnifying-glass pos-abs search-icon"
@@ -77,3 +80,6 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
         li.nav-item(style = "margin-left: 25px")
           a.nav-link href="#{users_login_path}" 
             i class="fa-solid fa-user-pen fa-lg icon-button"
+        li.nav-item(style = "margin-left: 25px")
+          a.nav-link href="#{shops_login_path}" 
+            i class="fa-solid fa-user-secret fa-lg"
