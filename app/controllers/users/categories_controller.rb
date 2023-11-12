@@ -4,9 +4,10 @@ module Users
     before_action :find_category, only: [:show]
 
     def show
-      @filters =  params[:filters]
+      @filters = params[:filters]
+      @arrange = params[:arrange]
       @products = Product.where(category_id: @category.id).page(params[:page]).per(8)
-      @products, @filters = Categories::Filter.call(params, @products, @category, @filters)
+      @products, @filters = Categories::Filter.call(params, @products, @filters)
     end
 
     private

@@ -3,7 +3,7 @@ h1.text-center.mt-4
 .container.py-1(style = "")
   div.mt-4.mb-4
     = render "filter_price"
-  div.row.row-cols-1.row-cols-md-4.g-4.py-1(style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);")
+  div.row.row-cols-1.row-cols-md-4.g-4.py-1(data-controller= "like" style="margin-right: calc(var(--bs-gutter-x)*-0.5); margin-left: calc(var(--bs-gutter-x)*-0.5);")
     - @products.order(created_at: :asc).each do |product|
       = render "users/products/product_display", product: product
 

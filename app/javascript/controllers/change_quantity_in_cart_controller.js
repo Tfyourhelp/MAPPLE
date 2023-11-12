@@ -125,7 +125,7 @@ export default class extends Controller {
         console.log('xin chào')
         console.log(cartitemquantity)
 
-        if ((cartitemquantity > productquantity) || ( cartitemquantity < 0 ) ) {
+        if ((cartitemquantity > productquantity) || ( cartitemquantity <= 0 ) ) {
           console.log('unlike')
           Swal.fire({
             icon: "error",

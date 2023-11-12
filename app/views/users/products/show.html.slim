@@ -35,4 +35,4 @@ div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;he
             button type="button" class="add-to-cart-in-product-show btn btn-primary mt-2 w-100 rounded-3" style="height: 45px" data-url="#{users_carts_path}" data-product-id="#{@product.id}" data-product-quantity="#{@product.quantity}" 
               | Add To Cart
         - else
-          = button_to "Add To Cart", login_path, class:"btn btn-primary mt-2 w-100 rounded-3"
+          = button_to "Add To Cart", users_login_path,method: :get ,class:"btn btn-primary mt-2 w-100 rounded-3"

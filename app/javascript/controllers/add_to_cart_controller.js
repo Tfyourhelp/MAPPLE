@@ -19,7 +19,7 @@ export default class extends Controller {
       console.log(productId)
       console.log(cartitemquantity)
       
-      if (cartitemquantity  > productQuantity) {
+      if (cartitemquantity  > productQuantity) or (cartitemquantity <= 0) {
         console.log('erro')
         Swal.fire({
           icon: "error",

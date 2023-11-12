@@ -1,6 +1,6 @@
 module Users
   class SearchsController < Users::BaseController
-    before_action :shop_not_allow_here 
+    before_action :shop_not_allow_here
     def search
       @search_content = params[:search_content]
       if @search_content.blank?

@@ -1,8 +1,7 @@
 module Categories
   class Filter < BaseService
-    def initialize(params, products, category, filters )
+    def initialize(params, products, filters )
       @products = products
-      @category = category
       @params = params
       if filters.nil?
         @filters = [false, false, false, false, false] if filters.nil?
@@ -13,7 +12,7 @@ module Categories
 
     def call
       filter_price
-      @products = @products.page(@params[:page]).per(8)
+      arrange_by
       return @products, @filters
     end
 
@@ -21,7 +20,8 @@ module Categories
 
     def filter_price
       if (@params[:under250] == "1") && (@params[:between250and500] == "1") && (@params[:between500and750] == "1") && (@params[:between750and1000] == "1") && (@params[:over1000] == "1")
-        @products = @category.products.page(@params[:page]).per(8)
+        @products = @products
+        @filters = [true, true, true, true, true]
       else
         filter_products_by_price_ranges
       end
@@ -31,20 +31,32 @@ module Categories
       price_ranges = {
         under250: "price < 250",
         between250and500: "price BETWEEN 250 AND 500",
-        between_500and750: "price BETWEEN 500 AND 750",
+        between500and750: "price BETWEEN 500 AND 750",
         between750and1000: "price BETWEEN 750 AND 1000",
         over1000: "price > 1000"
       }
       filters = []
       price_ranges.each do |param, filter|
         next unless @params[param.to_sym] == "1"
-
         index = price_ranges.keys.index(param) # index của param trong price_range
         filters << filter
         @filters[index] = true
       end
       filters = filters.join(" or ")
-      @products = @category.products.where(filters)
+      @products = @products.where(filters)
+    end
+
+    def arrange_by
+      case @params[:arrange]
+      when "decrease_price"
+        @products = @products.order(price: :desc)
+      when "increase_price"
+        @products = @products.order(price: :asc)
+      when "decrease_like"
+        @products = @products.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
+      when "increase_like"
+        @products = @products.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC')
+      end
     end
   end
 end
