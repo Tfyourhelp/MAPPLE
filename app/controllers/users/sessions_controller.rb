@@ -39,7 +39,7 @@ module Users
     def unactivated_user
       message = "Account not activated. "
       message += "Check your email for the activation link. "
-      redirect_to root_url, notice: " #{message} ", flash: { class: "warning" }
+      redirect_to root_url, alert: " #{message} "
     end
   end
 end

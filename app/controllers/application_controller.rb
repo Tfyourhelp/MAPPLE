@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  add_flash_types :info, :error, :warning
 
   def request_login_page_while_logged_in
     if logged_in?("user")
@@ -9,13 +10,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_all_info_orders
-    @info_orders = logged_in?("user") ? current_person("user").info_orders : InfoOrder.all
-    @info_orders = @info_orders.page(params[:page]).per(10)
-  end
-
   def find_shop
     @shop = Shop.first
+  end
+
+  def log_user
+    logged_in?("user")
   end
 
   def not_found

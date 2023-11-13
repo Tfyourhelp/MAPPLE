@@ -21,6 +21,7 @@ module Shops
       @category = Category.new(category_params)
       @category.shop = @shop
       if @category.save
+        update_image_to_category
         redirect_to shops_categories_url
       else
         render 'new', status: :unprocessable_entity
@@ -32,7 +33,7 @@ module Shops
     def update
       if @category.update(category_params)
         update_image_to_category
-        redirect_to shops_categories_url, notice: "Category updated", flash: { class: "success" }
+        redirect_to shops_categories_url, notice: "Category updated"
       else
         render 'edit', status: :unprocessable_entity
       end
@@ -41,9 +42,9 @@ module Shops
     def destroy
       if Product.find_by(category_id: @category.id).nil?
         @category.destroy
-        redirect_to shops_categories_url, notice: "Category deleted", flash: { class: "success" }
+        redirect_to shops_categories_url, notice: "Category deleted"
       else
-        redirect_to shops_categories_url, notice: "This category has product, you cant delete", flash: { class: "danger" }
+        redirect_to shops_categories_url, alert: "This category has product, you cant delete"
       end
     end
 
@@ -59,9 +60,7 @@ module Shops
 
     def find_category
       @category = Category.find_by(id: params[:id])
-      return unless @category.nil?
-
-      redirect_to shop_categories_path, notice: "Cant find category", flash: { class: "danger" }
+      redirect_to shop_categories_path, alert: "Cant find category" if @category.nil?
     end
   end
 end

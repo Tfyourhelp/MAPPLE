@@ -4,7 +4,6 @@ module Users
     before_action :logged_in_user, only: [:new, :create, :order_history_detail]
     before_action :find_shop, only: [:create]
     before_action :find_cart_id, only: [:new, :create]
-    before_action :find_all_info_orders, only: [:create]
     before_action :find_all_cart_items_of_cart, only: [:new, :create]
     before_action :find_info_order_id, only: [:order_history_detail]
 
@@ -15,16 +14,17 @@ module Users
     end
 
     def create
-      @info_order = @info_orders.new(info_order_params)
+      @info_order = InfoOrder.new(info_order_params)
+      @info_order.user = current_person("user")
       @info_order.total_bill = params[:total_bill]
       cart_item_ids = params[:cart_item_ids].split.map(&:to_i)
       if @info_order.save
         create_detail_orders(cart_item_ids)
-        current_person("user").send_order_confirmation_email
-        @shop.send_new_order_from_customer_email(current_person("user"))
+        send_order_confirmation_email(current_person("user"))
+        send_new_order_from_customer_email(@shop, current_person("user"))
         @cart.finish
         update_product_quantity
-        redirect_to users_carts_path, notice: "Email order confirmation was sent", flash: { class: "info" }
+        redirect_to users_carts_path, notice: "Email order confirmation was sent"
       else
         @total_bill = params[:total_bill]
         render 'new', status: :unprocessable_entity
@@ -38,14 +38,15 @@ module Users
     def find_info_order_id
       @info_order = InfoOrder.find_by(id: params[:info_order_id])
       if @info_order
-        redirect_to users_user_path(current_person("user")), notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user")
+        redirect_to users_user_path(current_person("user")), alert: "This is not your info order" unless @info_order.user == current_person("user")
       else
-        redirect_to users_user_path(current_person("user")), notice: "Info order not found", flash: { class: "danger" }
+        redirect_to users_user_path(current_person("user")), notice: "Info order not found"
       end
     end
 
     def find_cart_id
-      @cart = Cart.find(params[:cart_id])
+      @cart = Cart.find_by(id: params[:cart_id])
+      redirect_to user_root_path, alert: "Cart not found" if @cart.nil?
     end
 
     def find_all_cart_items_of_cart
@@ -70,6 +71,14 @@ module Users
         product = Product.find_by(name: detail_order.product_name, price: detail_order.price)
         product.update_attribute(:quantity, product.quantity - detail_order.quantity)
       end
+    end
+
+    def send_new_order_from_customer_email(shop, user)
+      ShopMailer.order_from_customer(shop, user).deliver_now
+    end
+
+    def send_order_confirmation_email(user)
+      UserMailer.order_confirmation(user).deliver_now
     end
   end
 end

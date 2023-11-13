@@ -16,6 +16,7 @@
 #  index_info_orders_on_user_id  (user_id)
 #
 class InfoOrder < ApplicationRecord
+  PER_PAGE = 8
   has_many :detail_orders
   belongs_to :user
 

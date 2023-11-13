@@ -10,11 +10,13 @@ module Shops
 
     def update
       if @shop.update(shop_params)
-        redirect_to shops_shop_url, notice: "Shop profile updated", flash: { class: "success" }
+        redirect_to shops_shop_url, notice: "Shop profile updated"
       else
         render 'edit', status: :unprocessable_entity
       end
     end
+
+    private
 
     def shop_params
       params.require(:shop).permit(:name, :email, :password, :password_confirmation, :phone, :address, :description, :tax_code)

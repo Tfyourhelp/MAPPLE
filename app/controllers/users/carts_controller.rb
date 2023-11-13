@@ -8,7 +8,6 @@ module Users
 
     def index
       @cart_items = @cart.cart_items
-
       delete_cart_item_when_out_of_stock
     end
 
@@ -65,14 +64,14 @@ module Users
 
     def find_cart_item
       @cart_item = CartItem.find_by(id: params[:id])
-      redirect_to users_carts_path, notice: "Cant find cart item", flash: { class: "danger" } if @cart_item.nil?
+      redirect_to users_carts_path, alert: "Cant find cart item" if @cart_item.nil?
     end
 
     def find_product_to_add_cart_item
       @product = Product.find_by(id: params[:product_id])
-      redirect_to users_root_path, notice: "Cant find product", flash: { class: "danger" } unless @product
-      @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id) 
-      redirect_to users_root_path, notice: "Cant find cartitem in cart", flash: { class: "danger" } unless @product
+      redirect_to users_root_path, alert: "Cant find product" if @product.nil?
+      @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id)
+      redirect_to users_root_path, alert: "Cant find cart item in cart" if @cart_item.nil?
     end
 
     def plus_operation

@@ -46,28 +46,16 @@ class User < ApplicationRecord
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-  end
-
   def create_reset_digest
     self.reset_token = User.new_token
     update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
-  end
-
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
   end
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
 
-  def send_order_confirmation_email
-    UserMailer.order_confirmation(self).deliver_now
-  end
-
-  private 
+  private
 
   def downcase_email
     self.email = email.downcase
@@ -77,7 +65,4 @@ class User < ApplicationRecord
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
-
-  # def like?(@product)
-  # end
 end
