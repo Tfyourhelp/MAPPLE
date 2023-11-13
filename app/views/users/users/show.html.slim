@@ -1,0 +1,29 @@
+= provide(:title, @user.name)
+.d-flex.marto-150
+  .card.wid-580.mar-50-0-20-40 
+    .mt-5.wid-450.marle-50
+      .d-flex
+        h1
+          = gravatar_for(@user)
+        h1.marle-33
+          = @user.name
+      .d-flex.mt-2
+        h5.text-success Email   
+        h5.marle-28
+          | :
+        p.marle-25
+          = @user.email
+      .d-flex
+        h5.text-success Phone     
+        h5.marle-20
+          |:
+        p.marle-25
+          = @user.phone
+      .d-flex
+        h5.text-success Address  
+        h5.marle-5
+          |  :
+        p.mb-5.marle-23
+          = @user.address
+  div
+    = render "users/info_orders/order_history_list_user"

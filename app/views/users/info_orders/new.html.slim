@@ -1,0 +1,26 @@
+- provide(:title, 'Infomation order')
+- provide(:button_text, 'Go payment')
+div.d-flex.mar-80-250-0-250
+  div.mt-4 
+    h1.text-secondary.text-center.mb-4.mt-1 Infomation order
+    .card.m-auto.wid-800
+      .row.justify-content-center.align-items-center.mt-4
+        .col-md-9
+          = render "info_orders_form"
+  div.flex-shrink-1.mt-4.marle-120
+    h1.text-center.text-secondary Detail order
+    div.b-color-gray.bd-rad-7.marto-25.wid-450
+      - @cart_items.each do |cart_item|
+        div.d-flex.align-items-center.bb-2-gray.wid-450.hei-80
+          div.text-start.w-100.marle-15
+            h7.detail-order-quantity-text   #{cart_item.quantity}  x 
+            h7.detail-order-name-text  #{cart_item.product.name}   
+            h7.detail-order-total-text - #{cart_item.product.price*cart_item.quantity} $
+            h6.detail-order-provide-text.mb-0 Provided by #{cart_item.product.category.shop.name}
+      
+      div.d-flex.align-items-center.wid-400.hei-50
+        div.marle-15
+          h7 Total :   
+          h7.text-white 1  
+          h7.detail-order-quantity-text   
+            |  #{@total_bill} $

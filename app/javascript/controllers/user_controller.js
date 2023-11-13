@@ -2,15 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets =["name", "nameerrors", "email","emailerrors" ,"password","passworderrors","passwordconfirmation","passwordconfirmationerrors", "phone", "phoneerrors", "address", "addresserrors"]
-  // connect() {
-  //   alert("Connect index")
-  //   Swal.fire({
-  //     icon: 'success',
-  //     title: 'Button has been clicked',
-  //   })
-  // }
-
-  
 
   submit_form(event){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -83,13 +74,5 @@ export default class extends Controller {
     if (isValid == true){
       document.getElementById("UserForm").submit()
     }
-    // if (isValid == false){
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'Something went wrong!',
-    //     footer: '<a href="">Why do I have this issue?</a>'
-    //   })
-    // }
   }
 }

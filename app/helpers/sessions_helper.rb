@@ -29,7 +29,7 @@ module SessionsHelper
   end
 
   def logged_in?(person_type)
-    !current_person(person_type).nil? 
+    !current_person(person_type).nil?
   end
 
   def log_out(person_type)
@@ -49,6 +49,7 @@ module SessionsHelper
   end
 
   def store_location
-    session[:forwarding_url] = request.original_url #if request.get?
+    # if request.get?
+    session[:forwarding_url] = request.original_url 
   end
 end

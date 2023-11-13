@@ -1,0 +1,22 @@
+- provide(:title, "Log in")
+.card.m-auto.wid-900
+  div.text-center.pt-3
+    h1 Log in shop
+  .row.justify-content-center
+    .col-md-8
+      = form_with(url: shops_login_path, html: { class: "needs-validation", novalidate: true } , scope: :session, local: true) do |f|
+        .form-group.mt-3
+          = f.label :email, class: "fw-bold mb-1"
+          = f.email_field :email, class: 'form-control', :required=>true
+          div.invalid-feedback Please fill your email. 
+
+        .form-group.mt-3
+          = f.label :password, class: "fw-bold mb-1"
+          = f.password_field :password, class: 'form-control mb-2', :required=>true
+          div.invalid-feedback Please fill your password.
+
+        = f.label :remember_me, class: "checkbox inline mb-2" do
+          = f.check_box :remember_me 
+        span.mx-1.5 Remember me
+
+        = f.submit "Log in", class: "btn btn-primary d-block mt-0.5 w-100 mb-5"

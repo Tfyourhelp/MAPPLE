@@ -1,32 +1,24 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  def require_logged_in(type)
-    unless logged_in?(type)
-      store_location
-      flash[:danger] = "Please log in"
-      redirect_to login_url
-    end
-  end
 
-  def logged_in_user
-    require_logged_in("user")
-  end
-
-  def logged_in_shop
+  def request_login_page_while_logged_in
     if logged_in?("user")
-      flash[:danger] = "You can't be here"
-      redirect_to root_url
-    else
-      require_logged_in("shop")
+      redirect_to users_root_url
+    elsif logged_in?("shop")
+      redirect_to shops_root_url
     end
-  end
-
-  def find_shop_id
-    @shop = Shop.first
   end
 
   def find_all_info_orders
     @info_orders = logged_in?("user") ? current_person("user").info_orders : InfoOrder.all
     @info_orders = @info_orders.page(params[:page]).per(10)
+  end
+
+  def find_shop
+    @shop = Shop.first
+  end
+
+  def not_found
+    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 end

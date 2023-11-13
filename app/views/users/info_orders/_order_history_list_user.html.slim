@@ -1,0 +1,42 @@
+- require 'date'
+- if @info_orders.length != 0
+  h1.text-center.mt-3.marle-80 Your Ordered List
+  div.mar-10-40-100-60
+    table.table.table-bordered.table-hover.marto-20
+      thead.text-center
+        tr.table-info
+          th(scope="col") Order code
+          th(scope="col") Order date
+          th(scope="col") Products
+          th(scope="col") Total bill
+          th(scope="col") Ordered status
+          th(scope="col")
+      tbody
+      - @info_orders.order(created_at: :desc).each do |info_order|
+        tr.text-center.vam
+          td.wid-120
+            = info_order.id
+          td.wid-270
+            = info_order.updated_at.strftime("%A %d/%m/%Y, %H:%M:%S")
+          td.wid-400.pad-5
+            - unless info_order.detail_orders.length == 1
+              | #{info_order.detail_orders.first.product_name} ... and  #{pluralize((info_order.detail_orders.length-1) , "product")}
+            - else
+              | #{info_order.detail_orders.first.product_name} 
+          td.wid-180
+            | #{info_order.total_bill} $
+          td.wid-200
+            | Ordered successfully
+          td.wid-100
+            = link_to users_order_history_detail_path(info_order_id: info_order.id), class: "", style: "text-decoration: none" do
+              i class="fa-solid fa-circle-info fa-lg"
+    div.d-flex.justify-content-end
+      = paginate @info_orders
+- else
+  h1.text-center.mt-3.marle-500 Your Ordered List
+  div.marle-100
+    h2.mb-3 Your order list is empty!
+    div.d-flex
+      div.vam
+        p.mb-0.mt-1.hei-40 Why not add something?
+      = button_to "Continue Shopping", users_root_path, method: :get, class: "btn btn-primary marle-18"

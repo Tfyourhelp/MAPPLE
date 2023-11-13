@@ -1,0 +1,36 @@
+- provide(:button_text, 'Filter')
+.card.m-auto.w-100.hei-170
+  = form_with(url: shops_products_path , local:true, method: :get, class:"d-flex pos-rela m-3") do |f|
+    div
+      .form-group.marle-10
+        = f.label :search_content, "Product name", class: "fw-bold font-s-125em"
+        = f.text_field :search_content, placeholder: "Seach product name...", value: params[:search_content] ,class: "form-control mt-1 wid-450 hei-45"
+      
+      .d-flex.mt-3
+        p.fw-bold.font-s-125em.mar-8-0-0-10
+          | Quantity from 
+        = f.number_field :from_quantity, value: params[:from_quantity], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-100 hei-45 marle-30"
+      
+        p.fw-bold.font-s-125em.mar-8-0-0-30
+          | to
+        = f.number_field :to_quantity, value: params[:to_quantity], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-100 hei-45 marle-30"
+    
+    div
+      .form-group.marle-80
+        = f.label :category, "Category", class: "fw-bold mb-1 font-s-125em"
+        = f.select :category_id, options_for_select(@categories.order(created_at: :asc).map { |c| [c.name, c.id] },selected: params[:category_id].nil? ? nil : params[:category_id]), { include_blank: true }, class: "form-select wid-400 hei-45"
+      
+      .d-flex.mt-3
+        p.fw-bold.font-s-125em.mar-8-0-0-80
+          | Price from 
+        = f.number_field :from_price, value: params[:from_price], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-95 hei-45 marle-20"
+      
+        p.fw-bold.font-s-125em.mar-8-0-0-5
+          | $  
+        p.fw-bold.font-s-125em.mar-8-0-0-13 
+          | to
+        = f.number_field :to_price, value: params[:to_price], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-95 hei-45 marle-20"
+        p.fw-bold.font-s-125em.mar-8-0-0-5
+          | $ 
+
+    = f.submit yield(:button_text), class: "btn btn-primary wid-150 hei-43 mar-97-0-0-47"

@@ -49,6 +49,7 @@
 }
 
 /* Carousel Multiple Items */
+
 .category_slideshow .img-wrapper{
   max-width: 100%;
   height: 65vw;
@@ -98,13 +99,13 @@
 .category_slideshow .carousel-control-prev:hover, .category_slideshow .carousel-control-next:hover{
   opacity: .8;
 }
+
 /* ************************ */
 
 .black-link {
   color: black;
   text-decoration: none;
 }
-
 
 .category_name_link {
   color: black; 
@@ -137,11 +138,9 @@
   color: #0d6efd;
 }
 
-
 .edit-link:hover {
   color: #021691 !important;
 }
-
 
 .icon-button:hover {
   color: #021691;
@@ -203,6 +202,13 @@
   top: -12px;
 }
 
+.dau-x{
+  font-size: 4em;
+  position: absolute;
+  top: 94px;
+  right: 449px;
+}
+
 /* footer */
 
 footer {
@@ -230,6 +236,7 @@ footer {
     }
   }
 }
+
 @media (max-width: 800px) {
   footer {
     small {
@@ -247,12 +254,34 @@ footer {
     }
   }
 }
+
 // ********************
+
 .like-word{
   color: #452c63;
   font-size: 1.1rem;
 }
 
+//  ********************
+.highly_recommend_product_slide_show{
+  margin-top: 95px;
+  background-color: #DC143C;
+  height: 510px;
+  padding: 3px 50px 0px 50px;
+}
+
+.categories{
+  margin-top: 30px;
+  background-color: #FAEBD7;
+  height: 300px;
+  padding: 22px 50px 0px 50px;
+}
+
+.products{
+  margin: 34px 0px 30px 0px;
+  background-color: #F5F5F5;
+  padding: 22px 50px 0px 50px;
+}
 
 
 //******** most like product slide show
@@ -286,6 +315,7 @@ footer {
   }
 
 //***********
+
 .vam {
   vertical-align: middle;
 }
@@ -330,6 +360,10 @@ footer {
   background-color: #ccc
 }
 
+.bg-color-whitesmoke{
+  background-color: #F0F0F0
+}
+
 .b-color-gray{
   border: 2px solid gray;
 }
@@ -346,12 +380,16 @@ footer {
   border-radius: 5px;
 }
 
+.fw-600{
+  font-weight: 600;
+}
+
 .fw-550{
   font-weight: 550;
 }
 
 .fw-400{
-  font-weight: 440;
+  font-weight: 400;
 }
 
 .color-blackblue{
@@ -365,6 +403,11 @@ footer {
 .color-blue:hover{
   color: black
 }
+
+.color-red{
+  color: black
+}
+
 
 .jtf-space-even{
   justify-content: space-evenly;
@@ -388,6 +431,14 @@ footer {
 
 .font-s-2em{
   font-size: 2em
+}
+
+.font-s-5em{
+  font-size: 5em
+}
+
+.font-s-10em{
+  font-size: 10em
 }
 
 .price-color{
@@ -423,3 +474,440 @@ footer {
   transform: scale(1.3);
 }
 
+//*************
+
+.hei-35{
+  height: 35px;
+}
+
+.hei-37{
+  height: 37px;
+}
+
+.hei-40{
+  height: 40px;
+}
+
+.hei-43{
+  height: 43px;
+}
+
+.hei-45{
+  height: 45px;
+}
+
+.hei-47{
+  height: 47px;
+}
+
+.hei-50{
+  height: 50px;
+}
+
+.hei-60{
+  height: 50px;
+}
+
+.hei-80{
+  height: 80px;
+}
+
+.hei-100{
+  height: 100px;
+}
+
+.hei-102{
+  height: 100px;
+}
+
+.hei-120{
+  height: 120px;
+}
+
+.hei-145{
+  height: 145px;
+}
+
+.hei-150{
+  height: 150px;
+}
+
+.hei-170{
+  height: 170px;
+}
+
+.hei-360{
+  height: 360px;
+}
+
+.hei-550{
+  height: 550px;
+}
+
+.hei-650{
+  height: 650px;
+}
+
+.wid-50{
+  width: 50px;
+} 
+
+.wid-60{
+  width: 60px;
+} 
+
+.wid-95{
+  width: 95px !important;
+} 
+
+.wid-100{
+  width: 100px !important;
+} 
+
+.wid-110{
+  width: 110px !important;
+} 
+
+.wid-120{
+  width: 120px;
+}
+
+.wid-130{
+  width: 130px;
+}
+
+.wid-140{
+  width: 140px;
+}
+
+.wid-150{
+  width: 150px;
+}
+
+.wid-155{
+  width: 155px;
+}
+
+.wid-170{
+  width: 170px;
+}
+
+.wid-180{
+  width: 180px;
+}
+
+.wid-200{
+  width: 200px;
+}
+
+.wid-220{
+  width: 220px;
+}
+
+.wid-250{
+  width: 250px;
+}
+
+.wid-270{
+  width: 270px;
+}
+
+.wid-320{
+  width: 320px;
+}
+
+.wid-350{
+  width: 350px;
+}
+
+.wid-386{
+  width: 386px;
+}
+
+.wid-400{
+  width: 400px !important;
+}
+
+.wid-420{
+  width: 420px;
+}
+
+.wid-430{
+  width: 430px;
+}
+
+.wid-440{
+  width: 440px;
+}
+
+.wid-450{
+  width: 450px !important;
+}
+
+.wid-550{
+  width: 550px !important;
+}
+
+.wid-580{
+  width: 580px !important;
+}
+
+.wid-618{
+  width: 618px !important ;
+}
+
+.wid-800{
+  width: 800px !important ;
+}
+
+.wid-900{
+  width: 900px;
+}
+
+.wid-1100{
+  width: 1100px;
+}
+
+.wid-1300{
+  width: 1300px;
+}
+
+.maxwid-1420{
+  max-width: 1420px !important;
+}
+
+.pad-5{
+  padding: 5px;
+}
+
+.pad-20{
+  padding: 20px;
+}
+
+.pad-5-10-0-20{
+  padding: 20px !important;
+}
+
+.mar-all-category-shops{
+  margin: 10px 500px 100px 500px;
+}
+
+.mar-0-5-0-5{
+  margin: 0px 5px 0px 5px;
+}
+
+.mar-0-380-0-380{
+  margin: 0px 380px 0px 380px;
+}
+
+.mar-0-400-0-400{
+  margin: 0px 400px 0px 400px;
+}
+
+.mar-4-0-0-15{
+  margin: 4px 0px 0px 15px;
+}
+
+.mar-8-0-0-5{
+  margin: 8px 0px 0px 5px;
+}
+
+.mar-8-0-0-10{
+  margin: 8px 0px 0px 10px;
+}
+
+.mar-8-0-0-13{
+  margin: 8px 0px 0px 13px;
+}
+
+.mar-8-0-0-15{
+  margin: 8px 0px 0px 15px;
+}
+
+.mar-8-0-0-30{
+  margin: 8px 0px 0px 30px;
+}
+
+.mar-8-0-0-80{
+  margin: 8px 0px 0px 80px;
+}
+
+.mar-10-40-100-60{
+  margin: 10px 40px 100px 60px;
+}
+
+.mar-10-175-20-175{
+  margin: 10px 175px 20px 175px;
+}
+
+.mar-10-320-100-320{
+  margin: 10px 320px 100px 320px;
+}
+
+.mar-10-350-100-350{
+  margin: 10px 350px 100px 350px;
+}
+
+.mar-10-380-100-380{
+  margin: 10px 380px 100px 380px;
+}
+
+.mar-20-0-20-0{
+  margin: 20px 0px 20px 0px;
+}
+
+.mar-25-300-100-300{
+  margin: 25px 300px 100px 300px !important;
+}
+
+.mar-30-330-30-330{
+  margin: 30px 330px 30px 330px;
+}
+
+.mar-50-0-20-40{
+  margin: 50px 0px 20px 40px !important;
+}
+
+.mar-70-20-100-40{
+  margin: 70px 20px 100px 40px !important;
+}
+
+.mar-50-0-30-40{
+  margin: 50px 0px 30px 40px !important; 
+}
+
+.mar-80-250-0-250{
+  margin: 80px 250px 0px 250px;
+}
+
+.mar-97-0-0-47{
+  margin: 97px 0px 0px 47px;
+}
+
+.marle-5{
+  margin-left: 5px;
+}
+
+.marle-10{
+  margin-left: 10px;
+}
+
+.marle-15{
+  margin-left: 15px;
+}
+
+.marle-18{
+  margin-left: 18px;
+}
+
+.marle-20{
+  margin-left: 20px;
+}
+
+.marle-23{
+  margin-left: 23px;
+}
+
+.marle-25{
+  margin-left: 25px;
+}
+
+.marle-28{
+  margin-left: 28px;
+}
+
+.marle-30{
+  margin-left: 30px;
+}
+
+.marle-33{
+  margin-left: 33px;
+}
+
+.marle-50{
+  margin-left: 50px;
+}
+
+.marle-72{
+  margin-left: 72px;
+}
+
+.marle-80{
+  margin-left: 80px;
+}
+
+.marle-100{
+  margin-left: 100px;
+}
+
+.marle-120{
+  margin-left: 120px;
+}
+
+.marle-310{
+  margin-left: 310px;
+}
+
+.marle-400{
+  margin-left: 400px;
+}
+
+.marle-500{
+  margin-left: 500px;
+}
+
+.marto-5{
+  margin-top: 5px;
+}
+
+.marto-20{
+  margin-top: 20px;
+}
+
+.marto-25{
+  margin-top: 25px;
+}
+
+.marto-30{
+  margin-top: 30px;
+}
+
+.marto-59{
+  margin-top: 59px;
+}
+
+.marto-80{
+  margin-top: 80px;
+}
+
+.marto-100{
+  margin-top: 100px;
+}
+
+.marto-150{
+  margin-top: 150px;
+}
+
+.marri-10{
+  margin-right: 10px;
+}
+
+.marri-17{
+  margin-right: 17px;
+}
+
+.marri-20{
+  margin-right: 20px;
+}
+
+.marri-50{
+  margin-right: 50px;
+}
+
+.marri-100{
+  margin-right: 100px;
+}
+
+.marri-350{
+  margin-right: 350px;
+}

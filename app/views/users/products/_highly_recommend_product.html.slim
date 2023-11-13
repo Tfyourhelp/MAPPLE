@@ -1,0 +1,26 @@
+#carouselExampleControls.carousel.carousel-dark.slide.d-none.d-sm-block data-bs-ride="carousel"
+  .carousel-inner 
+    - for index in (0..top_products.length-1).step(5)
+      - five_products = top_products[index, 5]
+      .carousel-item class="#{index == 0 ? 'active' : 0 }"
+          .cards-wrapper
+            - five_products.each do |product|
+              .card 
+                .image-wrapper
+                  - if product.images.attached?
+                    img[src="#{url_for(product.images.first)}" alt="..." style="height: 250px; width: 250px; padding: 10px"]
+                  - else 
+                    img[src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png" alt="..." style="height: 250px; width: 250px; padding: 10px"]
+                .card-body.p-2
+                  h5.card-title.text-center.m-0.hei-47
+                    = link_to "#{product.name}", users_product_path(product), class: 'color-blue tdn' 
+                  h5.text-center.m-0
+                    | #{product.price} $
+                  . id="rateForm#{product.id}" 
+                    = render "users/shared/rate_in_highly_recommend_product", product: product
+  button.carousel-control-prev type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"
+    span.carousel-control-prev-icon aria-hidden="true" style=""
+    span.visually-hidden Previous
+  button.carousel-control-next type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"
+    span.carousel-control-next-icon aria-hidden="true" style=""
+    span.visually-hidden Next

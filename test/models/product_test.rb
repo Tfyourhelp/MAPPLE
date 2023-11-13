@@ -2,14 +2,14 @@
 #
 # Table name: products
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  description :string
 #  name        :string
 #  price       :float
 #  quantity    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint
+#  category_id :integer
 #
 # Indexes
 #

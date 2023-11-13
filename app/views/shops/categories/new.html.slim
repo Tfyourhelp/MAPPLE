@@ -1,0 +1,9 @@
+- provide(:title, 'Regist your new category')
+- provide(:button_text, 'Create new category')
+.card.m-auto.wid-900
+  div.text-center.mt-4
+    h1 
+      = yield(:title)
+  .row.justify-content-center.align-items-center
+    .col-md-9.col-md-offset-3
+      = render 'category_form' , model: @category

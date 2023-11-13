@@ -16,12 +16,8 @@ html
   
   body
     = render 'layouts/header'
-    .container.p-0.mw-100(style="margin-top: 59px")
-      - flash.each do |message_type, message|
-        div class="alert alert-#{message_type}" style=""= message
-      div style="margin-top: 80px"
+    .container.p-0.mw-100.marto-59
+      = render "shared/flash", flash: flash
+      div.marto-80
         = yield
     = render 'layouts/footer'
-
-      
-

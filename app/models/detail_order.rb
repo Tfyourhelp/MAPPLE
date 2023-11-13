@@ -2,14 +2,14 @@
 #
 # Table name: detail_orders
 #
-#  id            :bigint           not null, primary key
+#  id            :integer          not null, primary key
 #  price         :float
 #  product_name  :string
 #  quantity      :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  info_order_id :bigint
-#  product_id    :bigint
+#  info_order_id :integer
+#  product_id    :integer
 #
 # Indexes
 #

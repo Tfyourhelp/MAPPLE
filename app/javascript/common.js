@@ -1,44 +1,22 @@
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
 
-const multipleItemCarousel = document.querySelector('#carouselExampleControls');
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
 
-console.log('vo')
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-if(window.matchMedia("(min-width:576px)").matches){
-  const carousel = new bootstrap.Carousel(multipleItemCarousel, 
-  {
-    interval: false
-  })
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
-  var carouselWidth = $('.carousel-inner')[0].scrollWidth;
-  var cardWidth = $('.carousel-item').width()
-
-  var scrollPosition = 0;
-
-  $('.carousel-control-next').on('click',function(){
-    if(scrollPosition<(carouselWidth-(cardWidth*4))){
-      console.log('next');
-      scrollPosition = scrollPosition + cardWidth;
-      $('.carousel-inner').animate({scrollLeft: scrollPosition},
-      600);
-    }
-  });
-
-  $('.carousel-control-prev').on('click',function(){
-    if(scrollPosition<(carouselWidth-(cardWidth*4))){
-      console.log('prev');
-      scrollPosition = scrollPosition - cardWidth;
-      $('.carousel-inner').animate({scrollLeft: scrollPosition},
-      600);
-    }
-  });
-}else{
-  $(multipleItemCarousel).addClass('slide');
-}
-
-
-$.ajax({
-  url: "/likes",
-  type: "POST",
-  data: {},
-  dataType: "script"
-});
+$('#outofstock').prop('disabled', true);

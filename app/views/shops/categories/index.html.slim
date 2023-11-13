@@ -1,0 +1,29 @@
+h1.text-center.mt-3 All category
+div.mar-all-category-shops
+  div.d-flex.justify-content-end.w-100
+    = button_to "New category", new_shops_category_path, method: :get ,class:"btn btn-primary wid-140 hei-40"
+  table.table.table-bordered.table-hover.mt-3
+    thead.text-center
+      tr.table-dark
+        th(scope="col") Category name
+        th(scope="col") Image
+        th.text-center(scope="col")
+          | Category action
+    tbody
+    - @categories.order(created_at: :desc).each_with_index do |category,index|
+      tr.text-center.vam
+        td
+          = link_to "#{category.name}", shops_category_path(category), class: 'black-link'
+        td.pad-5.wid-250
+          - if category.image.attached? 
+            img.hei-100.wid-100(src=url_for(category.image)) 
+          - else
+            img.hei-100.wid-100(src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
+        td.wid-140
+          .d-flex.jtf-space-even  
+            = link_to edit_shops_category_path(category), class: "tdn" do
+              i class="fa-solid fa-pen-to-square font-s-15em edit-link"
+            = button_to shops_category_path(category), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
+              i class="fa-solid fa-trash font-s-15em garbage-button" 
+  div.d-flex.justify-content-end
+    = paginate @categories 

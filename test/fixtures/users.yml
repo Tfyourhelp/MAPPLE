@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                :bigint           not null, primary key
+#  id                :integer          not null, primary key
 #  activated         :boolean          default(FALSE)
 #  activated_at      :datetime
 #  activation_digest :string

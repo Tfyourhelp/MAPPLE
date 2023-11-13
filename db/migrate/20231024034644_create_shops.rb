@@ -1,6 +1,7 @@
 class CreateShops < ActiveRecord::Migration[7.0]
   def change
-    create_table :shops do |t|
+    create_table :shops, id: false do |t|
+      t.integer :id, primary_key: true
       t.string :name
 
       t.string :email
@@ -11,7 +12,7 @@ class CreateShops < ActiveRecord::Migration[7.0]
       t.string :address
       t.string :description
       t.bigint :tax_code
-      t.string :remember_digest 
+      t.string :remember_digest
       t.timestamps
     end
   end

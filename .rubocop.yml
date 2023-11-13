@@ -20,14 +20,18 @@ Style/SymbolArray:
 Style/StringLiterals:
   Enabled: false
 
-Style/GuardClause:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-# Style/SymbolName:
+# Style/GuardClause:
 #   Enabled: false
 
-Layout/LineLength: 
-  Enabled: false
+# Style/NumericPredicate:
+#   Enabled: false
+
+# # Style/SymbolName:
+# #   Enabled: false
+
+Layout/LineLength:
+  Max: 300
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"

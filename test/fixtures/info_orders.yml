@@ -2,14 +2,14 @@
 #
 # Table name: info_orders
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  address    :string
 #  name       :string
 #  phone      :string
 #  total_bill :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint
+#  user_id    :integer
 #
 # Indexes
 #
