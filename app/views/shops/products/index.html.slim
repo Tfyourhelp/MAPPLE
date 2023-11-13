@@ -1,8 +1,8 @@
 h1.text-center.mt-3 All product
-div.(style= "margin: 10px 380px 100px 380px")
+div.mar-10-380-100-380
   = render 'search_form_product_page'
-  = button_to "New product", new_shops_product_path, method: :get ,class:"btn btn-primary float-end mb-4 mt-4", style: "width: 140px; height: 40px"
-  table.table.table-bordered.table-hover(style="margin-top: 20px")
+  = button_to "New product", new_shops_product_path, method: :get ,class:"btn btn-primary float-end mb-4 mt-4 wid-140 hei-40"
+  table.table.table-bordered.table-hover.marto-20
     thead.text-center
       tr.table-dark
         th(scope="col") Product name
@@ -15,21 +15,21 @@ div.(style= "margin: 10px 380px 100px 380px")
     tbody
       - @products.order(created_at: :desc).each do |product|
           tr.text-center.vam
-            td(style="width: 430px")
+            td.wid-430
               = link_to "#{product.name}", shops_product_path(product), class: 'black-link'
-            td(style="width: 100px")   
+            td.wid-100
               | #{product.price} $ 
-            td(style="width: 100px")
+            td.wid-100
               = product.quantity 
-            td(style= "") 
+            td
               /= product.category.name if !product.category.empty?
               = product.category.name 
-            td(style="width: 150px; padding: 5px")
+            td.wid-150.pad-5
               - if product.images.attached? 
-                img(style="height: 100px; width: 100px" src=url_for(product.images[0])) 
+                img.hei-100.wid-100(src=url_for(product.images[0])) 
               - else
-                img(style="height: 100px; width: 100px" src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
-            td(style="width: 140px")
+                img.wid-100.hei-100(src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
+            td.wid-140
               .d-flex.jtf-space-even
                 = link_to edit_shops_product_path(product, page: @page) do 
                   i class="fa-solid fa-pen-to-square font-s-15em edit-link"

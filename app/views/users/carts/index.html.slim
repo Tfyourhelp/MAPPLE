@@ -1,15 +1,15 @@
-div.text-center(style="margin: 20px 0px 20px 0px;")
+div.text-center.mar-20-0-20-0
   h1 Cart Detail
   
 - if @cart.cart_items.empty?
-  div.text-center.pos-rela(style="margin: 0px 380px 0px 380px;")
+  div.text-center.pos-rela.mar-0-380-0-380
     h2.mb-3.mt-4 Your cart is empty!
     i class="fa-solid fa-cart-shopping font-s-10em text-danger mt-4"
     i class="fa-regular fa-circle-xmark dau-x text-white"
-    div.d-flex.text-center.mt-5.mb-5(style="margin-left: 400px" )
+    div.d-flex.text-center.mt-5.mb-5.marle-400
       div.vam
-        p.mb-0.mt-2(style="height: 40px;") Why not add something?
-      = button_to "Continue Shopping", users_root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
+        p.mb-0.mt-2.hei-40 Why not add something?
+      = button_to "Continue Shopping", users_root_path, method: :get, class: "btn btn-primary marle-18"
 - else
   div.bl-1-ccc.br-1-ccc.bt-1-ccc(style="margin: 10px 300px 0px 300px" data-controller="change-quantity-in-cart")
     . id="deleteForm#{current_person("user").id}" 

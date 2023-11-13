@@ -1,8 +1,8 @@
 - require 'date'
 - if @info_orders.length != 0
-  h1.text-center.mt-3(style="margin: 0px 0px 0px 80px;") Your Ordered List
-  div(style= "margin: 10px 40px 100px 60px ")
-    table.table.table-bordered.table-hover(style="margin-top: 20px")
+  h1.text-center.mt-3.marle-80 Your Ordered List
+  div.mar-10-40-100-60
+    table.table.table-bordered.table-hover.marto-20
       thead.text-center
         tr.table-info
           th(scope="col") Order code
@@ -14,29 +14,29 @@
       tbody
       - @info_orders.order(created_at: :desc).each do |info_order|
         tr.text-center.vam
-          td(style="width: 120px")
+          td.wid-120
             = info_order.id
-          td(style="width: 270px")
-            = info_order.updated_at.strftime("%H:%M:%S %A %d/%m/%Y")
-          td(style="width: 400px; padding: 5px")
+          td.wid-270
+            = info_order.updated_at.strftime("%A %d/%m/%Y, %H:%M:%S")
+          td.wid-400.pad-5
             - unless info_order.detail_orders.length == 1
               | #{info_order.detail_orders.first.product_name} ... and  #{pluralize((info_order.detail_orders.length-1) , "product")}
             - else
               | #{info_order.detail_orders.first.product_name} 
-          td(style="width: 180px")
+          td.wid-180
             | #{info_order.total_bill} $
-          td(style="width: 200px")
+          td.wid-200
             | Ordered successfully
-          td(style="width: 100px")
+          td.wid-100
             = link_to users_order_history_detail_path(info_order_id: info_order.id), class: "", style: "text-decoration: none" do
               i class="fa-solid fa-circle-info fa-lg"
     div.d-flex.justify-content-end
       = paginate @info_orders
 - else
-  h1.text-center.mt-3(style="margin: 0px 0px 0px 500px;") Your Ordered List
-  div(style="margin: 0px 0px 0px 100px;")
+  h1.text-center.mt-3.marle-500 Your Ordered List
+  div.marle-100
     h2.mb-3 Your order list is empty!
     div.d-flex
       div.vam
-        p.mb-0.mt-1(style="height: 40px;") Why not add something?
-      = button_to "Continue Shopping", users_root_path, method: :get, class: "btn btn-primary", style:"margin-left: 18px"
+        p.mb-0.mt-1.hei-40 Why not add something?
+      = button_to "Continue Shopping", users_root_path, method: :get, class: "btn btn-primary marle-18"

@@ -1,15 +1,11 @@
 module Users
   class UsersController < Users::BaseController
     before_action :shop_not_allow_here
-    before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
+    before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update]
     before_action :admin_user, only: [:destroy]
     before_action :find_user, only: [:show, :edit, :update, :destroy]
     before_action :find_all_info_orders, only: [:show]
-
-    def index
-      @users = User.where(activated: true).page(params[:page])
-    end
 
     def show
       redirect_to users_root_url and return unless @user.activated?

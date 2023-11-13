@@ -16,9 +16,9 @@ html
   
   body
     = render 'layouts/header'
-    .container.p-0.mw-100(style="margin-top: 59px")
+    .container.p-0.mw-100.marto-59
       = render "shared/flash", flash: flash
-      div style="margin-top: 80px"
+      div.marto-80
         = yield
     = render 'layouts/footer'
 

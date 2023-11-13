@@ -1,26 +1,26 @@
 h1.text-center.mt-3 Order Detail
-div(style="margin: 30px 330px 30px 330px; font-size: 1.5em")    
-  div(style="height: 35px;display: flex;")
-    h5(style="font-weight: 400") Order detail ##{@info_order.id} 
+div.mar-30-330-30-330.font-s-15em 
+  div.d-flex.hei-35
+    h5.fw-400 Order detail ##{@info_order.id} 
     h2.text-white 1
     h5 -
     h2.text-white 1
-    h5(style="font-weight: 600") Ordered sucessful
-  div(style="height: 35px")
-    h5(style="font-weight: 400") Order date:   #{@info_order.updated_at}   
+    h5.fw-600 Ordered sucessful
+  div.hei-35
+    h5.fw-400 Order date:   #{@info_order.updated_at}   
   
   div.d-flex
-    div.mt-5.b-2-ccc(style="padding: 20px; width: 350px")
+    div.mt-5.b-2-ccc.pad-20.wid-350
       h5.fw-550 Receiver's address 
       h5.fw-400 = @info_order.name
       h5.fw-400 Address:  #{@info_order.address}    
       h5.fw-400 Phone:  #{@info_order.phone}
     
-    div.mt-5.b-2-ccc(style="padding: 20px; width: 350px;height: 120px; margin-left: 50px ")
+    div.mt-5.b-2-ccc.pad-20.wid-350.hei-120.marle-50
       h5.fw-550 Delivery
       h5.fw-400 Delivery at 13:00 PM ➔ 15:00 PM the nextday
     
-    div.mt-5.b-2-ccc(style=" padding: 20px; width: 350px;height: 100px; margin-left: 50px")
+    div.mt-5.b-2-ccc.pad-20.wid-350.hei-100.marle-50
       h5.fw-550 Payment method
       h5.fw-400 Cash payment on delivery
     
@@ -35,19 +35,19 @@ div(style="margin: 30px 330px 30px 330px; font-size: 1.5em")
       tbody
         - @info_order.detail_orders.order(id: :desc).each do |detail_order|
           tr.text-center.vam
-            td(style="width: 400px")
+            td.wid-420
               = detail_order.product_name
-            div(style="width: 386px,height: 102px")
-              td(style="width: 250px")
+            div
+              td.wid-250
                 - if detail_order.image.attached?
                   img(style="height: 120px; width: 120px" src=url_for(detail_order.image))
                 - else
                   = image_tag("https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png", alt: "Kitten", width: "120px", height: "120px")
-            td(style="width: 250px")
+            td.wid-250
               | #{detail_order.price} $ 
-            td(style="width: 150px")
-              input(value=detail_order.quantity class="text-center b-color-ccc bd-rad-7" style="width: 60px;height: 37px; ")
-            td(style="width: 170px")
+            td.wid-150
+              input(value=detail_order.quantity class="text-center b-color-ccc bd-rad-7 wid-60 hei-37" readonly="readonly")
+            td.wid-170
               | #{detail_order.price*detail_order.quantity} $ 
       thead
         tr.text-center.vam

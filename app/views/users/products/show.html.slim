@@ -1,38 +1,38 @@
 div.text-center(style="margin: 30px 0px 0px 0px;")
   h1 Product detail
-div.row.b-1-ccc.rounded-3(style="margin: 25px 300px 100px 300px;width: 1300px;height: 650px")
-  div.col(style="margin: 50px 0px 30px 40px")
+div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
+  div.col.mar-50-0-30-40
     = render "product_slide_show",  images: @product.images
-  div.col.p-0(style="margin: 70px 20px 100px 40px; height: 360px" ) 
+  div.col.p-0.mar-70-20-100-40.hei-360
     h1.font-s-2em = @product.name.upcase
     .d-flex data-controller="like"
-      h4.mt-1 style="margin-right: 20px" Rating: 
+      h4.mt-1.marle-20 Rating: 
       div id="likeForm#{@product.id}"    
         = render "users/shared/like_form" , product: @product
         
     h4.mt-2.font-s-2em.price-color #{@product.price.to_s + "    $"}
 
     h5.font-weight-bold.mb-0 Description
-    p.font-s-1em(style="margin-right: 50px")  #{@product.description}
+    p.font-s-1em.marri-50  #{@product.description}
     
     h5.font-weight-bold.m-0 Delivery
-    p.font-s-1em(style="margin-right: 100px")  VIETNAM, USA, CANADA, UK, EUROPE
-    div.d-flex.bb-1-ccc(style="margin: 20px 0px 20px 0px;height: 60px;")
-      h5.font-weight-bold.mb-3(style="margin: 5px 0px 0px 0px") Quantity
+    p.font-s-1em.marri-100  VIETNAM, USA, CANADA, UK, EUROPE
+    div.d-flex.bb-1-ccc.mar-20-0-20-0.hei-60
+      h5.font-weight-bold.mb-3.marto-5 Quantity
       input id="quantityInput" value="1" type="number" min="0" style="margin: 0px 5px 0px 5px ; width: 50px; height: 38px" class="text-center b-color-ccc bd-rad-5"
       - if @product.quantity == 0
-        h6.text-danger(style="margin: 8px 0px 0px 15px;")
+        h6.text-danger.mar-8-0-0-15
           | ( Out of stock recently )
       - else
-        div.text-muted(style="margin: 4px 0px 0px 15px;") 
+        div.text-muted.mar-4-0-0-15
           |( #{@product.quantity} available products )
-    div(style="margin: 20px 0px 20px 0px;" data-controller="add-to-cart")
+    div.mar-20-0-20-0(data-controller="add-to-cart")
         - if logged_in?("user")
           - if @product.quantity == 0
             button.btn.btn-secondary.mt-2.w-100.rounded-3#outofstock type="button" style="height: 45px" 
               | Add To Cart
           -else
-            button type="button" class="add-to-cart-in-product-show btn btn-primary mt-2 w-100 rounded-3" style="height: 45px" data-url="#{users_carts_path}" data-product-id="#{@product.id}" data-product-quantity="#{@product.quantity}" 
+            button type="button" class="add-to-cart-in-product-show btn btn-primary mt-2 w-100 rounded-3 hei-45" data-url="#{users_carts_path}" data-product-id="#{@product.id}" data-product-quantity="#{@product.quantity}" 
               | Add To Cart
         - else
           = button_to "Add To Cart", users_login_path,method: :get ,class:"btn btn-primary mt-2 w-100 rounded-3"

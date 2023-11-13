@@ -7,28 +7,27 @@ export default class extends Controller {
     this.addtoCartinMain()
   }
 
-  addtoCartinProductShow(){
+  addtoCartinProductShow() {
     $(document).on('click', '.add-to-cart-in-product-show', function(e) {
       
       var cartitemquantity = $("#quantityInput").val();
-      const url = $(this).data('url')
-      const productId = $(this).data('product-id')
-      const productQuantity = $(this).data('product-quantity')
-
-      console.log('bbbb')
-      console.log(productId)
-      console.log(cartitemquantity)
-      
-      if (cartitemquantity  > productQuantity) or (cartitemquantity <= 0) {
-        console.log('erro')
+      const url = $(this).data('url');
+      const productId = $(this).data('product-id');
+      const productQuantity = $(this).data('product-quantity');
+  
+      console.log('bbbb');
+      console.log(productId);
+      console.log(cartitemquantity);
+  
+      if (cartitemquantity > productQuantity || cartitemquantity <= 0) {
+        console.log('erro');
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: `Available quantity of this product is ${productQuantity}`,
           footer: '<a href="#">Why do I have this issue?</a>'
         });
-      }
-      else {
+      } else {
         $.ajax({
           url: url,
           type: 'POST',
@@ -42,11 +41,11 @@ export default class extends Controller {
           success: function(res) {
             // console.log(res)
           }
-        })
+        });
       }
-    }
-  )
-}
+    });
+  }
+  
 
   addtoCartinMain(){
     $(document).on('click', '.add-to-cart', function(e) {
