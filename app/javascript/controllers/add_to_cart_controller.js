@@ -15,10 +15,6 @@ export default class extends Controller {
       const productId = $(this).data('product-id');
       const productQuantity = $(this).data('product-quantity');
   
-      console.log('bbbb');
-      console.log(productId);
-      console.log(cartitemquantity);
-  
       if (cartitemquantity > productQuantity || cartitemquantity <= 0) {
         console.log('erro');
         Swal.fire({
@@ -39,22 +35,16 @@ export default class extends Controller {
             quantity: cartitemquantity
           },
           success: function(res) {
-            // console.log(res)
           }
         });
       }
     });
   }
   
-
   addtoCartinMain(){
     $(document).on('click', '.add-to-cart', function(e) {
       const url = $(this).data('url')
       const productId = $(this).data('product-id')
-      console.log('bbbb')
-      console.log(productId)
-
-      
 
       $.ajax({
         url: url,
@@ -66,7 +56,6 @@ export default class extends Controller {
           product_id: productId,
         },
         success: function(res) {
-          console.log(res)
         }
       })
     })

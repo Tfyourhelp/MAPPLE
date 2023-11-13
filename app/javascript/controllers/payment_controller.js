@@ -2,8 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="payment"
 export default class extends Controller {
-  // connect() {
-  // }
   payment_success(event){
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({

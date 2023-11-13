@@ -15,7 +15,6 @@ module Shops
       @info_order = InfoOrder.find_by(id: params[:info_order_id])
       return if @info_order
 
-      # Nếu k có info_order
       redirect_to shops_order_history_list_shop_path, notice: "Info order not found", flash: { class: "danger" }
     end
   end

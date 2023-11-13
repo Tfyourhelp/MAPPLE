@@ -13,6 +13,7 @@
 #  index_categories_on_shop_id  (shop_id)
 #
 class Category < ApplicationRecord
+  PER_PAGE = 8
   has_many :products
   belongs_to :shop
 

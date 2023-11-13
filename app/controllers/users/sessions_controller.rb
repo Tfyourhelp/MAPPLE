@@ -1,16 +1,15 @@
 module Users
   class SessionsController < Users::BaseController
     before_action :request_login_page_while_logged_in, only: [:new]
+    before_action :find_user, only: [:create]
 
     def new; end
 
     def create
-      user = User.find_by(email: params[:session][:email].downcase)
+      user = find_user
       if user && user.authenticate(params[:session][:password])
         if user.activated?
-          log_in(user, "user")
-          params[:session][:remember_me] == '1' ? remember(user, "user") : forget(user, "user")
-          redirect_back_or users_root_path
+          activated_user(user)
         else
           unactivated_user
         end
@@ -26,6 +25,16 @@ module Users
     end
 
     private
+
+    def find_user
+      User.find_by(email: params[:session][:email].downcase)
+    end
+
+    def activated_user(user)
+      log_in(user, "user")
+      params[:session][:remember_me] == '1' ? remember(user, "user") : forget(user, "user")
+      redirect_back_or users_root_path
+    end
 
     def unactivated_user
       message = "Account not activated. "

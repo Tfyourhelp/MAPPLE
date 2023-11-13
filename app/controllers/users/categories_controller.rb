@@ -6,7 +6,7 @@ module Users
     def show
       @filters = params[:filters]
       @arrange = params[:arrange]
-      @products = Product.where(category_id: @category.id).page(params[:page]).per(8)
+      @products = Product.where(category_id: @category.id)
       @products, @filters = Categories::Filter.call(params, @products, @filters)
     end
 

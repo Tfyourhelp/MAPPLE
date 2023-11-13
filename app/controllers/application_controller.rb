@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     @info_orders = @info_orders.page(params[:page]).per(10)
   end
 
-  def find_shop # sửa tên chỗ này lại
+  def find_shop
     @shop = Shop.first
   end
 

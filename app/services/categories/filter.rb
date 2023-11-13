@@ -13,14 +13,14 @@ module Categories
     def call
       filter_price
       arrange_by
-      return @products, @filters
+      @products = @products.page(@params[:page]).per(Product::PER_PAGE)
+      [@products, @filters]
     end
 
     private
 
     def filter_price
       if (@params[:under250] == "1") && (@params[:between250and500] == "1") && (@params[:between500and750] == "1") && (@params[:between750and1000] == "1") && (@params[:over1000] == "1")
-        @products = @products
         @filters = [true, true, true, true, true]
       else
         filter_products_by_price_ranges
@@ -38,7 +38,8 @@ module Categories
       filters = []
       price_ranges.each do |param, filter|
         next unless @params[param.to_sym] == "1"
-        index = price_ranges.keys.index(param) # index của param trong price_range
+
+        index = price_ranges.keys.index(param)
         filters << filter
         @filters[index] = true
       end

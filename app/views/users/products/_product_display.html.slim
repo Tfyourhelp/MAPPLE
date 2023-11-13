@@ -4,7 +4,7 @@ div.col
       img.card-img-top.p-3 [src="#{url_for(product.images[0])}" alt="..." width="100px" height="300px"]
     - else 
       img.card-img-top.p-3 [src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png" alt="..." width="100px" height="300px"]
-    div.card-body.pad-5-10-0-20.hei-145
+    div.card-body.pad-5-10-0-20.hei-150
       p.card-title.text-center.font-s-1em.fw-bold.color-blackblue.mb-0.hei-43
         span
           | #{product.name.upcase} 
@@ -29,4 +29,4 @@ div.col
             | Add To Cart
       - else
         = button_to "Add To Cart", users_login_path, method: :get ,class:"btn btn-primary" 
-      
+   

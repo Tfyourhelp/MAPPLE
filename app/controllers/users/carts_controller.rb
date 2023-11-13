@@ -8,19 +8,18 @@ module Users
 
     def index
       @cart_items = @cart.cart_items
-      # để xóa những trường hợp product hết hàng
+
       delete_cart_item_when_out_of_stock
     end
 
     def create
-      if @cart_item.nil? # thêm mới cart_item
+      if @cart_item.nil?
         add_new_cart_item
-      else # có cart_item của product đó trong cart rồi
+      else
         update_cart_item
       end
     end
 
-    # +1 hoặc -1
     def change_quantity
       params[:operation] == "plus" ? plus_operation : minus_operation
     end
@@ -35,7 +34,6 @@ module Users
 
     private
 
-    # nếu chưa có cart
     def add_new_cart_item
       @cart_item = CartItem.new(product_id: @product.id)
       @cart_item.cart = @cart
@@ -44,9 +42,9 @@ module Users
     end
 
     def update_cart_item
-      if params[:quantity].nil? # nhấn add_to_cart ở ngoài trang chủ
+      if params[:quantity].nil?
         @cart_item.update(quantity: (@cart_item.quantity + 1))
-      else # điền vào text_field trong product/show | Chặn ở js rồi nên k cần phải điều kiện ở đây
+      else
         @cart_item.update(quantity: params[:quantity].to_i)
       end
     end
@@ -60,7 +58,6 @@ module Users
       end
     end
 
-    # tim ra cart cua nguoi dung hien tai neu chua co thi tao moi và save
     def set_cart
       @cart = Cart.find_or_initialize_by(finished: false, user_id: current_person("user").id)
       @cart.save if @cart.new_record?
@@ -74,7 +71,7 @@ module Users
     def find_product_to_add_cart_item
       @product = Product.find_by(id: params[:product_id])
       redirect_to users_root_path, notice: "Cant find product", flash: { class: "danger" } unless @product
-      @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id) # tim ra san pham da nhan Add to cart
+      @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id) 
       redirect_to users_root_path, notice: "Cant find cartitem in cart", flash: { class: "danger" } unless @product
     end
 

@@ -21,8 +21,8 @@ module Shops
     def create
       @product = Product.new(product_params)
       @product.category = @category
-      update_images_to_product
       if @product.save
+        update_images_to_product
         redirect_to shops_products_url(@product), notice: "Product created success", flash: { class: "success" }
       else
         render 'new', status: :unprocessable_entity
@@ -66,7 +66,7 @@ module Shops
       return if params[:product][:images].length == 1
 
       @product.images.delete_all unless @product.images.empty?
-      @product.images.attach(params[:product][:images])
+      @product.images.attach(params[:product][:images]) # gán vào db
     end
 
     def find_all_categories

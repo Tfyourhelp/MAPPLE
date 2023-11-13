@@ -16,6 +16,7 @@
 #  index_products_on_category_id  (category_id)
 #
 class Product < ApplicationRecord
+  PER_PAGE = 8
   has_many :cart_items, dependent: :destroy
   has_many :detail_orders
   has_many :likes

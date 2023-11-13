@@ -1,5 +1,6 @@
 = form_with(model: [:shops, @shop], html: { class: "needs-validation", novalidate: true }, local: true) do |f|
   = render 'shared/error_messages', object: f.object
+
   .form-group.mt-3
     = f.label :name, class: "fw-bold mb-1"
     = f.text_field :name, class: "form-control", :required=>true
@@ -30,12 +31,10 @@
     = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 2, :required=>true
     div.invalid-feedback Please fill shop address.
 
-
   .form-group.mt-3
     = f.label :description, class: "fw-bold mb-1"
     = f.text_area :description, placeholder: "Full of your description...", class: "form-control", rows: 3, :required=>true
     div.invalid-feedback Please fill your name.
-
 
   .form-group.mt-3
     = f.label :tax_code, class: "fw-bold mb-1"

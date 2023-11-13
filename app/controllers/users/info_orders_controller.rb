@@ -37,10 +37,8 @@ module Users
 
     def find_info_order_id
       @info_order = InfoOrder.find_by(id: params[:info_order_id])
-      # kiểm tra xem có info_order kh để chống / trên browser
       if @info_order
-        # nếu info order kh phải của người dùng đó hoặc k phải là shop
-        redirect_to users_user_path(current_person("user")), notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user") 
+        redirect_to users_user_path(current_person("user")), notice: "This is not your info order", flash: { class: "danger" } unless @info_order.user == current_person("user")
       else
         redirect_to users_user_path(current_person("user")), notice: "Info order not found", flash: { class: "danger" }
       end

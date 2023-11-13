@@ -6,11 +6,11 @@ module Shops
     before_action :find_shop, only: [:new, :create]
 
     def index
-      @categories = Category.all.page(params[:page]).per(8)
+      @categories = Category.all.page(params[:page]).per(Category::PER_PAGE)
     end
 
     def show
-      @products = Product.where(category_id: @category.id).page(params[:page]).per(8)
+      @products = Product.where(category_id: @category.id).page(params[:page]).per(Product::PER_PAGE)
     end
 
     def new

@@ -3,8 +3,12 @@ div.text-center
   h1 Forgot password
 .row.justify-content-center.align-items-center
   .col-md-4.col-md-offset-3
-    = form_with(url: users_password_resets_path, scope: :password_reset, local: true) do |f|
-      = f.label :email
-      = f.email_field :email, class: 'form-control'
-      .d-grid
+    = form_with(url: users_password_resets_path, html: { class: "needs-validation", novalidate: true } , scope: :password_reset, local: true) do |f|
+      
+      .form-group.mt-3
+        = f.label :email, class: "fw-bold mb-1"
+        = f.email_field :email, class: 'form-control', :required=>true
+        div.invalid-feedback Please fill your email.
+
+      .d-grid.mt-2
         = f.submit "Submit", class: "btn btn-primary mt-2"

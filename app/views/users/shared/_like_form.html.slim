@@ -3,7 +3,7 @@
     = link_to users_login_path do
       i class="fa-regular fa-heart font-s-2em garbage-button marri-10"
   - else 
-    - if if_like_product?(current_person("user"), product.id)
+    - if if_like_product?(current_person("user"), product)
         button type="button" class="garbage-button like-product" data-url="#{users_likes_path}" data-product-id="#{product.id}"
           i class="fa-solid fa-heart font-s-2em "
     - else
@@ -11,6 +11,3 @@
             i class="fa-regular fa-heart font-s-2em "
   div.text-center.mt-1.like-word#likecount 
     |( #{like_count(product)} )
-      
-
-  

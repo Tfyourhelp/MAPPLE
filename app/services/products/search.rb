@@ -11,7 +11,7 @@ module Products
       filter_price
       filter_quantity
       search_category
-      @products = @products.page(@params[:page]).per(8)
+      @products = @products.page(@params[:page]).per(Product::PER_PAGE)
     end
 
     private

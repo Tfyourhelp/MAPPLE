@@ -22,7 +22,6 @@ export default class extends Controller {
           product_id: productId
         },
         success: function(res) {
-          // console.log(res)
         }
       })
     })
@@ -44,7 +43,6 @@ export default class extends Controller {
           product_id: productId
         },
         success: function(res) {
-          // console.log(res)
         }
       })
     })
