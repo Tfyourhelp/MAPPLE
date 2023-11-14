@@ -14,9 +14,7 @@ module Shops
 
     def find_info_order_id
       @info_order = InfoOrder.find_by(id: params[:info_order_id])
-      return if @info_order
-
-      redirect_to shops_order_history_list_shop_path, alert: "Info order not found"
+      redirect_to shops_order_history_list_shop_path, alert: "Info order not found" if @info_order.nil?
     end
   end
 end

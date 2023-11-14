@@ -23,7 +23,7 @@ module Users
         send_activation_email(@user)
         redirect_to users_root_url, notice: "Please check your email to activate your account."
       else
-        render 'new', status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -33,7 +33,7 @@ module Users
       if @user.update(user_params)
         redirect_to users_user_url, notice: "Profile updated"
       else
-        render 'edit', status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 

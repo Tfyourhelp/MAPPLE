@@ -14,7 +14,7 @@ module Users
         redirect_to root_url, notice: "Email sent with password reset instructions"
       else
         flash.now[:danger] = "Email address not found"
-        render "new", status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -26,7 +26,7 @@ module Users
         @user.update_attribute(:reset_digest, nil)
         redirect_to users_user_url(@user), notice: "Password has been reset."
       else
-        render 'edit', status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -38,6 +38,7 @@ module Users
 
     def find_user
       @user = User.find_by(email: params[:email])
+      redirect_to users_root_url, alert: "User not found" if @user.nil?
     end
 
     def valid_user

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  add_flash_types :info, :error, :warning
+  rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
 
   def request_login_page_while_logged_in
     if logged_in?("user")
@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
+  end
+
+  def error_not_found
+    render '/application/errors/404', status: :not_found, formats: [:html]
   end
 end

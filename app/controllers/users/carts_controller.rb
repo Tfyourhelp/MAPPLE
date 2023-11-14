@@ -64,14 +64,12 @@ module Users
 
     def find_cart_item
       @cart_item = CartItem.find_by(id: params[:id])
-      redirect_to users_carts_path, alert: "Cant find cart item" if @cart_item.nil?
     end
 
     def find_product_to_add_cart_item
       @product = Product.find_by(id: params[:product_id])
       redirect_to users_root_path, alert: "Cant find product" if @product.nil?
       @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id)
-      redirect_to users_root_path, alert: "Cant find cart item in cart" if @cart_item.nil?
     end
 
     def plus_operation

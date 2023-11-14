@@ -25,7 +25,7 @@ module Shops
         update_images_to_product
         redirect_to shops_products_url(@product), notice: "Product created success"
       else
-        render 'new', status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -39,7 +39,7 @@ module Shops
         redirect_to shops_products_url(page: params[:page]), notice: 'Product updated'
       else
         @categories = Category.all.order(created_at: :desc)
-        render 'edit', status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 

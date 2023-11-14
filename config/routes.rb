@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   namespace :shops do
     resources :shops
-    resources :categories 
+    resources :categories
     resources :products
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
     root "products#index"
   end
 
+  match '*path', via: :all, to: 'application#error_not_found', constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
   root "users/products#index"
 end

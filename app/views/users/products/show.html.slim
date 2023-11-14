@@ -29,7 +29,7 @@ div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
     div.mar-20-0-20-0(data-controller="add-to-cart")
         - if logged_in?("user")
           - if @product.quantity == 0
-            button.btn.btn-secondary.mt-2.w-100.rounded-3#outofstock type="button" style="height: 45px" 
+            button.btn.btn-secondary.mt-2.w-100.rounded-3(type="button" style="height: 45px" disabled)
               | Add To Cart
           -else
             button type="button" class="add-to-cart-in-product-show btn btn-primary mt-2 w-100 rounded-3 hei-45" data-url="#{users_carts_path}" data-product-id="#{@product.id}" data-product-quantity="#{@product.quantity}" 

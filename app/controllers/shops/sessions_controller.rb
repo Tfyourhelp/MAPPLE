@@ -10,7 +10,7 @@ module Shops
         login(@shop)
       else
         flash.now[:danger] = 'Invalid email/password shop combination'
-        render 'new', status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 

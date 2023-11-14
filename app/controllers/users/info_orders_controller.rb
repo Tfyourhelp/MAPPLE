@@ -27,7 +27,7 @@ module Users
         redirect_to users_carts_path, notice: "Email order confirmation was sent"
       else
         @total_bill = params[:total_bill]
-        render 'new', status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 

@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1;
   width: 100%;
-  background-color: #c4c3d0  !important;
+  background-color: #4a4e69  !important;
 }
 
 .navbar-nav .nav-link {
@@ -206,7 +206,7 @@
   font-size: 4em;
   position: absolute;
   top: 94px;
-  right: 449px;
+  right: 528px;
 }
 
 /* footer */
@@ -265,21 +265,20 @@ footer {
 //  ********************
 .highly_recommend_product_slide_show{
   margin-top: 95px;
-  background-color: #DC143C;
+  background-color: #778da9;
   height: 510px;
   padding: 3px 50px 0px 50px;
 }
 
 .categories{
   margin-top: 30px;
-  background-color: #FAEBD7;
-  height: 300px;
-  padding: 22px 50px 0px 50px;
+  background-color: #415a77;
+  padding: 22px 50px 25px 50px;
 }
 
 .products{
   margin: 34px 0px 30px 0px;
-  background-color: #F5F5F5;
+  background-color: #edede9;
   padding: 22px 50px 0px 50px;
 }
 
@@ -393,11 +392,11 @@ footer {
 }
 
 .color-blackblue{
-  color: rgb(11, 28, 180)
+  color: #4a4e69
 }
 
 .color-blue{
-  color: rgb(11, 28, 180)
+  color: #4a4e69
 }
 
 .color-blue:hover{
@@ -612,6 +611,11 @@ footer {
   width: 270px;
 }
 
+.wid-300{
+  width: 300px;
+}
+
+
 .wid-320{
   width: 320px;
 }
@@ -642,6 +646,10 @@ footer {
 
 .wid-450{
   width: 450px !important;
+}
+
+.wid-490{
+  width: 490px !important;
 }
 
 .wid-550{
@@ -682,6 +690,10 @@ footer {
 
 .pad-20{
   padding: 20px;
+}
+
+.pad-30{
+  padding: 30px;
 }
 
 .pad-5-10-0-20{
@@ -740,8 +752,8 @@ footer {
   margin: 10px 175px 20px 175px;
 }
 
-.mar-10-320-100-320{
-  margin: 10px 320px 100px 320px;
+.mar-10-300-100-300{
+  margin: 10px 300px 100px 300px;
 }
 
 .mar-10-350-100-350{
@@ -782,6 +794,10 @@ footer {
 
 .mar-97-0-0-47{
   margin: 97px 0px 0px 47px;
+}
+
+.mar-150-300-100-300{
+  margin: 150px 300px 100px 300px !important;
 }
 
 .marle-5{
@@ -826,6 +842,10 @@ footer {
 
 .marle-50{
   margin-left: 50px;
+}
+
+.marle-60{
+  margin-left: 60px;
 }
 
 .marle-72{
@@ -882,6 +902,10 @@ footer {
 
 .marto-100{
   margin-top: 100px;
+}
+
+.marto-110{
+  margin-top: 110px;
 }
 
 .marto-150{
