@@ -15,24 +15,25 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
         - person_type = "user"
         li.nav-item
           a.nav-link href="#{users_root_path}" 
-            i class="fa-solid fa-shop font-s-125em icon-button"
+            i class="fa-solid fa-shop font-s-125em icon-button text-white"
         li.nav-item.d-flex.align-items-center.marle-30
           a.nav-link.text-nowrap href="#{users_carts_path}" 
-            i class="fa-solid fa-cart-shopping font-s-125em icon-button pos-rela"
+            i class="fa-solid fa-cart-shopping font-s-125em icon-button pos-rela text-white" 
               . id = "QuantityIconCartForm"
                 = render "users/shared/quantity_icon"
         li.nav-item.dropdown(style = "margin-left: 20px")
-          a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="color: white !important" 
             = gravatar_for_header(current_person("user"), 27,25 )
             | #{current_person("user").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{users_user_path(current_person("user"))}"
-                i class="fa-solid fa-user font-s-125em marri-20"
+                /i class="fa-solid fa-user font-s-125em marri-20 "
+                i class="fa-solid fa-circle-user font-s-125em marri-20"
                 | Profile
             li
               a.dropdown-item href="#{edit_users_user_path(current_person("user"))}"
-                i class="fa-solid fa-gear font-s-125em marri-17" 
+                i class="fa-solid fa-gear font-s-125em marri-17 " 
                 | Settings
             li.divider
               hr.dropdown-divider
@@ -43,23 +44,24 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
       - elsif logged_in?("shop") 
         - person_type = "shop"
         li.nav-item
-          a.nav-link.text-nowrap href="#{shops_products_path}" 
+          a.nav-link.text-nowrap.text-white href="#{shops_products_path}" style="color: white !important" 
             | Products 
         li.nav-item.marle-25
-          a.nav-link.text-nowrap href="#{shops_categories_path}"   
+          a.nav-link.text-nowrap.text-white href="#{shops_categories_path}" style="color: white !important" 
             | Categories
         li.nav-item.marle-25
-          a.nav-link.text-nowrap href="#{shops_order_history_list_shop_path}" 
+          a.nav-link.text-nowrap href="#{shops_order_history_list_shop_path}" style="color: white !important" 
             | Customer Orders
             
         li.nav-item.dropdown.marle-25
-          a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white !important" 
             = gravatar_for_header(current_person("shop"), 27,25 )
             | #{current_person("shop").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
               a.dropdown-item href="#{shops_shop_path(current_person("shop"))}"
-                i class="fa-solid fa-user font-s-125em marri-20"
+                /i class="fa-solid fa-user font-s-125em marri-20"
+                i class="fa-solid fa-circle-user font-s-125em marri-20"
                 | Profile
             li
               a.dropdown-item href="#{edit_shops_shop_path(current_person("shop"))}"
@@ -74,10 +76,11 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
       - else
         li.nav-item
           a.nav-link href="#{users_root_path}" 
-            i class="fa-solid fa-shop fa-lg icon-button"
+            i class="fa-solid fa-shop fa-lg icon-button text-white"
+            
         li.nav-item.marle-25
           a.nav-link href="#{users_login_path}" 
-            i class="fa-solid fa-user-pen fa-lg icon-button"
+            i class="fa-solid fa-user fa-lg icon-button text-white"
         li.nav-item.marle-25
           a.nav-link href="#{shops_login_path}" 
-            i class="fa-solid fa-user-secret fa-lg"
+            i class="fa-solid fa-user-secret fa-lg text-white"

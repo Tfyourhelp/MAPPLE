@@ -22,7 +22,7 @@
 #
 #  index_users_on_email  (email) UNIQUE
 #
-class User < ApplicationRecord
+class User < Base
   has_many :carts
   has_many :info_orders
   has_many :likes

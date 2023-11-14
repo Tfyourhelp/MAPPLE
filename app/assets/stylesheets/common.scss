@@ -206,7 +206,7 @@
   font-size: 4em;
   position: absolute;
   top: 94px;
-  right: 528px;
+  right: 536px;
 }
 
 /* footer */
@@ -951,4 +951,41 @@ footer {
 .alert-alert{
   background-color: #ff8fa3; 
   color: #800f2f;
+}
+
+
+.carousel-control-next-icon{
+  background-color: gray;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  opacity: .5;
+}
+
+.carousel-control-prev-icon{
+  background-color: gray;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  opacity: .5;
+}
+
+.product-slide-show .carousel-control-next-icon{
+  margin-left: 50px;
+}
+
+.product-slide-show .carousel-control-prev-icon{
+  margin-right: 50px;
+}
+
+.highlyrecommend-slideshow .carousel-control-next-icon{
+  margin-left: 140px;
+}
+
+.highlyrecommend-slideshow .carousel-control-prev-icon{
+  margin-right: 140px;
+}
+
+.white-color{
+  color: white !important
 }

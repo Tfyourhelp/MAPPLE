@@ -1,4 +1,4 @@
-table.table 
+table.table
   thead.table-dark
     tr.text-center
       th(scope="col") Product name
@@ -22,10 +22,10 @@ table.table
           | #{cart_item.product.price} $ 
         td.wid-200
           div.d-flex.justify-content-center.align-items-center
-            button type="button" class="minus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{users_change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="minus" data-cart-item-quantity="#{cart_item.quantity}"
+            button type="button" class="minus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_users_carts_path}" data-product-id="#{cart_item.product.id}" data-operation="minus" data-cart-item-quantity="#{cart_item.quantity}"
               i class="fa-solid fa-minus"
-            input value="#{cart_item.quantity}" type="number" min="0" class="text-center b-color-ccc rounded input-cart-item mar-0-5-0-5 wid-50 hei-37" data-url="#{users_input_quantity_path}" data-product-id="#{cart_item.product.id}" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
-            button type="button" class="plus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{users_change_quantity_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
+            input value="#{cart_item.quantity}" type="number" min="0" class="text-center b-color-ccc rounded input-cart-item mar-0-5-0-5 wid-50 hei-37" data-url="#{change_quantity_users_carts_path}" data-product-id="#{cart_item.product.id}" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
+            button type="button" class="plus-cart-item btn btn-light b-color-ccc fw-bolder" data-url="#{change_quantity_users_carts_path}" data-product-id="#{cart_item.product.id}" data-operation="plus" data-cart-item-quantity="#{cart_item.quantity}" data-product-quantity="#{cart_item.product.quantity}"
               i class="fa-solid fa-plus"
         td.wid-150
           | #{cart_item.product.price*cart_item.quantity} $ 

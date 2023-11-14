@@ -4,15 +4,15 @@
   .form-group
     = f.label :name ,class: "fw-bold mb-1"
     div.mt-1
-      = f.text_field :name, value: @info_order.user.name , class: "form-control mb-4"
+      = f.text_field :name, value: current_person("user").name , class: "form-control mb-4"
   .form-group
     = f.label :address, class: "fw-bold mb-1"
     div.mt-1
-      = f.text_area :address, value: @info_order.user.address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
+      = f.text_area :address, value: current_person("user").address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
   .form-group
     = f.label :phone, class: "fw-bold mb-1 mt-3"
     div.mt-1
-      = f.number_field :phone, value: @info_order.user.phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
+      = f.number_field :phone, value: current_person("user").phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
   = hidden_field_tag :total_bill, @total_bill
   = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
   = hidden_field_tag :cart_id, @cart.id

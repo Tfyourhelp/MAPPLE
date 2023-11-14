@@ -25,7 +25,7 @@ class Product < ApplicationRecord
 
   has_many_attached :images
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :category_id, case_sensitive: false }
   validates :description, presence: true, length: { maximum: 10000 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

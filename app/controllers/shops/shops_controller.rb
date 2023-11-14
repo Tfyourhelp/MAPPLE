@@ -19,7 +19,10 @@ module Shops
     private
 
     def shop_params
-      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :phone, :address, :description, :tax_code)
+      params.require(:shop).permit(
+        :name, :email, :password, :password_confirmation,
+        :phone, :address, :description, :tax_code, :image
+      )
     end
   end
 end

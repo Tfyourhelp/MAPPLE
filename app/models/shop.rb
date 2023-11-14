@@ -18,7 +18,7 @@
 #
 #  index_shops_on_email  (email) UNIQUE
 #
-class Shop < ApplicationRecord
+class Shop < Base
   attr_accessor :remember_token
 
   has_many :products

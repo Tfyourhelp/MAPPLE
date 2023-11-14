@@ -8,7 +8,7 @@ module Users
 
     def show
       @info_orders = InfoOrders::QueryInfoOrders.call(log_user, current_person("user"), params)
-      redirect_to users_root_url and return unless @user.activated?
+      redirect_to users_root_url unless @user.activated?
 
       redirect_to users_root_url, alert: "This is not your profile account" unless current_person?(@user, "user")
     end

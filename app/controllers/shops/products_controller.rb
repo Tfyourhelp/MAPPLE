@@ -4,12 +4,12 @@ module Shops
     before_action :user_not_allow_here
     before_action :find_product, only: [:show, :edit, :update, :destroy]
     before_action :find_category, only: [:create]
-    before_action :find_list_categories, only: [:index, :new, :edit]
+    before_action :find_list_categories, only: [:index, :new, :create, :edit]
+    before_action :find_detail_order, only: [:destroy]
 
     def index
-      @products = Product.all
       @page = params[:page]
-      @products = Products::Search.call(params, @products, @categories)
+      @products = Products::Search.call(params, Product.all, @categories)
     end
 
     def show; end
@@ -44,23 +44,18 @@ module Shops
     end
 
     def destroy
-      if DetailOrder.find_by(product_id: @product.id).nil?
+      if @detail_order
+        redirect_to shops_products_url(page: params[:page]), alert: "Product is ordered, you cant delete" 
+      else
         @product.destroy
         redirect_to shops_products_url(page: params[:page]), notice: "Product deleted"
-      else
-        redirect_to shops_products_url(page: params[:page]), alert: "Product is ordered, you cant delete"
       end
     end
 
     private
 
     def product_params
-      params.require(:product).permit(:name, :price, :quantity, :category_id, :description, :images)
-    end
-
-    def find_product
-      @product = Product.find_by(id: params[:id])
-      redirect_to shop_products_path, alert: "Product not found" if @product.nil?
+      params.require(:product).permit(:name, :price, :quantity, :category_id, :description)
     end
 
     def update_images_to_product
@@ -70,13 +65,22 @@ module Shops
       @product.images.attach(params[:product][:images])
     end
 
-    def find_list_categories
-      @categories = Category.all.order(created_at: :desc)
+    def find_product
+      @product = Product.find_by(id: params[:id])
+      redirect_to shops_products_path, alert: "Product not found" if @product.nil?
     end
 
     def find_category
       @category = Category.find_by(id: params[:product][:category_id])
       redirect_to new_shops_product, alert: "Cant find category" if @category.nil?
+    end
+
+    def find_list_categories
+      @categories = Category.all.order(created_at: :desc)
+    end
+
+    def find_detail_order
+      @detail_order = DetailOrder.find_by(product_id: @product.id)
     end
   end
 end
