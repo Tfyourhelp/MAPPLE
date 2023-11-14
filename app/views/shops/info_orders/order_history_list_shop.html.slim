@@ -1,7 +1,7 @@
 - require 'date'
-h1.text-center.mt-3 Customer Ordered List
+h1.text-center.mt-3 Customer Order List
 - if @info_orders.length != 0
-  div.mar-10-320-100-320
+  div.mar-10-300-100-300
     table.table.table-bordered.table-hover.marto-20
       thead.text-center
         tr.table-info
@@ -17,7 +17,7 @@ h1.text-center.mt-3 Customer Ordered List
         tr.text-center.vam
           td.wid-130
             = info_order.id
-          td.wid-320
+          td.wid-300
             = info_order.updated_at.strftime("%H:%M:%S %A %d/%m/%Y")
           td.wid-250
             = info_order.name            

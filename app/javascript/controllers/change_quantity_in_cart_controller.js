@@ -33,7 +33,7 @@ export default class extends Controller {
           console.log(res);
           console.log(' hello ')
           if (( cart_items_length -1 ) == 0 ){
-            window.location.href = '/carts';
+            window.location.href = '/users/carts';
           }
           console.log(cart_items_length)
         }

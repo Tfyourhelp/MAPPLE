@@ -10,11 +10,11 @@ module Users
       @user = User.find_by(email: params[:password_reset][:email].downcase)
       if @user
         @user.create_reset_digest
-        @user.send_password_reset_email
-        redirect_to root_url, notice: "Email sent with password reset instructions", flash: { class: "info" }
+        send_password_reset_email(@user)
+        redirect_to root_url, notice: "Email sent with password reset instructions"
       else
         flash.now[:danger] = "Email address not found"
-        render "new", status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -24,9 +24,9 @@ module Users
       if @user.update(user_params)
         log_in(@user, "user")
         @user.update_attribute(:reset_digest, nil)
-        redirect_to users_user_url(@user), notice: "Password has been reset.", flash: { class: "success" }
+        redirect_to users_user_url(@user), notice: "Password has been reset."
       else
-        render 'edit', status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -38,6 +38,7 @@ module Users
 
     def find_user
       @user = User.find_by(email: params[:email])
+      redirect_to users_root_url, alert: "User not found" if @user.nil?
     end
 
     def valid_user
@@ -45,7 +46,11 @@ module Users
     end
 
     def check_expiration
-      redirect_to new_password_reset_url, notice: "Password reset has expired", flash: { class: "danger" } if @user.password_reset_expired?
+      redirect_to new_password_reset_url, alert: "Password reset has expired" if @user.password_reset_expired?
+    end
+
+    def send_password_reset_email(user)
+      UserMailer.password_reset(user).deliver_now
     end
   end
 end

@@ -30,6 +30,10 @@
     = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 2 , :required=>true
     div.invalid-feedback Please fill your address.
 
+  span.image
+    div.mt-3
+      = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+  
   .form-group.row.mt-3
     .col
       = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3" 

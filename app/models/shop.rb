@@ -20,13 +20,14 @@
 #
 class Shop < ApplicationRecord
   attr_accessor :remember_token
-  
+
   has_many :products
   has_many :categories
+  has_one_attached :image
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
-  validates :name, presence: true, length: { maximum: 50 } 
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, length: { maximum: 50 }
   validates :phone, presence: true, format: { with: /\A\d{9,11}\z/, message: "must be between 9 and 11 digits" }
   validates :address, presence: true
   validates :description, presence: true
@@ -34,8 +35,4 @@ class Shop < ApplicationRecord
 
   has_secure_password
   validates :password, length: { minimum: 6 }, presence: true
-
-  def send_new_order_from_customer_email(user)
-    ShopMailer.order_from_customer(self, user).deliver_now
-  end
 end
