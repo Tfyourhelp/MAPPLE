@@ -23,8 +23,7 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
                 = render "users/shared/quantity_icon"
         li.nav-item.dropdown(style = "margin-left: 20px")
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"
-            = image_tag(gravatar_url, alt: current_person("user").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px", size: "#{27}x#{25}")
+            = gravatar_for_header(current_person("user"), 27,25 )
             | #{current_person("user").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li
@@ -55,8 +54,7 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
             
         li.nav-item.dropdown.marle-25
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            - gravatar_url = "https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png"
-            = image_tag(gravatar_url, alt: current_person("shop").name, class: "gravatar", style: "border-radius: 50%; margin-right:5px", size: "#{27}x#{25}")
+            = gravatar_for_header(current_person("shop"), 27,25 )
             | #{current_person("shop").name}
           ul.dropdown-menu aria-labelledby="navbarDropdown"
             li

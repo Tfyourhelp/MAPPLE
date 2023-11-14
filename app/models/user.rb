@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :carts
   has_many :info_orders
   has_many :likes
+  has_one_attached :image
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

@@ -16,7 +16,7 @@ module Users
 
     def find_product
       @product = Product.find_by(id: params[:id])
-      redirect_to user_products_path, alert: "Product not found" if @product.nil?
+      redirect_to users_products_path, alert: "Product not found" if @product.nil?
     end
 
     def find_list_categories

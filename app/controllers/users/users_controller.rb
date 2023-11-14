@@ -20,6 +20,7 @@ module Users
     def create
       @user = User.new(user_params)
       if @user.save
+        update_image_to_user
         send_activation_email(@user)
         redirect_to users_root_url, notice: "Please check your email to activate your account."
       else
@@ -31,6 +32,7 @@ module Users
 
     def update
       if @user.update(user_params)
+        update_image_to_user
         redirect_to users_user_url, notice: "Profile updated"
       else
         render :edit, status: :unprocessable_entity
@@ -59,6 +61,10 @@ module Users
       return unless @user.nil?
 
       redirect_to users_root_path, alert: "User not found" unless @user
+    end
+
+    def update_image_to_user
+      @user.image.attach(params[:user][:image]) unless params[:user][:image].nil?
     end
 
     def send_activation_email(user)

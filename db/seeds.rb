@@ -1,4 +1,4 @@
-Shop.create!(name: "Mapple",
+shop = Shop.create!(name: "Mapple",
   email: "mapple@gmail.com",
   password:       "foobar",
   password_confirmation: "foobar",
@@ -6,14 +6,17 @@ Shop.create!(name: "Mapple",
   address: "Số 1 Tô Ký, Phường 12, Quận 12, Thành phố Hồ Chí Minh",
   description: "Mapple là hệ thống bán lẻ máy tính và phụ kiện uy tín tại Việt Nam với chuỗi cửa hàng trải nghiệm độc đáo và đội ngũ tư vấn chuyên sâu, hình thức thanh toán đa dạng và bảo hành uy tín, tin cậy giúp khách hàng tự tin lựa chọn các sản phẩm công nghệ phù hợp nhất." ,
   tax_code: 1234567890)
-  
+
+path = 'app/assets/images/avatar/7.jpeg'
+shop.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+
 5.times do |n|
   name = Faker::Name.name
   email = "user-#{n+1}@gmail.com"
   password = "password"
   phone = "0" + Faker::Number.number(digits: 9).to_s
   address = Faker::Address.full_address
-  User.create!(name: name,
+  user = User.create!(name: name,
     email: email,
     password:       password,
     password_confirmation: password,
@@ -21,6 +24,8 @@ Shop.create!(name: "Mapple",
     address: address,
     activated: true,
     activated_at: Time.zone.now)
+  path = "app/assets/images/avatar/#{n+1}.jpeg"
+  user.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
 laptop = Category.create!(name: "Laptop", shop_id: "1")
@@ -195,8 +200,38 @@ image_paths.each do |path|
   magic.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
-#============Mouse===============
 #11
+monsgeek = Product.create!(name: "Keyboard MonsGeek MG75", price: 44, description: " Kit bàn phím cơ MonsGeek MG75 Black hứa hẹn sẽ rất hot trong phân khúc KIT bàn phím cho người dùng đam mê custom nhờ các ưu điểm .Layout 75% đang rất hot hiện nay.Dual-Mode (Dây hoặc Wireless 2.4Ghz) thuận tiện với nhiều nhu cầu khác nhau. Thời lượng pin lên tới 100 giờ do phím không có LED nên tiêu thị pin ít hơn. Hotswap 5 pin cho ai thích trải nghiệm và đam mê custom. Sẵn hàng và giá thành hợp lý, dễ tiếp cận, dễ trải nghiệm tại các đại lý của AKKO",
+quantity: 30, category_id: 2)
+
+  image_paths = [
+    'app/assets/images/Ban_phim/monsgeek/1.jpeg',
+    'app/assets/images/Ban_phim/monsgeek/2.jpeg',
+    'app/assets/images/Ban_phim/monsgeek/3.jpeg',
+    'app/assets/images/Ban_phim/monsgeek/4.jpeg',
+  ]
+  
+  image_paths.each do |path|
+    monsgeek.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+  end
+
+#12
+e_dra = Product.create!(name: "Keyboard E-DRA EK368W", price: 54, description: "Bàn Phím Cơ E-DRA EK368W Bluetooth Kailhbox White Switch có thiết kế nhỏ gọn thính linh động cao, đặc biệt phù hợp với những người thường xuyên phải di chuyển. E-DRA EK368W Bluetooth Kailhbox White Switch hỗ trợ chuẩn Bluetooth 5.0 thế hệ mới nhất với tốc độ được cải thiện, tiết kiệm pin hơn, độ phủ sóng và khả năng kết nối cao hơn trước rất nhiều. E-DRA EK368W Bluetooth Kailhbox White Switch được trang bị bộ Keycaps PBT Dyesub XDA Profile co độ bền cao, không bóng, không mờ chữ sau thời gian dài sử dụng.",
+quantity: 30, category_id: 2)
+
+  image_paths = [
+    'app/assets/images/Ban_phim/e_dra/1.jpeg',
+    'app/assets/images/Ban_phim/e_dra/2.jpeg',
+    'app/assets/images/Ban_phim/e_dra/3.jpeg',
+    'app/assets/images/Ban_phim/e_dra/4.jpeg',
+  ]
+  
+image_paths.each do |path|
+  e_dra.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+end
+
+#============Mouse===============
+#13
 logitech_g_pro_x = Product.create!(name: "Mouse Logitech G Pro X", price: 132, description: "Công nghệ phím switch quang học-cơ học kết hợp độc quyền của chúng tôi kết hợp tốc độ và độ tin cậy của phím switch quang học với mức tiêu thụ điện năng thấp và cảm giác nhấp chuột thỏa mãn của micro witch điện truyền thống (hoặc cơ học). Sở hữu hiệu suất mà các chuyên gia cần mà không ảnh hưởng tới thời lượng pin.",
 quantity: 40, category_id: 3)
 image_paths = [
@@ -211,7 +246,7 @@ image_paths.each do |path|
 end
 
 
-#12
+#14
 magic_mouse = Product.create!(name: "Magic Mouse", price: 100, description: "Magic Mouse có thể kết nối không dây và sạc lại được, với phần đế được thiết kế tối ưu giúp di chuyển dễ dàng trên mặt bàn. Bề mặt Multi-Touch cho phép bạn thực hiện các thao tác đơn giản như vuốt giữa các trang web và cuộn qua lại giữa các tài liệu.",
 quantity: 23, category_id: 3)
 image_paths = [
@@ -226,7 +261,7 @@ image_paths.each do |path|
 end
 
 
-#13
+#15
 logitech_m650 = Product.create!(name: "Mouse Logitech M650 Graphite", price: 28, description: "Logitech Signature M650 được thiết kế để mang đến cảm giác thoải mái cùng nâng cao hiệu suất và tối ưu năng suất cho bạn dù đang làm việc ở bất kỳ đâu từ văn phòng, quán cà phê hay thậm chí là phòng chờ sân bay. Đây được xem là một trong những sản phẩm chuột không dây giá rẻ dành cho dân văn phòng không nên bỏ qua.",
 quantity: 24, category_id: 3)
 image_paths = [
@@ -240,8 +275,7 @@ image_paths.each do |path|
   logitech_m650.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
-
-#14
+#16
 logitech_m240_silent = Product.create!(name: "Mouse Logitech M240 Silent", price: 16, description: "Chuột Bluetooth Logitech M240 Silent dòng chuột văn phòng sở hữu thiết kế nhỏ gọn, form cầm ôm sát lòng bàn tay tăng thêm phần chắc chắn khi di chuột. Đặc biệt, nhờ vào khả năng tương thích cao nên bạn có thể ghép nối với nhiều thiết bị một cách dễ dàng.",
 quantity: 36, category_id: 3)
 image_paths = [
@@ -255,9 +289,23 @@ image_paths.each do |path|
   logitech_m240_silent.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
+#17
+dare_u = Product.create!(name: "Mouse Dare-U LM115G", price: 10, description: "DareU LM115G được làm từ chất liệu nhựa đem lại cảm giác êm tay khi sử dụng. Đặc biệt, bộ sưu tập kiểu dáng của LM115G Multi Color đem tới cho bạn nhiều sự lựa chọn. Sản phẩm được DareU thiết kế vô cùng dễ thương và bắt mắt với kích thước nhỏ gọn phù hợp với các chị em làm việc văn phòng hay phải đi công tác nhiều.",
+  quantity: 36, category_id: 3)
+  image_paths = [
+    'app/assets/images/Chuot/Dare_U/1.jpeg',
+    'app/assets/images/Chuot/Dare_U/2.jpeg',
+    'app/assets/images/Chuot/Dare_U/3.jpeg',
+    'app/assets/images/Chuot/Dare_U/4.jpeg',
+  ]
+
+image_paths.each do |path|
+  dare_u.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+end
+
 
 #============Headphone===============
-#15
+#18
 logitech_g435 = Product.create!(name: "Headphone Logitech G435 Wireless", price: 62, description: "Nếu bạn đang tìm kiếm một dòng tai nghe máy tính mang phong cách mạnh mẽ và cung cấp đầy đủ tính năng hỗ trợ cho những trận chiến đầy tính rực lửa thì không thể không nhắc đến tai nghe Logitech G435 Lightspeed Wireless Black đến từ nhà Logitech. ",
 quantity: 55, category_id: 4)
 
@@ -272,7 +320,7 @@ image_paths.each do |path|
   logitech_g435.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
-#16
+#19
 arctis_nova_7p = Product.create!(name: "Headphone Steelseries Arctis Nova 7P", price: 229, description: "Steelseries Arctis Nova 7P Wireless dòng sản phẩm tai nghe Bluetooth sở hữu chất âm sóng động nhờ vào khả năng tái tạo âm thanh đỉnh cao giúp người chơi đắm chìm trong không gian Gaming đa sắc màu. Đặc biệt, nhờ vào thiết kế tai nghe chụp tay cùng phối màu đơn giản nên có thể dễ dàng phối đồ tạo nên phong cách Y2K vô cùng sành điệu.",
 quantity: 57, category_id: 4)
 
@@ -287,7 +335,7 @@ image_paths.each do |path|
   arctis_nova_7p.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
-#17
+#20
 arctis_nova_1 = Product.create!(name: "Headphone SteelSeries Arctis Nova 1", price: 75, description: "SteelSeries Arctis Nova 1 dòng tai nghe máy tính chơi game mang đến cảm giác thoải mái trong cả ngày dài, cung cấp âm thanh chất lượng đa chiều đáp ứng tốt mọi nhu cầu giải trí. Đặc biệt, với việc được tích hợp Mic khử tiếng ồn ClearCast Gen 2 giúp giao tiếp rõ ràng trong những pha giao tranh.",
 quantity: 56, category_id: 4)
 
@@ -303,7 +351,7 @@ image_paths.each do |path|
 end
 
 
-#18
+#21
 blackshark_v2_pro = Product.create!(name: "Headphone Razer BlackShark V2 Pro", price: 233, description: "Razer hợp tác với Ubisoft, công bố BlackShark V2 Pro – Six Siege Special Edition, tai nghe máy tính phiên bản limited của tựa game hàng triệu người chơi – Rainbow Six Siege.",
 quantity: 17, category_id: 4)
 
@@ -319,7 +367,7 @@ image_paths.each do |path|
 end
 
 
-#19
+#22
 airpod_max = Product.create!(name: "Airpod max", price: 550, description: "Tai nghe dạng chụp tai được định nghĩa lại hoàn toàn. Từ đệm tai đến gọng đeo, AirPods Max được thiết kế vừa vặn một cách hoàn hảo để tạo ra vòng đệm âm thanh tối ưu, phù hợp với nhiều hình dáng đầu khác nhau giúp bạn đắm chìm hoàn toàn trong mọi âm thanh.",
 quantity: 25, category_id: 4)
 
@@ -335,7 +383,7 @@ image_paths.each do |path|
 end
 
 #============Screen===============
-#20
+#23
 dell_p2422h = Product.create!(name: "Screen Dell P2422H", price: 200, description: "Màn Hình Dell P2422H có kích thước 24 inch được trang bị tấm nền IPS với độ phủ màu 99% sRGB, màu sắc sống động trên một góc nhìn rộng lên đến 178 độ. Bạn có được màu sắc chính xác để có thể sử dụng ngay mà không cần cân lại màu.",
 quantity: 25, category_id: 5)
 
@@ -351,7 +399,7 @@ image_paths.each do |path|
 end
 
 
-#21
+#24
 dell_u2422h = Product.create!(name: "Screen Dell Ultrasharp U2422H", price: 236, description: "Dell Ultrasharp là một trong những series màn hình máy tính ăn khách nhất nhà Dell. Sở hữu thiết kế hiện đại, khả năng tái tạo hình ảnh sắc nét, đầy đủ cổng kết nối thông dụng để nâng cao trải nghiệm sử dụng, màn hình Dell Ultrasharp còn có giá thành tương đối dễ tiếp cận. Một trong những model xuất sắc bạn có thể tham khảo phải kể đến màn hình Dell UltraSharp U2422H. ",
 quantity: 34, category_id: 5)
 
@@ -367,7 +415,7 @@ image_paths.each do |path|
 end
 
 
-#22
+#25
 curved_dell_s3422dwg = Product.create!(name: "Curved screen DELL S3422DWG", price: 621, description: "Màn Hình Cong Dell S3422DWG có kích thước 34 inch, độ phân giải WQHD với VESA Display HDR 400, tốc độ làm mới 144Hz mang đến trải nghiệm chơi game thực sự đắm chìm.",
 quantity: 15, category_id: 5)
 
@@ -383,7 +431,7 @@ image_paths.each do |path|
 end
 
 
-#23
+#26
 studio_display = Product.create!(name: "Studio Display", price: 1541, description: " Studio Display có camera cao cấp với cảm biến 12MP và trường ảnh 122 độ. Và nhờ có Apple silicon, tính năng Trung Tâm Màn Hình lần đầu tiên có mặt trên Mac. Tính năng Trung Tâm Màn Hình giúp bạn luôn ở giữa khung hình khi bạn di chuyển, giúp cuộc gọi video trở nên hấp dẫn hơn. Khi có người khác tham gia hoặc rời khỏi cuộc gọi, chế độ xem sẽ mở rộng hoặc phóng to. Tính năng này cũng hoạt động mượt mà với các ứng dụng họp trực tuyến của bạn.",
   quantity: 15, category_id: 5)
   
@@ -398,6 +446,22 @@ image_paths.each do |path|
   studio_display.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
+#27
+samsung = Product.create!(name: "Screen Samsung LU28", price: 237, description: " Màn hình Samsung LU28R550UQEXXV 28 inch siêu mỏng ấn tượng, sở hữu hình ảnh UHD rõ nét sống động. Nếu bạn đang có nhu cầu thay thế hoặc mua thêm cho mình một chiếc màn hình để đáp ứng nhu cầu công việc, học tập thì chắc chắn không thể bỏ qua sản phẩm này. Hình ảnh rõ nét, màu sắc chân thực, sống động trên từng khung hình. Khung hình Samsung 28 inch LU28R550UQEXXV sở hữu chất lượng Ultra HD ấn tượng, độ phân giải cao gấp 4 lần Full HD. Nhờ vậy, người dùng có thể được trải nghiệm hình ảnh chân thực.",
+  quantity: 35, category_id: 5)
+  
+image_paths = [
+  'app/assets/images/man_hinh/samsung/1.jpeg',
+  'app/assets/images/man_hinh/samsung/2.jpeg',
+  'app/assets/images/man_hinh/samsung/3.jpeg',
+  'app/assets/images/man_hinh/samsung/4.jpeg',
+]
+
+image_paths.each do |path| 
+  samsung.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+end
+
+Like.create(user_id: 5, product_id: 27)
 Like.create(user_id: 5, product_id: 25)
 Like.create(user_id: 5, product_id: 23)
 Like.create(user_id: 5, product_id: 21)
@@ -414,6 +478,7 @@ Like.create(user_id: 5, product_id: 3)
 Like.create(user_id: 5, product_id: 1)
 
 
+Like.create(user_id: 4, product_id: 27)
 Like.create(user_id: 4, product_id: 25)
 Like.create(user_id: 4, product_id: 23)
 Like.create(user_id: 4, product_id: 21)
@@ -427,6 +492,7 @@ Like.create(user_id: 4, product_id: 7)
 Like.create(user_id: 4, product_id: 5)
 
 
+Like.create(user_id: 3, product_id: 27)
 Like.create(user_id: 3, product_id: 25)
 Like.create(user_id: 3, product_id: 23)
 Like.create(user_id: 3, product_id: 21)
@@ -438,6 +504,7 @@ Like.create(user_id: 3, product_id: 11)
 Like.create(user_id: 3, product_id: 9)
 
 
+Like.create(user_id: 2, product_id: 27)
 Like.create(user_id: 2, product_id: 25)
 Like.create(user_id: 2, product_id: 23)
 Like.create(user_id: 2, product_id: 21)
@@ -447,6 +514,7 @@ Like.create(user_id: 2, product_id: 15)
 Like.create(user_id: 2, product_id: 13)
 
 
+Like.create(user_id: 1, product_id: 27)
 Like.create(user_id: 1, product_id: 25)
 Like.create(user_id: 1, product_id: 23)
 Like.create(user_id: 1, product_id: 21)

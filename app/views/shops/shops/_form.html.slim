@@ -41,6 +41,10 @@
     = f.number_field :tax_code, inputmode: "numeric", pattern: "[0-9]*", placeholder: "Full of your number...", class: "form-control", :required=>true
     div.invalid-feedback Please fill your name.      
 
+  span.image
+    div.mt-3
+      = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+  
   .form-group.row.mt-3
     .col
       = f.submit yield(:button_text), class: "btn btn-primary w-100"
