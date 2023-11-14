@@ -6,13 +6,17 @@ Rails.application.routes.draw do
     resources :likes
     resources :account_activations, only: [:edit]
     resources :password_resets
-    resources :carts
     resources :info_orders
 
-    post '/input_quantity', to: 'carts#input_quantity'
+    resources :carts do
+      collection do
+        post :input_quantity
+        post :change_quantity
+      end
+    end
+
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'
-    post '/change_quantity', to: 'carts#change_quantity'
     delete '/logout', to: 'sessions#destroy'
     get '/signup', to: 'users#new'
     get '/search', to: 'searchs#search'
@@ -33,6 +37,6 @@ Rails.application.routes.draw do
     root "products#index"
   end
 
-  match '*path', via: :all, to: 'application#error_not_found', constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
+  # match '*path', via: :all, to: 'application#error_not_found', constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
   root "users/products#index"
 end

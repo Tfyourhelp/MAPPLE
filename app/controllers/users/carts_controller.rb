@@ -20,11 +20,7 @@ module Users
     end
 
     def change_quantity
-      params[:operation] == "plus" ? plus_operation : minus_operation
-    end
-
-    def input_quantity
-      @cart_item.update(quantity: params[:quantity]) if params[:quantity].to_i <= @product.quantity
+      Carts::ChangeQuantity.call(params, @cart_item, @product)
     end
 
     def destroy
@@ -70,14 +66,6 @@ module Users
       @product = Product.find_by(id: params[:product_id])
       redirect_to users_root_path, alert: "Cant find product" if @product.nil?
       @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id)
-    end
-
-    def plus_operation
-      @cart_item.update(quantity: @cart_item.quantity + 1) if @cart_item.quantity < @product.quantity
-    end
-
-    def minus_operation
-      @cart_item.update(quantity: @cart_item.quantity - 1) unless @cart_item.quantity == 1
     end
   end
 end
