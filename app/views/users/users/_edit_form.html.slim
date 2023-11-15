@@ -30,7 +30,7 @@
 
 .profile data-controller="form-validate"
   = form_with(model: [:users, @user] ,local: true, id: "EditUserForm") do |f|
-    /= render 'shared/error_messages', object: f.object
+    = render 'shared/error_messages', object: f.object
     .form-group.mt-3.el-name
       = f.label :name, class: "fw-bold mb-1 "
       = f.text_field :name, class: "form-control input-name"
@@ -39,8 +39,7 @@
 
     .form-group.mt-3.el-email
       = f.label :email, class: "fw-bold mb-1"
-      = f.email_field :email, class: "form-control input-email",disabled: true
-      div.invalid-error.error-text  
+      = f.email_field :email, class: "form-control input-email", disabled: true
 
     .form-group.mt-3.el-phone
       = f.label :phone, class: "fw-bold mb-1"
@@ -59,4 +58,4 @@
     .form-group.row.mt-3
       .col
         /button class="btn btn-primary w-100 mb-3 edit-profile-user btn-submit-form" type="button" Update Profile
-        = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3 edit-profile-use btn-submit-form" 
+        = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3 edit-profile-use btn-edit-form-submit" 
