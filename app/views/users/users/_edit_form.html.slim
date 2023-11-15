@@ -11,16 +11,6 @@
     div.invalid-feedback Please fill your email.  
 
   .form-group.mt-3
-    = f.label :password, class: "fw-bold mb-1"
-    = f.password_field :password, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your password.
-
-  .form-group.mt-3
-    = f.label :password_confirmation, "Confirmation", class: "fw-bold mb-1"
-    = f.password_field :password_confirmation, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your confirmation password.
-
-  .form-group.mt-3
     = f.label :phone, class: "fw-bold mb-1"
     = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", :required=>true
     div.invalid-feedback Please fill your phone.

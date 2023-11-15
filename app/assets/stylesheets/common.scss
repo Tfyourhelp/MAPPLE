@@ -1,7 +1,13 @@
+// body{
+//   min-height: 100vh !important;
+//   display: flex;
+//   flex-direction: column;  
+// }
+
 .header-div {
   position: fixed !important; 
   top: 0;
-  z-index: 1;
+  z-index: 1000;
   width: 100%;
   background-color: #4a4e69  !important;
 }
@@ -320,7 +326,7 @@ footer {
 }
 
 .tdn {
-  text-decoration: none;
+  text-decoration: none !important; 
 }
 
 .bl-1-ccc{
@@ -607,6 +613,10 @@ footer {
   width: 250px;
 }
 
+.wid-260{
+  width: 260px;
+}
+
 .wid-270{
   width: 270px;
 }
@@ -644,6 +654,7 @@ footer {
   width: 440px;
 }
 
+
 .wid-450{
   width: 450px !important;
 }
@@ -654,6 +665,10 @@ footer {
 
 .wid-550{
   width: 550px !important;
+}
+
+.wid-548{
+  width: 548px !important;
 }
 
 .wid-580{
@@ -788,8 +803,8 @@ footer {
   margin: 50px 0px 30px 40px !important; 
 }
 
-.mar-80-250-0-250{
-  margin: 80px 250px 0px 250px;
+.mar-80-230-0-230{
+  margin: 80px 230px 0px 230px;
 }
 
 .mar-97-0-0-47{
@@ -978,14 +993,43 @@ footer {
   margin-right: 50px;
 }
 
-.highlyrecommend-slideshow .carousel-control-next-icon{
-  margin-left: 140px;
+.product-slide-show .carousel-control-next-icon:hover{
+  opacity: .5;
 }
 
-.highlyrecommend-slideshow .carousel-control-prev-icon{
-  margin-right: 140px;
+.product-slide-show .carousel-control-prev-icon:hover{
+  opacity: .5;
+}
+
+.highlyrecommend-slideshow .button-next{
+  top: 165px;
+  right: 0px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.highlyrecommend-slideshow .button-next:hover{
+  opacity: .5;
+}
+
+.highlyrecommend-slideshow .button-prev{
+  top: 165px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.highlyrecommend-slideshow .button-prev:hover{
+  opacity: .5;
 }
 
 .white-color{
   color: white !important
+}
+
+.link-card:hover{
+  opacity: .7;
+}
+
+.sold-color{
+  color: #4a4e69
 }

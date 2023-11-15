@@ -38,7 +38,7 @@ class User < Base
   validates :address, presence: true
 
   has_secure_password
-  validates :password, length: { minimum: 6 }, presence: true
+  validates :password, length: { minimum: 6 }, presence: true, on: :create
 
   before_save :downcase_email
   before_create :create_activation_digest

@@ -18,7 +18,7 @@ module Users
     end
 
     def create
-      @user = User.new(user_params)
+      @user = User.new(user_new_params)
       if @user.save
         update_image_to_user
         send_activation_email(@user)
@@ -31,7 +31,7 @@ module Users
     def edit; end
 
     def update
-      if @user.update(user_params)
+      if @user.update(user_edit_params)
         update_image_to_user
         redirect_to users_user_url, notice: "Profile updated"
       else
@@ -46,8 +46,12 @@ module Users
 
     private
 
-    def user_params
+    def user_new_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :address)
+    end
+
+    def user_edit_params
+      params.require(:user).permit(:name, :email, :phone, :address)
     end
 
     def correct_user

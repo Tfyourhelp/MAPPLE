@@ -10,7 +10,7 @@ shop = Shop.create!(name: "Mapple",
 path = 'app/assets/images/avatar/7.jpeg'
 shop.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 
-5.times do |n|
+15.times do |n|
   name = Faker::Name.name
   email = "user-#{n+1}@gmail.com"
   password = "password"
@@ -24,8 +24,10 @@ shop.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(
     address: address,
     activated: true,
     activated_at: Time.zone.now)
-  path = "app/assets/images/avatar/#{n+1}.jpeg"
-  user.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+  if n+1<6
+    path = "app/assets/images/avatar/#{n+1}.jpeg"
+    user.image.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
+  end
 end
 
 laptop = Category.create!(name: "Laptop", shop_id: "1")
@@ -461,62 +463,241 @@ image_paths.each do |path|
   samsung.images.attach(io: File.open(Rails.root.join(path)), filename: File.basename(path))
 end
 
+Like.create(user_id: 15, product_id: 27)
+Like.create(user_id: 15, product_id: 26)
+Like.create(user_id: 15, product_id: 25)
+Like.create(user_id: 15, product_id: 24)
+Like.create(user_id: 15, product_id: 23)
+Like.create(user_id: 15, product_id: 22)
+Like.create(user_id: 15, product_id: 21)
+Like.create(user_id: 15, product_id: 20)
+Like.create(user_id: 15, product_id: 19)
+Like.create(user_id: 15, product_id: 18)
+Like.create(user_id: 15, product_id: 17)
+Like.create(user_id: 15, product_id: 16)
+Like.create(user_id: 15, product_id: 15)
+Like.create(user_id: 15, product_id: 14)
+Like.create(user_id: 15, product_id: 13)
+Like.create(user_id: 15, product_id: 12)
+Like.create(user_id: 15, product_id: 11)
+Like.create(user_id: 15, product_id: 10)
+Like.create(user_id: 15, product_id: 9)
+Like.create(user_id: 15, product_id: 8)
+Like.create(user_id: 15, product_id: 7)
+Like.create(user_id: 15, product_id: 6)
+Like.create(user_id: 15, product_id: 5)
+Like.create(user_id: 15, product_id: 4)
+Like.create(user_id: 15, product_id: 3)
+Like.create(user_id: 15, product_id: 2)
+Like.create(user_id: 15, product_id: 1)
+
+
+Like.create(user_id: 14, product_id: 27)
+Like.create(user_id: 14, product_id: 26)
+Like.create(user_id: 14, product_id: 25)
+Like.create(user_id: 14, product_id: 24)
+Like.create(user_id: 14, product_id: 23)
+Like.create(user_id: 14, product_id: 22)
+Like.create(user_id: 14, product_id: 21)
+Like.create(user_id: 14, product_id: 20)
+Like.create(user_id: 14, product_id: 19)
+Like.create(user_id: 14, product_id: 18)
+Like.create(user_id: 14, product_id: 17)
+Like.create(user_id: 14, product_id: 16)
+Like.create(user_id: 14, product_id: 15)
+Like.create(user_id: 14, product_id: 14)
+Like.create(user_id: 14, product_id: 13)
+Like.create(user_id: 14, product_id: 12)
+Like.create(user_id: 14, product_id: 11)
+Like.create(user_id: 14, product_id: 10)
+Like.create(user_id: 14, product_id: 9)
+Like.create(user_id: 14, product_id: 8)
+Like.create(user_id: 14, product_id: 7)
+Like.create(user_id: 14, product_id: 6)
+Like.create(user_id: 14, product_id: 5)
+Like.create(user_id: 14, product_id: 4)
+Like.create(user_id: 14, product_id: 3)
+
+
+
+
+
+Like.create(user_id: 13, product_id: 27)
+Like.create(user_id: 13, product_id: 26)
+Like.create(user_id: 13, product_id: 25)
+Like.create(user_id: 13, product_id: 24)
+Like.create(user_id: 13, product_id: 23)
+Like.create(user_id: 13, product_id: 22)
+Like.create(user_id: 13, product_id: 21)
+Like.create(user_id: 13, product_id: 20)
+Like.create(user_id: 13, product_id: 19)
+Like.create(user_id: 13, product_id: 18)
+Like.create(user_id: 13, product_id: 17)
+Like.create(user_id: 13, product_id: 16)
+Like.create(user_id: 13, product_id: 15)
+Like.create(user_id: 13, product_id: 14)
+Like.create(user_id: 13, product_id: 13)
+Like.create(user_id: 13, product_id: 12)
+Like.create(user_id: 13, product_id: 11)
+Like.create(user_id: 13, product_id: 10)
+Like.create(user_id: 13, product_id: 9)
+Like.create(user_id: 13, product_id: 8)
+Like.create(user_id: 13, product_id: 7)
+Like.create(user_id: 13, product_id: 6)
+Like.create(user_id: 13, product_id: 5)
+
+
+
+Like.create(user_id: 12, product_id: 27)
+Like.create(user_id: 12, product_id: 26)
+Like.create(user_id: 12, product_id: 25)
+Like.create(user_id: 12, product_id: 24)
+Like.create(user_id: 12, product_id: 23)
+Like.create(user_id: 12, product_id: 22)
+Like.create(user_id: 12, product_id: 21)
+Like.create(user_id: 12, product_id: 20)
+Like.create(user_id: 12, product_id: 19)
+Like.create(user_id: 12, product_id: 18)
+Like.create(user_id: 12, product_id: 17)
+Like.create(user_id: 12, product_id: 16)
+Like.create(user_id: 12, product_id: 15)
+Like.create(user_id: 12, product_id: 14)
+Like.create(user_id: 12, product_id: 13)
+Like.create(user_id: 12, product_id: 12)
+Like.create(user_id: 12, product_id: 11)
+Like.create(user_id: 12, product_id: 10)
+Like.create(user_id: 12, product_id: 9)
+Like.create(user_id: 12, product_id: 8)
+Like.create(user_id: 12, product_id: 7)
+
+
+
+
+Like.create(user_id: 11, product_id: 27)
+Like.create(user_id: 11, product_id: 26)
+Like.create(user_id: 11, product_id: 25)
+Like.create(user_id: 11, product_id: 24)
+Like.create(user_id: 11, product_id: 23)
+Like.create(user_id: 11, product_id: 22)
+Like.create(user_id: 11, product_id: 21)
+Like.create(user_id: 11, product_id: 20)
+Like.create(user_id: 11, product_id: 19)
+Like.create(user_id: 11, product_id: 18)
+Like.create(user_id: 11, product_id: 17)
+Like.create(user_id: 11, product_id: 16)
+Like.create(user_id: 11, product_id: 15)
+Like.create(user_id: 11, product_id: 14)
+Like.create(user_id: 11, product_id: 13)
+Like.create(user_id: 11, product_id: 12)
+Like.create(user_id: 11, product_id: 11)
+Like.create(user_id: 11, product_id: 10)
+Like.create(user_id: 11, product_id: 9)
+
+
+
+
+Like.create(user_id: 10, product_id: 27)
+Like.create(user_id: 10, product_id: 26)
+Like.create(user_id: 10, product_id: 25)
+Like.create(user_id: 10, product_id: 24)
+Like.create(user_id: 10, product_id: 23)
+Like.create(user_id: 10, product_id: 22)
+Like.create(user_id: 10, product_id: 21)
+Like.create(user_id: 10, product_id: 20)
+Like.create(user_id: 10, product_id: 19)
+Like.create(user_id: 10, product_id: 18)
+Like.create(user_id: 10, product_id: 17)
+Like.create(user_id: 10, product_id: 16)
+Like.create(user_id: 10, product_id: 15)
+Like.create(user_id: 10, product_id: 14)
+Like.create(user_id: 10, product_id: 13)
+Like.create(user_id: 10, product_id: 12)
+Like.create(user_id: 10, product_id: 11)
+
+
+
+Like.create(user_id: 9, product_id: 27)
+Like.create(user_id: 9, product_id: 26)
+Like.create(user_id: 9, product_id: 25)
+Like.create(user_id: 9, product_id: 24)
+Like.create(user_id: 9, product_id: 23)
+Like.create(user_id: 9, product_id: 22)
+Like.create(user_id: 9, product_id: 21)
+Like.create(user_id: 9, product_id: 20)
+Like.create(user_id: 9, product_id: 19)
+Like.create(user_id: 9, product_id: 18)
+Like.create(user_id: 9, product_id: 17)
+Like.create(user_id: 9, product_id: 16)
+Like.create(user_id: 9, product_id: 15)
+Like.create(user_id: 9, product_id: 14)
+Like.create(user_id: 9, product_id: 13)
+
+
+
+Like.create(user_id: 8, product_id: 27)
+Like.create(user_id: 8, product_id: 26)
+Like.create(user_id: 8, product_id: 25)
+Like.create(user_id: 8, product_id: 24)
+Like.create(user_id: 8, product_id: 23)
+Like.create(user_id: 8, product_id: 22)
+Like.create(user_id: 8, product_id: 21)
+Like.create(user_id: 8, product_id: 20)
+Like.create(user_id: 8, product_id: 19)
+Like.create(user_id: 8, product_id: 18)
+Like.create(user_id: 8, product_id: 17)
+Like.create(user_id: 8, product_id: 16)
+Like.create(user_id: 8, product_id: 15)
+
+
+
+Like.create(user_id: 7, product_id: 27)
+Like.create(user_id: 7, product_id: 26)
+Like.create(user_id: 7, product_id: 25)
+Like.create(user_id: 7, product_id: 24)
+Like.create(user_id: 7, product_id: 23)
+Like.create(user_id: 7, product_id: 22)
+Like.create(user_id: 7, product_id: 21)
+Like.create(user_id: 7, product_id: 20)
+Like.create(user_id: 7, product_id: 19)
+Like.create(user_id: 7, product_id: 18)
+Like.create(user_id: 7, product_id: 17)
+
+
+
+
+Like.create(user_id: 6, product_id: 27)
+Like.create(user_id: 6, product_id: 26)
+Like.create(user_id: 6, product_id: 25)
+Like.create(user_id: 6, product_id: 24)
+Like.create(user_id: 6, product_id: 23)
+Like.create(user_id: 6, product_id: 22)
+Like.create(user_id: 6, product_id: 21)
+Like.create(user_id: 6, product_id: 20)
+Like.create(user_id: 6, product_id: 19)
+
+
+
 Like.create(user_id: 5, product_id: 27)
-Like.create(user_id: 5, product_id: 25)
+Like.create(user_id: 5, product_id: 26)
+Like.create(user_id: 5, product_id: 25,)
+Like.create(user_id: 5, product_id: 24)
 Like.create(user_id: 5, product_id: 23)
+Like.create(user_id: 5, product_id: 22)
 Like.create(user_id: 5, product_id: 21)
-Like.create(user_id: 5, product_id: 19)
-Like.create(user_id: 5, product_id: 17)
-Like.create(user_id: 5, product_id: 15)
-Like.create(user_id: 5, product_id: 13)
-Like.create(user_id: 5, product_id: 11)
-Like.create(user_id: 5, product_id: 10)
-Like.create(user_id: 5, product_id: 9)
-Like.create(user_id: 5, product_id: 7)
-Like.create(user_id: 5, product_id: 5)
-Like.create(user_id: 5, product_id: 3)
-Like.create(user_id: 5, product_id: 1)
+
 
 
 Like.create(user_id: 4, product_id: 27)
+Like.create(user_id: 4, product_id: 26)
 Like.create(user_id: 4, product_id: 25)
+Like.create(user_id: 4, product_id: 24)
 Like.create(user_id: 4, product_id: 23)
-Like.create(user_id: 4, product_id: 21)
-Like.create(user_id: 4, product_id: 19)
-Like.create(user_id: 4, product_id: 17)
-Like.create(user_id: 4, product_id: 15)
-Like.create(user_id: 4, product_id: 13)
-Like.create(user_id: 4, product_id: 11)
-Like.create(user_id: 4, product_id: 9)
-Like.create(user_id: 4, product_id: 7)
-Like.create(user_id: 4, product_id: 5)
+
 
 
 Like.create(user_id: 3, product_id: 27)
+Like.create(user_id: 3, product_id: 26)
 Like.create(user_id: 3, product_id: 25)
-Like.create(user_id: 3, product_id: 23)
-Like.create(user_id: 3, product_id: 21)
-Like.create(user_id: 3, product_id: 19)
-Like.create(user_id: 3, product_id: 17)
-Like.create(user_id: 3, product_id: 15)
-Like.create(user_id: 3, product_id: 13)
-Like.create(user_id: 3, product_id: 11)
-Like.create(user_id: 3, product_id: 9)
-
 
 Like.create(user_id: 2, product_id: 27)
-Like.create(user_id: 2, product_id: 25)
-Like.create(user_id: 2, product_id: 23)
-Like.create(user_id: 2, product_id: 21)
-Like.create(user_id: 2, product_id: 19)
-Like.create(user_id: 2, product_id: 17)
-Like.create(user_id: 2, product_id: 15)
-Like.create(user_id: 2, product_id: 13)
 
-
-Like.create(user_id: 1, product_id: 27)
-Like.create(user_id: 1, product_id: 25)
-Like.create(user_id: 1, product_id: 23)
-Like.create(user_id: 1, product_id: 21)
-Like.create(user_id: 1, product_id: 19)
-Like.create(user_id: 1, product_id: 17)

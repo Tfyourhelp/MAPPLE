@@ -23,6 +23,11 @@ div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
         h6.text-danger
           | ( Out of stock recently )
       - else
-        div.text-muted
+        h6.text-muted
           |( #{@product.quantity} available products )
+      h4.marle-15 
+        | ||   
+      div.sold-color.mar-4-0-0-15
+        | ( #{pluralize(DetailOrder.where(product_id: @product.id).sum('quantity'), "sold product")} )
+
           

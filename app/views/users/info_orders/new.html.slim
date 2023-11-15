@@ -1,19 +1,21 @@
 - provide(:title, 'Infomation order')
 - provide(:button_text, 'Go payment')
-div.d-flex.mar-80-250-0-250
+- total_bill = calculate_total_bill()
+div.d-flex.mar-80-230-0-230
   div.mt-4 
     h1.text-secondary.text-center.mb-4.mt-1 Infomation order
     .card.m-auto.wid-800
       .row.justify-content-center.align-items-center.mt-4
         .col-md-9
-          = render "info_orders_form"
-  div.flex-shrink-1.mt-4.marle-120
+          = render "info_orders_form", total_bill: total_bill
+  div.flex-shrink-1.mt-4.marle-80
     h1.text-center.text-secondary Detail order
-    div.b-color-gray.bd-rad-7.marto-25.wid-450
+    div.b-color-gray.bd-rad-7.marto-25.wid-550
       - @cart_items.each do |cart_item|
-        div.d-flex.align-items-center.bb-2-gray.wid-450.hei-80
+        div.d-flex.align-items-center.bb-2-gray.wid-548.hei-100
           div.text-start.w-100.marle-15
-            h7.detail-order-quantity-text   #{cart_item.quantity}  x 
+            =image_tag(url_for(cart_item.product.images.first), size: "#{60}x#{60}")
+            h7.detail-order-quantity-text.marle-10  #{cart_item.quantity}  x 
             h7.detail-order-name-text  #{cart_item.product.name}   
             h7.detail-order-total-text - #{cart_item.product.price*cart_item.quantity} $
             h6.detail-order-provide-text.mb-0 Provided by #{cart_item.product.category.shop.name}
@@ -22,4 +24,4 @@ div.d-flex.mar-80-250-0-250
         div.marle-15
           h7 Total :     
           h7.detail-order-quantity-text.marle-18 
-            |  #{@total_bill} $
+            |  #{total_bill} $

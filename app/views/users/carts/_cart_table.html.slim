@@ -45,4 +45,4 @@ table.table
           - total_bill = calculate_total_bill()
           | #{total_bill} $  
         th.wid-250(scope="col") 
-          = link_to "Go Order", new_users_info_order_path(cart_id: @cart.cart_items.first.cart_id, total_bill: total_bill), class: "btn btn-success wid-180 hei-37" unless @cart.cart_items.empty?
+          = link_to "Go Order", new_users_info_order_path(), class: "btn btn-success wid-180 hei-37" unless @cart.cart_items.empty?

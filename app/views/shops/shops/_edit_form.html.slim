@@ -8,18 +8,8 @@
 
   .form-group.mt-3
     = f.label :email, class: "fw-bold mb-1"
-    = f.email_field :email, class: "form-control", :required=>true
+    = f.email_field :email, class: "form-control", disabled: true
     div.invalid-feedback Please fill shop email.
-
-  .form-group.mt-3
-    = f.label :password, class: "fw-bold mb-1"
-    = f.password_field :password, class: "form-control", :required=>true
-    div.invalid-feedback Please fill password.
-
-  .form-group.mt-3
-    = f.label :password_confirmation, "Confirmation", class: "fw-bold mb-1"
-    = f.password_field :password_confirmation, class: "form-control", :required=>true
-    div.invalid-feedback Please fill password confirmation.
 
   .form-group.mt-3
     = f.label :phone, class: "fw-bold mb-1"

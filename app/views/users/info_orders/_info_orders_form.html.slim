@@ -13,7 +13,7 @@
     = f.label :phone, class: "fw-bold mb-1 mt-3"
     div.mt-1
       = f.number_field :phone, value: current_person("user").phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
-  = hidden_field_tag :total_bill, @total_bill
+  = hidden_field_tag :total_bill, total_bill
   = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
   = hidden_field_tag :cart_id, @cart.id
   .form-group.row.mt-4.mb-5

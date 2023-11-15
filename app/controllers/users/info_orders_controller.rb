@@ -3,13 +3,12 @@ module Users
     before_action :shop_not_allow_here
     before_action :logged_in_user, only: [:new, :create, :order_history_detail]
     before_action :find_shop, only: [:create]
-    before_action :find_cart_id, only: [:new, :create]
+    before_action :find_cart_of_current_user, only: [:new, :create]
     before_action :find_all_cart_items_of_cart, only: [:new, :create]
     before_action :find_info_order_id, only: [:order_history_detail]
 
     def new
       @info_order = InfoOrder.new
-      @total_bill = params[:total_bill]
     end
 
     def create
@@ -34,8 +33,8 @@ module Users
       params.require(:info_order).permit(:name, :address, :phone)
     end
 
-    def find_cart_id
-      @cart = Cart.find_by(id: params[:cart_id])
+    def find_cart_of_current_user
+      @cart = Cart.find_by(user_id: current_person("user").id, finished: false)
       redirect_to users_carts_path, alert: "Cart not found" if @cart.nil?
     end
 
