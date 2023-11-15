@@ -20,7 +20,6 @@ module Shops
 
     def create
       @product = Product.new(product_params)
-      @product.category = @category
       if @product.save
         update_images_to_product
         redirect_to shops_products_url(@product), notice: "Product created success"
@@ -45,7 +44,7 @@ module Shops
 
     def destroy
       if @detail_order
-        redirect_to shops_products_url(page: params[:page]), alert: "Product is ordered, you cant delete" 
+        redirect_to shops_products_url(page: params[:page]), alert: "Product is ordered, you cant delete"
       else
         @product.destroy
         redirect_to shops_products_url(page: params[:page]), notice: "Product deleted"
