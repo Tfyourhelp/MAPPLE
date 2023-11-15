@@ -1033,3 +1033,28 @@ footer {
 .sold-color{
   color: #4a4e69
 }
+
+.error-input{
+  border-color: #dc3545 !important;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url(https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-red-exclamation-mark-warning-icon-image_1357193.jpg);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.error-text{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: .875em;
+  color: #dc3545;
+}
+
+.correct-input {
+  border-color: #198754 !important;
+  padding-right: calc(1.5em + 0.75rem) !important;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Eo_circle_green_white_checkmark.svg/2048px-Eo_circle_green_white_checkmark.svg.png);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}

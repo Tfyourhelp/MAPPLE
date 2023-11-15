@@ -12,16 +12,21 @@ module Users
     end
 
     def create
-      @info_order = InfoOrder.new(info_order_params)
-      @info_order.user = current_person("user")
-      @info_order.total_bill = params[:total_bill]
       cart_item_ids = params[:cart_item_ids].split.map(&:to_i)
-      if @info_order.save
-        InfoOrders::AfterPayment.call(cart_item_ids, current_person("user"), @shop, @cart, @info_order) 
-        redirect_to users_carts_path, notice: "Email order confirmation was sent"
+      price_quantity_pairs = params[:price_quantity_pairs].split.map(&:to_i).each_slice(2).to_a
+      if InfoOrders::BeforePayment.call(cart_item_ids, price_quantity_pairs)
+        redirect_to users_carts_path, alert: "There's might be something change, please check your cart again" 
       else
-        @total_bill = params[:total_bill]
-        render :new, status: :unprocessable_entity
+        @info_order = InfoOrder.new(info_order_params)
+        @info_order.user = current_person("user")
+        @info_order.total_bill = params[:total_bill]
+        if @info_order.save
+          InfoOrders::AfterPayment.call(cart_item_ids, current_person("user"), @shop, @cart, @info_order) 
+          redirect_to users_carts_path, notice: "Email order confirmation was sent"
+        else
+          @total_bill = params[:total_bill]
+          render :new, status: :unprocessable_entity
+        end
       end
     end
 

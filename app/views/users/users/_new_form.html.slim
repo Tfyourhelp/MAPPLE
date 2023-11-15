@@ -1,39 +1,82 @@
-= form_with(model: [:users, @user], html: { class: "needs-validation", novalidate: true } ,local: true) do |f|
-  = render 'shared/error_messages', object: f.object
-  .form-group.mt-3
-    = f.label :name, class: "fw-bold mb-1"
-    = f.text_field :name, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your name.
+/ .profile-user data-controller= "user"
+/   = form_with(model: [:users, @user], html: { class: "needs-validation", novalidate: true } ,local: true) do |f|
+/     = render 'shared/error_messages', object: f.object
+/     .form-group.mt-3
+/       = f.label :name, class: "fw-bold mb-1"
+/       = f.text_field :name, class: "form-control", :required=>true
+/       div.invalid-feedback Please fill your name.
 
-  .form-group.mt-3
-    = f.label :email, class: "fw-bold mb-1"
-    = f.email_field :email, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your email.  
+/     .form-group.mt-3
+/       = f.label :email, class: "fw-bold mb-1"
+/       = f.email_field :email, class: "form-control", :required=>true
+/       div.invalid-feedback Please fill your email.  
 
-  .form-group.mt-3
-    = f.label :password, class: "fw-bold mb-1"
-    = f.password_field :password, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your password.
+/     .form-group.mt-3
+/       = f.label :password, class: "fw-bold mb-1"
+/       = f.password_field :password, class: "form-control", :required=>true
+/       div.invalid-feedback Please fill your password.
 
-  .form-group.mt-3
-    = f.label :password_confirmation, "Password confirmation", class: "fw-bold mb-1"
-    = f.password_field :password_confirmation, class: "form-control", :required=>true
-    div.invalid-feedback Please fill your confirmation password.
+/     .form-group.mt-3
+/       = f.label :password_confirmation, "Password confirmation", class: "fw-bold mb-1"
+/       = f.password_field :password_confirmation, class: "form-control", :required=>true
+/       div.invalid-feedback Please fill your confirmation password.
 
-  .form-group.mt-3
-    = f.label :phone, class: "fw-bold mb-1"
-    = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", :required=>true
-    div.invalid-feedback Please fill your phone.
+/     .form-group.mt-3
+/       = f.label :phone, class: "fw-bold mb-1"
+/       = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", :required=>true, maxlength: 11. , minlength: 9 
+/       div.invalid-feedback Please fill your phone.
 
-  .form-group.mt-3
-    = f.label :address, class: "fw-bold mb-1"
-    = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 2 , :required=>true
-    div.invalid-feedback Please fill your address.
+/     .form-group.mt-3
+/       = f.label :address, class: "fw-bold mb-1"
+/       = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 2 , :required=>true
+/       div.invalid-feedback Please fill your address.
 
-  span.image
-    div.mt-3
-      = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+/     span.image
+/       div.mt-3
+/         = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+    
+/     .form-group.row.mt-3
+/       .col
+/         = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3, " data:{action: "click->user#submit_form"}
+
+
+.profile-user data-controller= "user"
+  = form_with(model: [:users, @user] ,local: true) do |f|
+    / = render 'shared/error_messages', object: f.object
+    .form-group.mt-3
+      = f.label :name, class: "fw-bold mb-1"
+      = f.text_field :name, class: "form-control"
+      
+
+    .form-group.mt-3
+      = f.label :email, class: "fw-bold mb-1"
+      = f.email_field :email, class: "form-control"
+     
+
+    .form-group.mt-3
+      = f.label :password, class: "fw-bold mb-1"
+      = f.password_field :password, class: "form-control"
+    
+
+    .form-group.mt-3
+      = f.label :password_confirmation, "Password confirmation", class: "fw-bold mb-1"
+      = f.password_field :password_confirmation, class: "form-control"
+      
+
+    .form-group.mt-3
+      = f.label :phone, class: "fw-bold mb-1"
+      = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", maxlength: 11. , minlength: 9 
   
-  .form-group.row.mt-3
-    .col
-      = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3" 
+
+    .form-group.mt-3
+      = f.label :address, class: "fw-bold mb-1"
+      = f.text_area :address, placeholder: "Full of your address...", class: "form-control", rows: 2 
+     
+
+    span.image
+      div.mt-3
+        = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+    
+    .form-group.row.mt-3
+      .col
+        = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3, " data:{action: "click->user#submit_form"}

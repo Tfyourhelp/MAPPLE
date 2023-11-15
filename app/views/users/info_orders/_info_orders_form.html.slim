@@ -16,6 +16,7 @@
   = hidden_field_tag :total_bill, total_bill
   = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
   = hidden_field_tag :cart_id, @cart.id
+  = hidden_field_tag :price_quantity_pairs, price_quantity_pairs
   .form-group.row.mt-4.mb-5
     .col
       = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5" ,data: { action: "click -> payment#payment_success" }

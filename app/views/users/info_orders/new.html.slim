@@ -1,13 +1,15 @@
 - provide(:title, 'Infomation order')
 - provide(:button_text, 'Go payment')
 - total_bill = calculate_total_bill()
+- price_quantity_pairs = calculate_price_quantity_pairs()
+
 div.d-flex.mar-80-230-0-230
   div.mt-4 
     h1.text-secondary.text-center.mb-4.mt-1 Infomation order
     .card.m-auto.wid-800
       .row.justify-content-center.align-items-center.mt-4
         .col-md-9
-          = render "info_orders_form", total_bill: total_bill
+          = render "info_orders_form", total_bill: total_bill, price_quantity_pairs: price_quantity_pairs
   div.flex-shrink-1.mt-4.marle-80
     h1.text-center.text-secondary Detail order
     div.b-color-gray.bd-rad-7.marto-25.wid-550

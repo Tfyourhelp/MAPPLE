@@ -42,7 +42,7 @@ table.table
         th(scope="col") 
           = @cart.cart_items.sum('quantity') 
         th(scope="col") 
-          - total_bill = calculate_total_bill()
+          - total_bill, = calculate_total_bill()
           | #{total_bill} $  
         th.wid-250(scope="col") 
           = link_to "Go Order", new_users_info_order_path(), class: "btn btn-success wid-180 hei-37" unless @cart.cart_items.empty?

@@ -19,4 +19,7 @@
     })
 })()
 
-$('#outofstock').prop('disabled', true);
+
+
+
+

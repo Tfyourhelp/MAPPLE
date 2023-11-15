@@ -2,8 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets =["name", "nameerrors", "email","emailerrors" ,"password","passworderrors","passwordconfirmation","passwordconfirmationerrors", "phone", "phoneerrors", "address", "addresserrors"]
-
+  connect(){
+    console.log('b')
+  }
+  
   submit_form(event){
+    console.log('a')
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     console.log("Xin chào");
     event.preventDefault();
