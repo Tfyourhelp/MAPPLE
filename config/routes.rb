@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :likes
     resources :account_activations, only: [:edit]
     resources :password_resets
+    resources :password_changes, only: [:edit, :update]
 
     resources :categories do
       collection do
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
     resources :shops
     resources :categories
     resources :products
+    resources :password_changes, only: [:edit, :update]
 
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'

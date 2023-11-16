@@ -4,8 +4,8 @@ body{
   // flex-direction: column;  
   display:flex;
   flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
+  min-height: 85vh;
+  //justify-content: space-between;
 
 }
 
@@ -224,11 +224,11 @@ body{
 
 footer {
   //margin-top: auto;
-  margin: 30px 300px 25px 300px;
+  margin: 30px 300px 0px 300px;
   padding-top: 5px;
   border-top: 1px solid rgb(201, 197, 197);
   color: rgb(179, 176, 176);
-
+  height: 10vh;
   a {
     color: gray;
     &:hover {
@@ -251,23 +251,23 @@ footer {
   }
 }
 
-@media (max-width: 800px) {
-  footer {
-    small {
-      display: block;
-      float:  none;
-      margin-bottom: 1em;
-    }
-    ul  {
-      float:none;
-      padding: 0;
-      li {
-        float: none;
-        margin-left: 0;
-      }
-    }
-  }
-}
+// @media (max-width: 800px) {
+//   footer {
+//     small {
+//       display: block;
+//       float:  none;
+//       margin-bottom: 1em;
+//     }
+//     ul  {
+//       float:none;
+//       padding: 0;
+//       li {
+//         float: none;
+//         margin-left: 0;
+//       }
+//     }
+//   }
+// }
 
 // ********************
 
@@ -959,6 +959,14 @@ footer {
   margin-right: 350px;
 }
 
+.marri-410{
+  margin-right: 410px;
+}
+
+.marri-400{
+  margin-right: 400px;
+}
+
 //********************
 
 .gravatar-header{
@@ -966,25 +974,25 @@ footer {
   margin-right:5px;
 }
 
-.alert{
+.flash .alert{
   border-radius: 2rem !important;
 }
 
-.alert-notice{
+.flash .alert-notice{
   background-color: #c7f9cc; 
   color: #003e1f;
   width:20%;
   margin-top :10px;
 }
 
-.alert-alert{
+.flash .alert-alert{
   background-color: #ff8fa3; 
   color: #800f2f;
   width:20%;
   margin-top :10px;
 }
 
-.alert-danger{
+.flash .alert-danger{
   width:20%;
   margin-top :10px;
 }

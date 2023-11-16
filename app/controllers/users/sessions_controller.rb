@@ -1,6 +1,6 @@
 module Users
   class SessionsController < Users::BaseController
-    before_action :request_login_page_while_logged_in, only: [:new]
+    before_action :not_allow_to_login_page_while_logged_in, only: [:new]
     before_action :find_user, only: [:create]
 
     def new; end

@@ -1,7 +1,7 @@
 module Shops
   class ProductsController < Shops::BaseController
-    before_action :logged_in_shop
     before_action :user_not_allow_here
+    before_action :logged_in_shop
     before_action :find_product, only: [:show, :edit, :update, :destroy]
     before_action :find_category, only: [:create]
     before_action :find_list_categories, only: [:index, :new, :create, :edit]

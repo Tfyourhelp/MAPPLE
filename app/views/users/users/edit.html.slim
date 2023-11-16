@@ -1,5 +1,7 @@
 - provide(:title, "Edit user")
 - provide(:button_text, "Save changes")
+div.d-flex.flex-row-reverse.marri-410.mb-4
+  = button_to "Change password", edit_users_password_change_path(@user), method: :get, class:"btn btn-primary wid-155 hei-40"
 .card.m-auto.mb-5.wid-1100.shadow.border-0
   div.text-center.mt-3
     h1 Update your profile

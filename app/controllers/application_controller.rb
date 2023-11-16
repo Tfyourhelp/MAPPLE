@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
 
-  def request_login_page_while_logged_in
+  def not_allow_to_login_page_while_logged_in
     if logged_in?("user")
       redirect_to users_root_url
     elsif logged_in?("shop")

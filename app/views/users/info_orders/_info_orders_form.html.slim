@@ -1,22 +1,26 @@
-= form_with(model: [:users,@info_order] , local: true, id: "InfoForm",data: {controller: "payment"} ) do |f|
-  = render 'shared/error_messages', object: f.object
+. data-controller="form-validate"
+  = form_with(model: [:users,@info_order] , local: true, id: "InfoForm",data: {controller: "payment"} ) do |f|
+    = render 'shared/error_messages', object: f.object
 
-  .form-group
-    = f.label :name ,class: "fw-bold mb-1"
-    div.mt-1
-      = f.text_field :name, value: current_person("user").name , class: "form-control mb-4"
-  .form-group
-    = f.label :address, class: "fw-bold mb-1"
-    div.mt-1
-      = f.text_area :address, value: current_person("user").address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2"
-  .form-group
-    = f.label :phone, class: "fw-bold mb-1 mt-3"
-    div.mt-1
-      = f.number_field :phone, value: current_person("user").phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2"
-  = hidden_field_tag :total_bill, total_bill
-  = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
-  = hidden_field_tag :cart_id, @cart.id
-  = hidden_field_tag :price_quantity_pairs, price_quantity_pairs
-  .form-group.row.mt-4.mb-5
-    .col
-      = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5" ,data: { action: "click -> payment#payment_success" }
+    .form-group.mt-3.el-name
+      = f.label :name ,class: "fw-bold mb-1"
+      = f.text_field :name, value: current_person("user").name , class: "form-control input-name"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-address
+      = f.label :address, class: "fw-bold mb-1"
+      = f.text_area :address, value: current_person("user").address, placeholder: "Full of your address...", rows: 3, class: "form-control mb-2 input-address"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-phone
+      = f.label :phone, class: "fw-bold mb-1"
+      = f.number_field :phone, value: current_person("user").phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control mb-2 input-phone"
+      div.invalid-error.error-text
+
+    = hidden_field_tag :total_bill, total_bill
+    = hidden_field_tag :cart_item_ids, @cart_items.pluck(:id)
+    = hidden_field_tag :cart_id, @cart.id
+    = hidden_field_tag :price_quantity_pairs, price_quantity_pairs
+    .form-group.row.mt-4.mb-5
+      .col
+        = f.submit yield(:button_text), class: "btn btn-success w-100 mt-0.5 btn-info-form-submit" 

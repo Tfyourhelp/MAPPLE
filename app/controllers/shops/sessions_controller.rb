@@ -1,6 +1,6 @@
 module Shops
   class SessionsController < Shops::BaseController
-    before_action :request_login_page_while_logged_in, only: [:new]
+    before_action :not_allow_to_login_page_while_logged_in, only: [:new]
     before_action :find_shop, only: [:create]
 
     def new; end

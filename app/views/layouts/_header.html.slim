@@ -7,7 +7,7 @@ nav.navbar.navbar-expand-lg.navbar-light.header-div
       = link_to users_root_path, id: "logo" , class: "shop-name" do
         | MAPPLE
       = form_with(url: users_search_path, local:true, method: :get, class:"d-flex pos-rela") do |f|
-        = f.text_field :search_content,value: @search_content ,class: "form-control mt-1 wid-400 marri-350"
+        = f.text_field :search_content,value: @search_content ,class: "form-control mt-1 wid-400 marri-350", placeholder: "Search..."
         i class="fa-solid fa-magnifying-glass pos-abs search-icon"
   div.collapse.navbar-collapse#navbarNav
     ul.navbar-nav.mr-auto

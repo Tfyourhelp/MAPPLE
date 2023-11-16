@@ -47,7 +47,6 @@ module Users
       @product = Product.find_by(id: params[:product_id])
       redirect_to users_root_path, alert: "Cant find product" if @product.nil?
       @cart_item = CartItem.find_by(product_id: @product.id, cart_id: @cart.id)
-      # chỗ này hỏi a Sơn coi có nên redirect k
     end
 
     def find_cart_item
