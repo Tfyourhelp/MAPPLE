@@ -418,7 +418,7 @@ end
 
 
 #25
-curved_dell_s3422dwg = Product.create!(name: "Curved screen DELL S3422DWG", price: 621, description: "Màn Hình Cong Dell S3422DWG có kích thước 34 inch, độ phân giải WQHD với VESA Display HDR 400, tốc độ làm mới 144Hz mang đến trải nghiệm chơi game thực sự đắm chìm.",
+curved_dell_s3422dwg = Product.create!(name: "Curved screen DELL S3422DWG", price: 621, description: "Các bạn đang tìm cho mình một chiếc màn hình gaming cao cấp thực sự ấn tượng? Nếu vậy, còn chần chừ gì mà không đến với chiếc màn hình máy tính Dell S3422DWG, một siêu phẩm chắc chắn sẽ ngay lập tức làm hài lòng và mang lại cho các bạn một trải nghiệm thực sự đắm chìm. Không làm các bạn phải chờ đợi lâu thêm nữa, cùng tìm hiểu chi tiết hơn về chiếc màn hình tuyệt vời này ngay thôi nào!.",
 quantity: 15, category_id: 5)
 
 image_paths = [

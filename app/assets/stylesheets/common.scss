@@ -1,8 +1,13 @@
-// body{
-//   min-height: 100vh !important;
-//   display: flex;
-//   flex-direction: column;  
-// }
+body{
+  // min-height: 100vh !important;
+  // display: flex;
+  // flex-direction: column;  
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+
+}
 
 .header-div {
   position: fixed !important; 
@@ -218,6 +223,7 @@
 /* footer */
 
 footer {
+  //margin-top: auto;
   margin: 30px 300px 25px 300px;
   padding-top: 5px;
   border-top: 1px solid rgb(201, 197, 197);
@@ -231,6 +237,7 @@ footer {
   }
   small {
     float: left;
+    font-size: 16px;
   }
 
   ul {
@@ -239,6 +246,7 @@ footer {
     li {
       float: left;
       margin-left: 15px;
+      font-size: 18px;
     }
   }
 }
@@ -270,7 +278,7 @@ footer {
 
 //  ********************
 .highly_recommend_product_slide_show{
-  margin-top: 95px;
+  //margin-top: 20px; //95px
   background-color: #778da9;
   height: 510px;
   padding: 3px 50px 0px 50px;
@@ -958,16 +966,28 @@ footer {
   margin-right:5px;
 }
 
+.alert{
+  border-radius: 2rem !important;
+}
+
 .alert-notice{
   background-color: #c7f9cc; 
   color: #003e1f;
+  width:20%;
+  margin-top :10px;
 }
 
 .alert-alert{
   background-color: #ff8fa3; 
   color: #800f2f;
+  width:20%;
+  margin-top :10px;
 }
 
+.alert-danger{
+  width:20%;
+  margin-top :10px;
+}
 
 .carousel-control-next-icon{
   background-color: gray;

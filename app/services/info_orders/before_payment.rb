@@ -15,11 +15,16 @@ module InfoOrders
       check = false
       cart_item_ids.zip(price_quantity_pairs).each do |cart_item_id, price_quantity_pair|
         cart_item = CartItem.find_by(id: cart_item_id)
-        next if cart_item.nil?
+        if cart_item.nil?
+          check = true
+          next
+        end
 
         product = cart_item.product
-        next if product.nil?
-
+        if product.nil?
+          check = true
+          next
+        end
         check = true if price_quantity_pair[0] != product.price
         check = true if price_quantity_pair[1] > product.quantity
       end
