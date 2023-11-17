@@ -9,11 +9,11 @@
       .d-flex.mt-3
         p.fw-bold.font-s-125em.mar-8-0-0-10
           | Quantity from 
-        = f.number_field :from_quantity, value: params[:from_quantity], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-100 hei-45 marle-30"
+        = f.number_field :from_quantity, value: params[:from_quantity],min: 0 ,inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-100 hei-45 marle-30"
       
         p.fw-bold.font-s-125em.mar-8-0-0-30
           | to
-        = f.number_field :to_quantity, value: params[:to_quantity], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-100 hei-45 marle-30"
+        = f.number_field :to_quantity, value: params[:to_quantity],min: 0, inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-100 hei-45 marle-30"
     
     div
       .form-group.marle-80
@@ -23,13 +23,13 @@
       .d-flex.mt-3
         p.fw-bold.font-s-125em.mar-8-0-0-80
           | Price from 
-        = f.number_field :from_price, value: params[:from_price], inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-95 hei-45 marle-20"
+        = f.number_field :from_price, value: params[:from_price],min: 0, inputmode: "numeric", pattern: "[0-9]*" ,class: "form-control wid-95 hei-45 marle-20"
       
         p.fw-bold.font-s-125em.mar-8-0-0-5
           | $  
         p.fw-bold.font-s-125em.mar-8-0-0-13 
           | to
-        = f.number_field :to_price, value: params[:to_price], inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-95 hei-45 marle-20"
+        = f.number_field :to_price, value: params[:to_price],min: 0, inputmode: "numeric", pattern: "[0-9]*" , class: "form-control wid-95 hei-45 marle-20"
         p.fw-bold.font-s-125em.mar-8-0-0-5
           | $ 
 

@@ -15,16 +15,15 @@ module Users
       cart_item_ids = params[:cart_item_ids].split.map(&:to_i)
       price_quantity_pairs = params[:price_quantity_pairs].split.map(&:to_i).each_slice(2).to_a
       if InfoOrders::BeforePayment.call(cart_item_ids, price_quantity_pairs)
-        redirect_to users_carts_path, alert: "There's might be something change, please check your cart again" 
+        redirect_to users_carts_path, alert: "There's might be something change, please check your cart again"
       else
         @info_order = InfoOrder.new(info_order_params)
         @info_order.user = current_person("user")
         @info_order.total_bill = params[:total_bill]
         if @info_order.save
-          InfoOrders::AfterPayment.call(cart_item_ids, current_person("user"), @shop, @cart, @info_order) 
+          InfoOrders::AfterPayment.call(cart_item_ids, current_person("user"), @shop, @cart, @info_order)
           redirect_to users_carts_path, notice: "Email order confirmation was sent"
         else
-          @total_bill = params[:total_bill]
           render :new, status: :unprocessable_entity
         end
       end
@@ -53,7 +52,7 @@ module Users
       if @info_order
         redirect_to users_user_path(current_person("user")), alert: "This is not your info order" unless @info_order.user == current_person("user")
       else
-        redirect_to users_user_path(current_person("user")), notice: "Info order not found"
+        redirect_to users_user_path(current_person("user")), alert: "Info order not found"
       end
     end
   end

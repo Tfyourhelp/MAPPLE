@@ -8,8 +8,6 @@ module Users
     def show
       @info_orders = InfoOrders::QueryInfoOrders.call(log_user, current_person("user"), params)
       redirect_to users_root_url unless @user.activated?
-
-      redirect_to users_root_url, alert: "This is not your profile account" unless current_person?(@user, "user")
     end
 
     def new
@@ -50,8 +48,7 @@ module Users
 
     def find_and_correct_user
       @user = User.find_by(id: params[:id])
-      redirect_to users_root_url, alert: "User not found" if @user.nil?
-      redirect_to users_root_url, alert: "This is not your area" unless current_person?(@user, "user")
+      redirect_to users_root_url, alert: "This is not your area" if @user.nil? || !current_person?(@user, "user")
     end
 
     def update_image_to_user

@@ -3,7 +3,7 @@ module Shops
     before_action :user_not_allow_here
     before_action :logged_in_shop
     before_action :find_category, only: [:show, :edit, :update, :destroy]
-    before_action :find_shop, only: [:new, :create]
+    before_action :find_shop, only: [:create]
     before_action :find_product, only: [:destroy]
 
     def index

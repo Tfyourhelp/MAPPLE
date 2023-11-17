@@ -1,8 +1,8 @@
 module Shops
   class InfoOrdersController < Shops::BaseController
-    before_action :find_info_order_id, only: [:order_history_detail]
     before_action :user_not_allow_here
     before_action :logged_in_shop
+    before_action :find_info_order_id, only: [:order_history_detail]
 
     def order_history_list_shop
       @info_orders = InfoOrders::QueryInfoOrders.call(log_user, current_person("user"), params)
