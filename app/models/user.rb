@@ -22,7 +22,7 @@
 #
 #  index_users_on_email  (email) UNIQUE
 #
-class User < ApplicationRecord
+class User < Base
   has_many :carts
   has_many :info_orders
   has_many :likes
@@ -38,7 +38,7 @@ class User < ApplicationRecord
   validates :address, presence: true
 
   has_secure_password
-  validates :password, length: { minimum: 6 }, presence: true
+  validates :password, length: { minimum: 6 }, presence: true, on: :create
 
   before_save :downcase_email
   before_create :create_activation_digest

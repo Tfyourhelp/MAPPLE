@@ -28,7 +28,7 @@
           td.wid-200
             | Ordered successfully
           td.wid-100
-            = link_to users_order_history_detail_path(info_order_id: info_order.id), class: "", style: "text-decoration: none" do
+            = link_to order_history_detail_users_info_orders_path(info_order_id: info_order.id), class: "", style: "text-decoration: none" do
               i class="fa-solid fa-circle-info fa-lg"
     div.d-flex.justify-content-end
       = paginate @info_orders

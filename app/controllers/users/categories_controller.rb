@@ -13,7 +13,7 @@ module Users
     private
 
     def find_category
-      @category = Category.find_by(id: params[:id]) 
+      @category = Category.find_by(id: params[:id])
       redirect_to users_root_path, alert: "Cant find category" if @category.nil?
     end
   end

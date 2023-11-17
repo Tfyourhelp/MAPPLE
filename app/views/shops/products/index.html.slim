@@ -12,7 +12,7 @@ div.mar-10-380-100-380
         th(scope="col") Image
         th.text-center(scope="col")
           | Product action
-    tbody
+    tbody data-controller="confirm-delete"
       - @products.order(created_at: :desc).each do |product|
           tr.text-center.vam
             td.wid-430
@@ -30,10 +30,10 @@ div.mar-10-380-100-380
               - else
                 img.wid-100.hei-100(src="https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png")
             td.wid-140
-              .d-flex.jtf-space-even
+              .d-flex.jtf-space-even 
                 = link_to edit_shops_product_path(product, page: @page) do 
                   i class="fa-solid fa-pen-to-square font-s-15em edit-link"
-                = button_to shops_product_path(product, page: @page), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button" do
+                = button_to shops_product_path(product, page: @page), method: :delete, data: { confirm: 'Are you sure?'}, class: "garbage-button",data: { action: "click -> confirm-delete#confirm_delete_product" } do
                   i class="fa-solid fa-trash font-s-15em garbage-button" 
   - if @products.empty?
     div.text-center

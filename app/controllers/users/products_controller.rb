@@ -5,9 +5,8 @@ module Users
     before_action :find_list_categories, only: [:index]
 
     def index
-      @products = Product.all
       @page = params[:page]
-      @products = Products::Search.call(params, @products, @categories)
+      @products = Products::Search.call(params, Product.all, @categories)
     end
 
     def show; end

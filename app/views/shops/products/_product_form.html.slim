@@ -4,16 +4,16 @@
   .form-group.mt-3
     = f.label :name, class: "fw-bold mb-1"
     = f.text_field :name, class: "form-control", :required=>true
-    div.invalid-feedback. Please fill product's quantity.
+    div.invalid-feedback. Please fill product's name.
 
   .form-group.mt-3
     = f.label :price, class: "fw-bold mb-1"
-    = f.number_field :price, inputmode: "numeric", pattern: "[0-9]*", class: "form-control ", :required=>true
-    div.invalid-feedback Please fill product's quantity.
+    = f.number_field :price, inputmode: "numeric",min: 0,pattern: "[0-9]*", class: "form-control ", :required=>true
+    div.invalid-feedback Please fill product's price.
 
   .form-group.mt-3
     = f.label :quantity, class: "fw-bold mb-1"
-    = f.number_field :quantity, inputmode: "numeric", pattern: "[0-9]*", class: "form-control", :required=>true
+    = f.number_field :quantity, inputmode: "numeric",min: 0 ,pattern: "[0-9]*", class: "form-control", :required=>true
     div.invalid-feedback Please fill product's quantity.
 
   .form-group.mt-3
@@ -23,7 +23,7 @@
   
   .form-group.mt-3
     = f.label :description, class: "fw-bold mb-1"
-    = f.text_area :description, placeholder: "Compost new micropost...", class: "form-control", rows: 10, :required=>true
+    = f.text_area :description, placeholder: "Compost new description...", class: "form-control", rows: 10, :required=>true
     div.invalid-feedback Please fill product's description.
 
   span.image

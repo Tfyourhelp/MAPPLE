@@ -16,13 +16,17 @@ div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
     p.font-s-1em.marri-50  #{@product.description}
     
     h5.font-weight-bold.m-0 Delivery
-    div.d-flex
-      p.font-s-1em.marri-20  VIETNAM, USA, CANADA, UK, EUROPE
-      
+    p.font-s-1em.marri-20  VIETNAM, USA, CANADA, UK, EUROPE
+    div.d-flex.align-items-end  
       - if @product.quantity == 0
-        h6.text-danger
+        div.text-danger.mb-0
           | ( Out of stock recently )
       - else
-        div.text-muted
+        div.text-muted.mb-0
           |( #{@product.quantity} available products )
+      h4.marle-15.mb-0 
+        | ||   
+      div.sold-color.marle-15
+        | ( #{pluralize(DetailOrder.where(product_id: @product.id).sum('quantity'), "sold product")} )
+
           

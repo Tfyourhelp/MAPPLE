@@ -1,0 +1,40 @@
+.profile-user data-controller= "form-validate"
+  = form_with(model: [:users, @user] ,local: true, id:"NewUserForm") do |f|
+    = render 'shared/error_messages', object: f.object
+    .form-group.mt-3.el-name
+      = f.label :name, class: "fw-bold mb-1"
+      = f.text_field :name, class: "form-control input-name"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-email
+      = f.label :email, class: "fw-bold mb-1"
+      = f.email_field :email, class: "form-control input-email"
+      div.invalid-error.error-text 
+
+    .form-group.mt-3.el-password
+      = f.label :password, class: "fw-bold mb-1"
+      = f.password_field :password, class: "form-control input-password"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-password-confirmation
+      = f.label :password_confirmation, "Password confirmation", class: "fw-bold mb-1 "
+      = f.password_field :password_confirmation, class: "form-control input-password-confirmation"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-phone
+      = f.label :phone, class: "fw-bold mb-1"
+      = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control input-phone" 
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-address
+      = f.label :address, class: "fw-bold mb-1"
+      = f.text_area :address, placeholder: "Full of your address...", class: "form-control input-address", rows: 2 
+      div.invalid-error.error-text
+
+    span.image
+      div.mt-3
+        = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+    
+    .form-group.row.mt-3
+      .col
+        = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3 btn-new-form-submit" 

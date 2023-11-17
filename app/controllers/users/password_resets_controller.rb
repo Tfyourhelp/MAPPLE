@@ -46,7 +46,7 @@ module Users
     end
 
     def check_expiration
-      redirect_to new_password_reset_url, alert: "Password reset has expired" if @user.password_reset_expired?
+      redirect_to new_users_password_reset, alert: "Password reset has expired" if @user.password_reset_expired?
     end
 
     def send_password_reset_email(user)

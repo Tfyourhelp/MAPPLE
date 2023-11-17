@@ -1,6 +1,7 @@
 module InfoOrders
   class QueryInfoOrders < BaseService
     def initialize(user_logged_in, current_user, params)
+      super()
       @user_logged_in = user_logged_in
       @current_user = current_user
       @params = params

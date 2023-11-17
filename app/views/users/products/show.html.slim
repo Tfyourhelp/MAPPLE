@@ -7,7 +7,7 @@ div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
     h1.font-s-2em = @product.name.upcase
     .d-flex data-controller="like"
       h4.mt-1 Rating: 
-      div id="likeForm#{@product.id}"    
+      div.marle-10 id="likeForm#{@product.id}"    
         = render "users/shared/like_form" , product: @product
         
     h4.mt-2.font-s-2em.price-color #{@product.price.to_s + "    $"}
@@ -26,6 +26,11 @@ div.row.b-1-ccc.rounded-3.mar-25-300-100-300.wid-1300.hei-650
       - else
         div.text-muted.mar-4-0-0-15
           |( #{@product.quantity} available products )
+      h4.marle-15 
+        | ||   
+      div.sold-color.mar-4-0-0-15
+        | ( #{pluralize(DetailOrder.where(product_id: @product.id).sum('quantity'), "sold product")} )
+
     div.mar-20-0-20-0(data-controller="add-to-cart")
         - if logged_in?("user")
           - if @product.quantity == 0

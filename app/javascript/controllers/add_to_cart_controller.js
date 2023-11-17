@@ -24,6 +24,16 @@ export default class extends Controller {
           footer: '<a href="#">Why do I have this issue?</a>'
         });
       } else {
+
+        Swal.fire({
+          //position: "top-end",
+          icon: "success",
+          title: "Add to cart success",
+          showConfirmButton: false,
+          timer: 1000
+        });
+
+
         $.ajax({
           url: url,
           type: 'POST',
@@ -45,6 +55,14 @@ export default class extends Controller {
     $(document).on('click', '.add-to-cart', function(e) {
       const url = $(this).data('url')
       const productId = $(this).data('product-id')
+
+      Swal.fire({
+        //position: "top-end",
+        icon: "success",
+        title: "Add to cart success",
+        showConfirmButton: false,
+        timer: 1000
+      });
 
       $.ajax({
         url: url,

@@ -1,0 +1,30 @@
+.profile data-controller="form-validate"
+  = form_with(model: [:users, @user] ,local: true, id: "EditUserForm") do |f|
+    = render 'shared/error_messages', object: f.object
+    .form-group.mt-3.el-name
+      = f.label :name, class: "fw-bold mb-1 "
+      = f.text_field :name, class: "form-control input-name"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-email
+      = f.label :email, class: "fw-bold mb-1"
+      = f.email_field :email, class: "form-control input-email", disabled: true
+
+    .form-group.mt-3.el-phone
+      = f.label :phone, class: "fw-bold mb-1"
+      = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control input-phone"
+      i.invalid-error.error-text
+
+    .form-group.mt-3.el-address
+      = f.label :address, class: "fw-bold mb-1"
+      = f.text_area :address, placeholder: "Full of your address...", class: "form-control input-address", rows: 2 
+      i.invalid-error.error-text 
+
+    span.image
+      div.mt-3
+        = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+    
+    .form-group.row.mt-3
+      .col
+        /button class="btn btn-primary w-100 mb-3 edit-profile-user btn-submit-form" type="button" Update Profile
+        = f.submit yield(:button_text), class: "btn btn-primary w-100 mb-3 edit-profile-use btn-edit-form-submit" 

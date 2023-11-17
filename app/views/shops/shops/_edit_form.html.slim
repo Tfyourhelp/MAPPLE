@@ -1,0 +1,41 @@
+. data-controller= "form-validate"
+  = form_with(model: [:shops, @shop], local: true, id:"EditShopForm") do |f|
+    = render 'shared/error_messages', object: f.object
+
+    .form-group.mt-3.el-name
+      = f.label :name, class: "fw-bold mb-1"
+      = f.text_field :name, class: "form-control input-name"
+      div.invalid-error.error-text
+
+    .form-group.mt-3
+      = f.label :email, class: "fw-bold mb-1"
+      = f.email_field :email, class: "form-control", disabled: true
+      
+
+    .form-group.mt-3.el-phone
+      = f.label :phone, class: "fw-bold mb-1"
+      = f.number_field :phone, inputmode: "numeric", pattern: "[0-9]*", class: "form-control input-phone"
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-address
+      = f.label :address, class: "fw-bold mb-1"
+      = f.text_area :address, placeholder: "Full of your address...", class: "form-control input-address", rows: 2
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-description
+      = f.label :description, class: "fw-bold mb-1"
+      = f.text_area :description, placeholder: "Full of your description...", class: "form-control input-description", rows: 3
+      div.invalid-error.error-text
+
+    .form-group.mt-3.el-taxcode
+      = f.label :tax_code, class: "fw-bold mb-1"
+      = f.number_field :tax_code, inputmode: "numeric", pattern: "[0-9]*", placeholder: "Full of your number...", class: "form-control input-tax-code"
+      div.invalid-error.error-text     
+
+    span.image
+      div.mt-3
+        = f.file_field :image, accept: "image/jpeg, image/gif, image/png", class: "form-control"
+    
+    .form-group.row.mt-3
+      .col
+        = f.submit yield(:button_text), class: "btn btn-primary w-100 btn-edit-shop-form-submit"

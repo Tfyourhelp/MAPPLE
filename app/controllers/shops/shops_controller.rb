@@ -9,7 +9,7 @@ module Shops
     def edit; end
 
     def update
-      if @shop.update(shop_params)
+      if @shop.update(shop_edit_params)
         redirect_to shops_shop_url, notice: "Shop profile updated"
       else
         render :edit, status: :unprocessable_entity
@@ -18,8 +18,11 @@ module Shops
 
     private
 
-    def shop_params
-      params.require(:shop).permit(:name, :email, :password, :password_confirmation, :phone, :address, :description, :tax_code)
+    def shop_edit_params
+      params.require(:shop).permit(
+        :name, :email, :phone, :address,
+        :description, :tax_code, :image
+      )
     end
   end
 end

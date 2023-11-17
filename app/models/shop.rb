@@ -18,7 +18,7 @@
 #
 #  index_shops_on_email  (email) UNIQUE
 #
-class Shop < ApplicationRecord
+class Shop < Base
   attr_accessor :remember_token
 
   has_many :products
@@ -34,5 +34,5 @@ class Shop < ApplicationRecord
   validates :tax_code, presence: true, numericality: { only_integer: true }, length: { is: 10 }
 
   has_secure_password
-  validates :password, length: { minimum: 6 }, presence: true
+  validates :password, length: { minimum: 6 }, presence: true, on: :create
 end
