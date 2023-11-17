@@ -52,11 +52,7 @@ Rails.application.routes.draw do
     root "products#index"
   end
 
-<<<<<<< HEAD
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   match '*path', via: :all, to: 'application#error_not_found', constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
-=======
-  # match '*path', via: :all, to: 'application#error_not_found', constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
->>>>>>> main
   root "users/products#index"
 end
