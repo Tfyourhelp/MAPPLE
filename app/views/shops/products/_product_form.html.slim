@@ -4,12 +4,12 @@
   .form-group.mt-3
     = f.label :name, class: "fw-bold mb-1"
     = f.text_field :name, class: "form-control", :required=>true
-    div.invalid-feedback. Please fill product's quantity.
+    div.invalid-feedback. Please fill product's name.
 
   .form-group.mt-3
     = f.label :price, class: "fw-bold mb-1"
     = f.number_field :price, inputmode: "numeric", pattern: "[0-9]*", class: "form-control ", :required=>true
-    div.invalid-feedback Please fill product's quantity.
+    div.invalid-feedback Please fill product's price.
 
   .form-group.mt-3
     = f.label :quantity, class: "fw-bold mb-1"

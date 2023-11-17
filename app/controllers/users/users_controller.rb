@@ -54,13 +54,6 @@ module Users
       redirect_to users_root_url, alert: "This is not your area" unless current_person?(@user, "user")
     end
 
-    # def find_user
-    #   @user = User.find_by(id: params[:id])
-    #   return unless @user.nil?
-
-    #   redirect_to users_root_path, alert: "User not found" unless @user
-    # end
-
     def update_image_to_user
       @user.image.attach(params[:user][:image]) unless params[:user][:image].nil?
     end

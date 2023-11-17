@@ -8,7 +8,7 @@ module Users
     end
 
     def shop_not_allow_here
-      not_found if logged_in?("shop")
+      error_not_found if logged_in?("shop")
     end
   end
 end

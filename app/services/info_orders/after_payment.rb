@@ -1,6 +1,7 @@
 module InfoOrders
   class AfterPayment < BaseService
     def initialize(cart_item_ids, current_user, shop, cart, info_order)
+      super()
       @cart_item_ids = cart_item_ids
       @current_user = current_user
       @shop = shop

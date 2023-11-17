@@ -1,6 +1,7 @@
 module Products
   class Search < BaseService
     def initialize(params, products, categories)
+      super()
       @categories = categories
       @products = products
       @params = params

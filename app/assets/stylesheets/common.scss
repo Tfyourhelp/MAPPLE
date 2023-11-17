@@ -981,20 +981,26 @@ footer {
 .flash .alert-notice{
   background-color: #c7f9cc; 
   color: #003e1f;
-  width:20%;
+  //width:20%;
+  padding-left: 40px;
+  padding-right: 40px;
   margin-top :10px;
 }
 
 .flash .alert-alert{
   background-color: #ff8fa3; 
   color: #800f2f;
-  width:20%;
+  //width:20%;
+  padding-left: 40px;
+  padding-right: 40px;
   margin-top :10px;
 }
 
 .flash .alert-danger{
-  width:20%;
+  //width:20%;
   margin-top :10px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .carousel-control-next-icon{

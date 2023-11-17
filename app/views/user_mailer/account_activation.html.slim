@@ -1,10 +1,10 @@
-/ h1 MAPPLE
-/ div(style= "display: flex ")
-/   p(style= "margin: 0px ") 
-/     | Hi #{@user.name},
-/   p(style= "margin: 0px; margin-left: 10px; ") 
-/     | Welcome to the computer store Mapple! Click on the link below to activate your account:
-/   = link_to "Activate", edit_users_account_activation_url(@user.activation_token, email: @user.email, name: @user.name), style:"text-decoration: none; margin-left: 10px; "
+/h1 MAPPLE
+/div(style= "display: flex ")
+  p(style= "margin: 0px ") 
+    | Hi #{@user.name},
+  p(style= "margin: 0px; margin-left: 10px; ") 
+    | Welcome to the computer store Mapple! Click on the link below to activate your account:
+  = link_to "Activate", edit_users_account_activation_url(@user.activation_token, email: @user.email, name: @user.name), style:"text-decoration: none; margin-left: 10px; "
 
 
 table width="100%" bgcolor="#f2f3f8" cellspacing="0" cellpadding="0" style="max-width: 670px; margin: 0 auto; background-color: #f2f3f8;"

@@ -1,6 +1,7 @@
 module InfoOrders
   class BeforePayment < BaseService
     def initialize(cart_item_ids, price_quantity_pairs)
+      super()
       @cart_item_ids = cart_item_ids
       @price_quantity_pairs = price_quantity_pairs
     end
